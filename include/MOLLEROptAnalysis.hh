@@ -19,7 +19,7 @@ public:
 public:
 
   // void BeginOfRun(G4int runID, G4double pressure, G4double coll);
-  void BeginOfRun(G4int runID, MOLLEROptTrackingReadout *TrRO);
+  void BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout *TrRO);
   void EndOfRun();
   void EndOfEvent(G4int flag);
 
@@ -31,6 +31,7 @@ public:
 
   void SetTotalNumberOfPrimaries(Int_t n) {(*NumberOfPrimaries)[0] = (Double_t)n;};
   void SetROOTFileFlag(G4int flag) {ROOTFileFlag = flag;};
+  void SetROOTFileName(G4String name1) {ROOTFileName = name1;};
 
   void AddToAveragePMTOptPhotonDist(Float_t wvl, Float_t wgt){PMTOptPhotonDistrHist->Fill(wvl,wgt);};
   void AddToAverageQuartzOptPhotonDist(Float_t wvl, Float_t wgt){QuartzOptPhotonDistrHist->Fill(wvl,wgt);};
@@ -61,6 +62,7 @@ private:
   Int_t OptPhotonDistCnt[800];
 
   G4int ROOTFileFlag;
+  G4String ROOTFileName;
   Int_t EventCnt;
 
 

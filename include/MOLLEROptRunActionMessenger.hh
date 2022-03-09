@@ -22,6 +22,7 @@ private:
   
   G4UIcmdWithAnInteger*      MyRunIDCmd;
   G4UIcmdWithAnInteger*      ROOTFileFlagCmd;
+  G4UIcmdWithAString*      ROOTFileName;
 
 };
 
