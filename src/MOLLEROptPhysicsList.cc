@@ -1,3 +1,4 @@
+#include "MOLLEROptOpBoundaryProcess.hh"
 #include "MOLLEROptPhysicsList.hh"
 
 
@@ -48,7 +49,8 @@ void MOLLEROptPhysicsList::ConstructProcess()
   theAbsorptionProcess      = new G4OpAbsorption();
   theRayleighScattering     = new G4OpRayleigh();
   theMieHGScatteringProcess = new G4OpMieHG();
-  theBoundaryProcess        = new G4OpBoundaryProcess();
+
+  theBoundaryProcess        = new MOLLEROptOpBoundaryProcess();
 
   G4ProcessManager* pManager =
                 G4OpticalPhoton::OpticalPhoton()->GetProcessManager();
@@ -73,8 +75,11 @@ void MOLLEROptPhysicsList::ConstructProcess()
 
   pManager->AddDiscreteProcess(theWLSProcess);
 
+
   theScintProcess->SetScintillationYieldFactor(1.);
+  //#if G4VERSION_NUMBER <1100
   theScintProcess->SetScintillationExcitationRatio(0.0);
+  //#endif
   theScintProcess->SetTrackSecondariesFirst(true);
 
   // Use Birks Correction in the Scintillation process
