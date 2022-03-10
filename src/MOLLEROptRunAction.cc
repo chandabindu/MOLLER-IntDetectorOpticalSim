@@ -6,6 +6,7 @@ MOLLEROptRunAction::MOLLEROptRunAction(MOLLEROptAnalysis* AN, MOLLEROptTrackingR
 {
   MyRunID = 0;
   ROOTFileFlag = 1;
+  ROOTFileName = "MOLLEROpt";
   RunActionMessenger  = new MOLLEROptRunActionMessenger(this);
 }
 
@@ -19,6 +20,7 @@ void MOLLEROptRunAction::BeginOfRunAction(const G4Run* aRun)
   // userInfo->SetMyRunID(MyRunID);
   // userInfo->SetROOTFileFlag(ROOTFileFlag);
   analysis->SetROOTFileFlag(ROOTFileFlag);
+  analysis->SetROOTFileName(ROOTFileName);
 
   long seeds[2];
   time_t systime = time(NULL);
@@ -28,7 +30,7 @@ void MOLLEROptRunAction::BeginOfRunAction(const G4Run* aRun)
   CLHEP::HepRandom::showEngineStatus();
 
   TString InfoFile;
-  InfoFile.Form("MOLLEROpt_%04d.rndm",MyRunID);
+  InfoFile.Form("%s_%04d.rndm",ROOTFileName.c_str(),MyRunID);
   CLHEP::HepRandom::saveEngineStatus(InfoFile); 
   
   if (G4VVisManager::GetConcreteInstance())
@@ -37,7 +39,7 @@ void MOLLEROptRunAction::BeginOfRunAction(const G4Run* aRun)
       UI->ApplyCommand("/vis/scene/notifyHandlers");
     } 
   
-  analysis->BeginOfRun(MyRunID,TrackingReadout);
+  analysis->BeginOfRun(MyRunID, ROOTFileName,TrackingReadout);
 
 }
 

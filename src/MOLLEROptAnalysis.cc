@@ -12,6 +12,7 @@ MOLLEROptAnalysis::MOLLEROptAnalysis()
     NumberOfPrimaries     = new TVectorD(1);
     NumberOfPrimaries[0]  = 0;
     ROOTFileFlag = 1;
+    ROOTFileName = "MOLLEROpt";
 
     // for(int n = 0; n < 800; n++){
     //   OptPhotonDist[n] = 0.;
@@ -43,12 +44,12 @@ void MOLLEROptAnalysis::Finish()
   if (MOLLEROptFile)           delete MOLLEROptFile;
 }   
 
-void MOLLEROptAnalysis::BeginOfRun(G4int runID, MOLLEROptTrackingReadout *TrRO) 
+void MOLLEROptAnalysis::BeginOfRun(G4int runID, G4String name1, MOLLEROptTrackingReadout *TrRO) 
 {   
 
   if(ROOTFileFlag){
 
-    MOLLEROptFile = new TFile(Form("MOLLEROpt_%04d.root",runID),"RECREATE","MOLLEROpt ROOT file");
+    MOLLEROptFile = new TFile(Form("%s_%04d.root",name1.c_str(),runID),"RECREATE","MOLLEROpt ROOT file");
   }
   TrackingReadout = TrRO;
     
