@@ -14,8 +14,8 @@ OutputFilePrefix = "MOLLEROpt_Scan"                      # String that starts al
 RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run in this scan - see below for additional run identifiers within the scan
 
 #Fixed values
-QWidth = 255.82  #mm
-QHeight = 100 #mm
+QWidth = 260  #mm
+QHeight = 120 #mm
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
 LightGuideLength = 221.5  #mm           This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 95.3 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
@@ -27,7 +27,7 @@ QuartzRadDamage = 170 #MRad           This should be the peak radiation damage i
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [10,100000,100000]   #Number of events on region 1,2, and 3 which is the quartz, lower guide funnel, and upper guide funnel - vary to taste ...
+NumEvents = [100,100000,100000]   #Number of events on region 1,2, and 3 which is the quartz, lower guide funnel, and upper guide funnel - vary to taste ...
                                    #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
 
 
@@ -50,16 +50,16 @@ NumEvents = [10,100000,100000]   #Number of events on region 1,2, and 3 which is
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 20 #degress
-ba_stop = 20  #degress
+ba_start = 17 #degrees
+ba_stop = 20  #degrees
 ba_step = 1  
 
-fa_start = 29 #degress 
-fa_stop = 29 #degress
+fa_start = 29 #degrees 
+fa_stop = 29 #degrees
 fa_step = 1
 
 li_start = 88 #mm
-li_stop = 89  #mm
+li_stop = 88  #mm
 li_step = 1
 
 qt_start = 20 #mm
@@ -74,6 +74,7 @@ hr_start = 1
 hr_stop = 1
 hr_step = 1
 
+text_root = ""
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
     for fa in np.arange(fa_start,fa_stop+fa_step,fa_step):
         for li in np.arange(li_start,li_stop+li_step,li_step):
@@ -105,20 +106,24 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                         Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                         Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                         Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-                        #Text += "mv ../MOLLEROpt_000"+str(RunID)+".root ../root_files/MOLLEROpt" + FileIDString + ".root"+ " \n"
+			text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
 
                         FileName = OutputFilePrefix + FileIDString+".mac"
                         fout = open(datadir+FileName, "w")
                         fout.write(Text)
                         fout.close()
-			#RunId++;
                         runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
-                        #runscript += "sleep 5" + " & \n"
-                        #runscript += "mv MOLLEROpt_0001.root root_files/MOLLEROpt" + FileIDString + " \n"
 
 
 scfile = open("StartRuns","w")
 scfile.write(runscript)
 scfile.close()
-
+files_dat = open("files.dat","w")
+files_dat.write(text_root)
+files_dat.close()
         
+
+
+
+
+
