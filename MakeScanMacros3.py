@@ -17,7 +17,7 @@ RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run 
 QWidth = 260  #mm
 QHeight = 120 #mm
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
-LightGuideLength = 243  #mm           This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
+#LightGuideLength = 243  #mm           This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
 QuartzBevelSize = 0.5 #mm             This should be as small as possible - 0 is desirable but not peferred by manufacturer
 QuartzRotX = -3  #degrees             This is the ralative rotation between the quartz and the light guide. It is optimized to minimize background in the LG
@@ -38,6 +38,7 @@ NumEvents = [100,100000,100000]   #Number of events on region 1,2, and 3 which i
 #li = LightGuideLowerInterface       - length of the lower guide cone
 #qt = QuartzSizeZ                    - quartz thickness in beam direction
 #of = LightGuideQuartzToPMTOffset    - offset of PMT wrt. quartz in the beam direction
+#lo - LightGuideUpperInterface       - length of light guide overall
 #hr = electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
 
 #Refer to the detector limits presentation for details on these parameters.
@@ -47,10 +48,12 @@ NumEvents = [100,100000,100000]   #Number of events on region 1,2, and 3 which i
 #li = d3
 #qt = d4 - 7 mm
 #of = d6
+#lo = d2
+
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 17 #degrees
+ba_start = 20 #degrees
 ba_stop = 20  #degrees
 ba_step = 1  
 
@@ -70,6 +73,10 @@ of_start = 0 #mm
 of_stop = 0  #mm
 of_step = 2
 
+lo_start = 233 #mm
+lo_stop = 253 #mm
+lo_step = 1
+
 hr_start = 1
 hr_stop = 1
 hr_step = 1
@@ -81,38 +88,39 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
             for qt in np.arange(qt_start,qt_stop+qt_step,qt_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-                        Text = ""
-                        FileIDString = "_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of)
-                        Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
-                        Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
-                        Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
-                        Text += "/Det/LightGuideUpperInterface " + str(LightGuideLength) + " mm" + "\n" 
-                        Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                        Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                        Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
-                        Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
-                        Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
-                        Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
-                        Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
-                        Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
-                        Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
-                        Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
-                        Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
-                        Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
-                        Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
-                        Text += "/Det/UpdateGeometry" + "\n"
-                        Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-                        Text += "/RunAction/SetID " + str(RunID) + "\n"
-                        Text += "/RunAction/SetOutputName " + FileIDString + "\n"
-                        Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
-                        Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
+			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
+                            Text = ""
+                            FileIDString = "_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                            Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
+                            Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
+                            Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
+                            Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
+                            Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                            Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                            Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
+                            Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
+                            Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
+                            Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
+                            Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
+                            Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
+                            Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
+                            Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
+                            Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
+                            Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
+                            Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
+                            Text += "/Det/UpdateGeometry" + "\n"
+                            Text += "/Generator/EventHitRegion "+str(hr) + "\n"
+                            Text += "/RunAction/SetID " + str(RunID) + "\n"
+                            Text += "/RunAction/SetOutputName " + FileIDString + "\n"
+                            Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+                            Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
+			    text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
 
-                        FileName = OutputFilePrefix + FileIDString+".mac"
-                        fout = open(datadir+FileName, "w")
-                        fout.write(Text)
-                        fout.close()
-                        runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
+                            FileName = OutputFilePrefix + FileIDString+".mac"
+                            fout = open(datadir+FileName, "w")
+                            fout.write(Text)
+                            fout.close()
+                            runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
 
 
 scfile = open("StartRuns","w")
