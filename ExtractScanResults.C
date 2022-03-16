@@ -21,15 +21,16 @@ void ExtractResults()
   std::string line;
   TFile *file;
   
-  Double_t param=17;     //Change based on the scan being done
-  Double_t param_step=1; //
+  Double_t param=17.0;     //Change based on the scan being done
+  Double_t param_step=1.0; //
   Double_t fa=89; //Value doesn't seem to matter
   Int_t hr;
   Int_t hitR[3]={1,2,3};
   
   TH1D *hst, *tmp;
   TSpectrum *s = new TSpectrum(1);
-  Int_t m, param_run, counter;
+  Int_t m;
+  Double_t param_run, counter;
   TString runID, tmpStr, tok;
   Ssiz_t from = 0;
   Double_t fitP[4], fitE[4];
@@ -87,7 +88,7 @@ void ExtractResults()
     
     
     file->Close("R");    
-    counter++;
+    counter = counter + 1.0;
   }
   rfiles.close();
 }
