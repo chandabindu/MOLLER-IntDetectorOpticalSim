@@ -31,6 +31,13 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   EventHitRegionCmd->SetRange("EventHitRegion>=1");
   EventHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  QuartzHitRegionCmd = new G4UIcmdWithAnInteger("/Generator/QuartzHitRegion",this);
+  QuartzHitRegionCmd->SetGuidance("Set cut of quartz to look at.");
+  QuartzHitRegionCmd->SetParameterName("QuartzHitRegion",true);
+  QuartzHitRegionCmd->SetDefaultValue(1);
+  QuartzHitRegionCmd->SetRange("QuartzHitRegion>=0");
+  QuartzHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
 }
 
 MOLLEROptPrimaryGeneratorActionMessenger::~MOLLEROptPrimaryGeneratorActionMessenger()
@@ -50,4 +57,7 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 
   if( command == EventHitRegionCmd )
     { pPrimaryGeneratorAction->SetEventHitRgion(EventHitRegionCmd->GetNewIntValue(newValue)); }
+
+  if( command == QuartzHitRegionCmd )
+    { pPrimaryGeneratorAction->SetQuartzHitRegion(QuartzHitRegionCmd->GetNewIntValue(newValue)); }
 }

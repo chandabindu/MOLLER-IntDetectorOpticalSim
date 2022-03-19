@@ -24,12 +24,14 @@ public:
   void ResetNtupleEventCounter() {EventCounter = 0;};
   void SetNtupleEventCounter(G4int cnt) {EventCounter = cnt;};
   void SetEventHitRgion(G4int reg) {EventRegion = reg;};
+  void SetQuartzHitRegion(G4int reg) {cut = reg;};
     
   
 private:
 
   G4int EventRegion;
   G4int EventCounter;
+  G4int cut;
   
   G4ParticleGun* particleGun;
 

@@ -73,13 +73,17 @@ of_start = 0 #mm
 of_stop = 0  #mm
 of_step = 2
 
-lo_start = 233 #mm
-lo_stop = 253 #mm
+lo_start = 242 #mm
+lo_stop = 242 #mm
 lo_step = 1
 
-hr_start = 1
-hr_stop = 1
-hr_step = 1
+hr_start = 7
+hr_stop = 7
+hr_step = 7
+
+cut_start = 0 #Value does not matter if hr != 7. Cuts currently span from 0 to 9 (The quartz is
+cut_stop = 9 #
+cut_step = 1
 
 text_root = ""
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
@@ -89,38 +93,40 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-                            Text = ""
-                            FileIDString = "_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
-                            Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
-                            Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
-                            Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
-                            Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
-                            Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                            Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                            Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
-                            Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
-                            Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
-                            Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
-                            Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
-                            Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
-                            Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
-                            Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
-                            Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
-                            Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
-                            Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
-                            Text += "/Det/UpdateGeometry" + "\n"
-                            Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-                            Text += "/RunAction/SetID " + str(RunID) + "\n"
-                            Text += "/RunAction/SetOutputName " + FileIDString + "\n"
-                            Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
-                            Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			    text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
+			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step)
+                              Text = ""
+                              FileIDString = "_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                              Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
+                              Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
+                              Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
+                              Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
+                              Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                              Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                              Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
+                              Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
+                              Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
+                              Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
+                              Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
+                              Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
+                              Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
+                              Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
+                              Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
+                              Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
+                              Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
+                              Text += "/Det/UpdateGeometry" + "\n"
+                              Text += "/Generator/EventHitRegion "+str(hr) + "\n"
+			      Text =+ "/Generator/QuartzHitRegion "+str(cut) + "\n"
+                              Text += "/RunAction/SetID " + str(RunID) + "\n"
+                              Text += "/RunAction/SetOutputName " + FileIDString + "\n"
+                              Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+                              Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
+			      text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
 
-                            FileName = OutputFilePrefix + FileIDString+".mac"
-                            fout = open(datadir+FileName, "w")
-                            fout.write(Text)
-                            fout.close()
-                            runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
+                              FileName = OutputFilePrefix + FileIDString+".mac"
+                              fout = open(datadir+FileName, "w")
+                              fout.write(Text)
+                              fout.close()
+                              runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
 
 
 scfile = open("StartRuns","w")

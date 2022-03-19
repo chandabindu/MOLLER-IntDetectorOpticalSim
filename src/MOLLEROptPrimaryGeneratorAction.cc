@@ -84,6 +84,11 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     x = (LGlim[5]+LGlim[4])/2.0 -2 +4*G4UniformRand();
     y = (LGlim[7]+LGlim[6])/2.0 -2 +4*G4UniformRand();
   }  
+  else if(EventRegion == 7){
+    //On Quartz
+    x = Qlim[0] + ((Qlim[1]-Qlim[0])/10)*cut + ((Qlim[1]-Qlim[0])/10)*G4UniformRand();
+    y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
+   }
   else{ 
     //On Quartz
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();

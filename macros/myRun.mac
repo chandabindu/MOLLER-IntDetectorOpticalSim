@@ -26,15 +26,15 @@
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
 /Det/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cones surface 
-/Det/LightGuideLowerConeFrontAngle 29.12 deg        #Angle between positive y axis (length of quartz) and the upstram lower cones surface
+/Det/LightGuideLowerConeFrontAngle 26 deg        #Angle between positive y axis (length of quartz) and the upstram lower cones surface
 
 /Det/LightGuideLowerInterface 8.80 cm             #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideUpperInterface 221.5 mm             #Distance between quartz-LG interface and upper interface plane
+/Det/LightGuideUpperInterface 242 mm             #Distance between quartz-LG interface and upper interface plane
 
-/Det/LightGuidePMTInterfaceOpeningX 9.53 cm       #These should stay fixed - set by the PMT size 
-/Det/LightGuidePMTInterfaceOpeningZ 9.53 cm
+/Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
+/Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Det/LightGuideQuartzInterfaceOpeningX 26.382 cm   #These should be set according to the quartz size (always add 8 mm to quartz width)
+/Det/LightGuideQuartzInterfaceOpeningX 26.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width)
 /Det/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz)
 
 /Det/QuartzSizeZ 20 mm
@@ -52,7 +52,8 @@
 
 /Det/UpdateGeometry
 
-/Generator/EventHitRegion 1                      #1 = quartz, 2 = lower LG cone, 3 = upper LG cone, 4 = 2x2 mm^2 spot on center of quartz, 5 = 2x2 mm^2 on center of lower guide, 6 = 2x2 mm^2 spot on upper guide   
+/Generator/EventHitRegion 1                      #1 = quartz, 2 = lower LG cone, 3 = upper LG cone, 4 = 2x2 mm^2 spot on center of quartz, 5 = 2x2 mm^2 on center of lower guide, 6 = 2x2 mm^2 spot on upper guide, 7 = segmented quartz with segment chosen below   
+/Generator/QuartzHitRegion 0                     #From 0->9. Segment of the cut of the quartz you wish to scan over (Quartz is broken up into 10 segments on the x-axis). Value does not matter if EventHitRegion != 7
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457
