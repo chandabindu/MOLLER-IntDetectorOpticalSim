@@ -27,7 +27,7 @@ QuartzRadDamage = 170 #MRad           This should be the peak radiation damage i
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000]   #Number of events on region 1,2, and 3 which is the quartz, lower guide funnel, and upper guide funnel - vary to taste ...
+NumEvents = [100,100000,100000,100,100,100,100]   #Number of events on region 1,2, and 3 which is the quartz, lower guide funnel, and upper guide funnel - vary to taste ...
                                    #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
 
 
@@ -93,7 +93,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step)
+			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
                               Text = ""
                               FileIDString = "_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
                               Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
@@ -115,7 +115,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                               Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
                               Text += "/Det/UpdateGeometry" + "\n"
                               Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-			      Text =+ "/Generator/QuartzHitRegion "+str(cut) + "\n"
+			      Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
                               Text += "/RunAction/SetID " + str(RunID) + "\n"
                               Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                               Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
