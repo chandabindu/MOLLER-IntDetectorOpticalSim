@@ -70,22 +70,22 @@
 
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
-/Det/LightGuideLowerConeBackAngle 21 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/Det/LightGuideLowerConeFrontAngle 28 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/Det/LightGuideLowerConeBackAngle 26 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det/LightGuideLowerConeFrontAngle 19 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
-/Det/LightGuideLowerInterface 7.0 cm             #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideUpperInterface 329 mm             #Distance between quartz-LG interface and upper interface plane
+/Det/LightGuideLowerInterface 9.2 cm             #Distance between quartz-LG interface and lower interface plane
+/Det/LightGuideUpperInterface 233 mm             #Distance between quartz-LG interface and upper interface plane
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Det/LightGuideQuartzInterfaceOpeningX 9.2 cm   #These should be set according to the quartz size (always add 8 mm to quartz width )
-/Det/LightGuideQuartzInterfaceOpeningZ 2.2 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz)
+/Det/LightGuideQuartzInterfaceOpeningX 26.8 cm   #These should be set according to the quartz size (always add 8 mm to quartz width )
+/Det/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz)
 
-/Det/QuartzSizeZ 15 mm
-/Det/QuartzSizeX 84 mm
-/Det/QuartzSizeY 140 mm                           #Without the 45 degree cut
-/Det/QuartzBevelSize 0.1 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
+/Det/QuartzSizeZ 20 mm
+/Det/QuartzSizeX 260 mm
+/Det/QuartzSizeY 120 mm                           #Without the 45 degree cut
+/Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
