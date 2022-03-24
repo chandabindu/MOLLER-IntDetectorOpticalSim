@@ -32,23 +32,25 @@ public:
   void WriteSTLFacet(G4ThreeVector *vertices);
 
 
-  void SetLowerInterfacePlane(G4double LowerPlane){LowerInterfacePlane = LowerPlane;};
-  void SetUpperInterfacePlane(G4double UpperPlane){UpperInterfacePlane = UpperPlane; GuideTotalLength = UpperPlane;};
-  void SetLowerConeFrontFaceAngle(G4double angle) {LowerConeFrontFaceAngle = angle;};
-  void SetLowerConeBackFaceAngle(G4double angle)  {LowerConeBackFaceAngle = angle;};
-  void SetLowerConeSideFaceAngle(G4double angle)  {LowerConeSideFaceAngle = angle;};
-  void SetQuartzInterfaceOpeningZ(G4double size)  {QuartzInterfaceOpeningZ = size;};
-  void SetQuartzInterfaceOpeningX(G4double size)  {QuartzInterfaceOpeningX = size;};
-  void SetPMTInterfaceOpeningZ(G4double size)     {PMTInterfaceOpeningZ = size;};
-  void SetPMTInterfaceOpeningX(G4double size)     {PMTInterfaceOpeningX = size;};
-  void SetQuartzToPMTOffsetInZ(G4double val)      {QuartzToPMTOffsetInZ = val;};
+  void SetLowerInterfacePlane(G4double LowerPlane)   {LowerInterfacePlane = LowerPlane;};
+  void SetUpperInterfacePlane(G4double UpperPlane)   {UpperInterfacePlane = UpperPlane; GuideTotalLength = UpperPlane;};
+  //void SetMiddleInterfacePlane(G4double MiddlePlane) {MiddleInterfacePlane = MiddlePlane;}; //Distance from Quartz/LG interface where the upper cone starts
+  void SetLowerConeFrontFaceAngle(G4double angle)    {LowerConeFrontFaceAngle = angle;};
+  void SetLowerConeBackFaceAngle(G4double angle)     {LowerConeBackFaceAngle = angle;};
+  void SetLowerConeSideFaceAngle(G4double angle)     {LowerConeSideFaceAngle = angle;};
+  void SetQuartzInterfaceOpeningZ(G4double size)     {QuartzInterfaceOpeningZ = size;};
+  void SetQuartzInterfaceOpeningX(G4double size)     {QuartzInterfaceOpeningX = size;};
+  void SetPMTInterfaceOpeningZ(G4double size)        {PMTInterfaceOpeningZ = size;};
+  void SetPMTInterfaceOpeningX(G4double size)        {PMTInterfaceOpeningX = size;};
+  void SetQuartzToPMTOffsetInZ(G4double val)         {QuartzToPMTOffsetInZ = val;};
   void SetCenterPositionInX(G4double xPos);
   void SetCenterPositionInY(G4double yPos);
   void SetCenterPositionInZ(G4double zPos);
-  void SetPMTOpeningRadius(G4double val)          {PMTOpeningRadius = val;};
+  void SetPMTOpeningRadius(G4double val)             {PMTOpeningRadius = val;};
 
   G4double GetCurrentLowerInterfacePlane()     {return LowerInterfacePlane;};
   G4double GetCurrentUpperInterfacePlane()     {return UpperInterfacePlane;};
+  //G4double GetCurrentMiddleInterfacePlane()    {return MiddleInterfacePlane;};
   G4double GetCurrentLowerConeFrontFaceAngle() {return LowerConeFrontFaceAngle;};
   G4double GetCurrentLowerConeBackFaceAngle()  {return LowerConeBackFaceAngle;};
   G4double GetCurrentLowerConeSideFaceAngle()  {return LowerConeSideFaceAngle;};
@@ -56,7 +58,7 @@ public:
   G4double GetCurrentQuartzInterfaceOpeningX() {return QuartzInterfaceOpeningX;};
   G4double GetCurrentPMTInterfaceOpeningY()    {return PMTInterfaceOpeningZ;};
   G4double GetCurrentPMTInterfaceOpeningX()    {return PMTInterfaceOpeningX;};
-  G4double GetCurrentQuartzToPMTOffsetInY()     {return QuartzToPMTOffsetInZ;};
+  G4double GetCurrentQuartzToPMTOffsetInY()    {return QuartzToPMTOffsetInZ;};
   // G4double GetCurrentCenterPositionInX()       {return CenterPositionX;};
   // G4double GetCurrentCenterPositionInY()       {return CenterPositionZ;};
   // G4double GetCurrentCenterPositionInZ()       {return CenterPositionY;};
@@ -90,16 +92,22 @@ private:
 
   G4VPhysicalVolume* Mother;
 
-  G4Tubs*            GuideTopCutoutSolid;
-  G4Box*             GuideTopBoxSolid;
-  G4SubtractionSolid* GuideTopSolid;
-  G4LogicalVolume*   GuideTopLogical; 
-  G4VPhysicalVolume* GuideTopPhysical; 
+  G4Box*              GuideMiddleBoxSolid; //Box to be added between upper and lower LG cones
+  G4Box*              GuideMiddleBoxSolid_out; //Outer skin of the box. Same purpose as LowerCone_out and UpperCone_out
 
-  G4LogicalVolume*   GuideLogical;
-  G4VPhysicalVolume* GuidePhysical; 
-  G4Material*        GuideMaterial;
-  G4OpticalSurface*  GuideOptSurface;
+  G4UnionSolid	      *IntermediateInnerSolid; //Same purpose as G4UnionSolid *InnerSolid and OuterSolid;
+  G4UnionSolid	      *IntermediateOuterSolid; //
+
+  G4Tubs*             GuideTopCutoutSolid;
+  G4Box*              GuideTopBoxSolid;
+  G4SubtractionSolid* GuideTopSolid;
+  G4LogicalVolume*    GuideTopLogical; 
+  G4VPhysicalVolume*  GuideTopPhysical; 
+
+  G4LogicalVolume*    GuideLogical;
+  G4VPhysicalVolume*  GuidePhysical; 
+  G4Material*         GuideMaterial;
+  G4OpticalSurface*   GuideOptSurface;
   G4LogicalSkinSurface* GuideLogicalSkinSurface;
   G4MaterialPropertiesTable* GuideMatPropTable;
 
@@ -111,8 +119,8 @@ private:
   
   G4double Anolux_UVS_PhotonEnergy[9];
   G4double Anolux_UVS_Reflectivity[9];
-
-
+  
+ 
   G4ThreeVector     PositionLG;
   G4ThreeVector     PositionTP;
   G4RotationMatrix* RotationLG;  

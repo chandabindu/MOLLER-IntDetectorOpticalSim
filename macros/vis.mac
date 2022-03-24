@@ -70,8 +70,8 @@
 
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
-/Det/LightGuideLowerConeBackAngle 26 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/Det/LightGuideLowerConeFrontAngle 19 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/Det/LightGuideLowerConeBackAngle 15 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det/LightGuideLowerConeFrontAngle 30 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
 /Det/LightGuideLowerInterface 9.2 cm             #Distance between quartz-LG interface and lower interface plane
 /Det/LightGuideUpperInterface 233 mm             #Distance between quartz-LG interface and upper interface plane
