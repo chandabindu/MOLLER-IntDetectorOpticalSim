@@ -10,16 +10,16 @@ datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 20 #degress
-ba_stop = 20  #degress
+ba_start = 26 #degress
+ba_stop = 26  #degress
 ba_step = 1
 
-fa_start = 29 #degress 
-fa_stop = 29 #degress
+fa_start = 10 #degress 
+fa_stop = 30 #degress
 fa_step = 1
 
-li_start = 88 #mm
-li_stop = 88  #mm
+li_start = 86 #mm
+li_stop = 86  #mm
 li_step = 1
 
 qt_start = 20 #mm
@@ -30,16 +30,16 @@ of_start = 0 #mm
 of_stop = 0  #mm
 of_step = 2
 
-lo_start = 242 #mm
-lo_stop = 242 #mm
+lo_start = 131 #mm
+lo_stop = 131 #mm
 lo_step = 1
 
-hr_start = 7
-hr_stop = 7
+hr_start = 1
+hr_stop = 1
 hr_step = 1
 
-cut_start = 0 #Value does not matter if hr != 7, so setends to the same value unless hr = 7
-cut_stop = 9 #
+cut_start = 10 #Value does not matter if hr != 7, so setends to the same value unless hr = 7
+cut_stop = 10 #
 cut_step = 1
 
 

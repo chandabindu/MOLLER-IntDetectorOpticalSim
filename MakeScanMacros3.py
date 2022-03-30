@@ -53,16 +53,16 @@ NumEvents = [100,100000,100000,100,100,100,100]   #Number of events on region 1,
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 20 #degrees
-ba_stop = 20  #degrees
+ba_start = 26 #degrees
+ba_stop = 26  #degrees
 ba_step = 1  
 
-fa_start = 29 #degrees 
-fa_stop = 29 #degrees
+fa_start = 10 #degrees 
+fa_stop = 30 #degrees
 fa_step = 1
 
-li_start = 88 #mm
-li_stop = 88  #mm
+li_start = 86 #mm
+li_stop = 86  #mm
 li_step = 1
 
 qt_start = 20 #mm
@@ -73,16 +73,16 @@ of_start = 0 #mm
 of_stop = 0  #mm
 of_step = 2
 
-lo_start = 242 #mm
-lo_stop = 242 #mm
+lo_start = 131 #mm
+lo_stop = 131 #mm
 lo_step = 1
 
-hr_start = 7
-hr_stop = 7
-hr_step = 7
+hr_start = 1
+hr_stop = 1
+hr_step = 1
 
-cut_start = 0 #Value does not matter if hr != 7. Cuts currently span from 0 to 9 (The quartz is
-cut_stop = 9 #
+cut_start = 10 #Value does not matter if hr != 7. Cuts currently span from 0 to 9 (The quartz is
+cut_stop = 10 #
 cut_step = 1
 
 text_root = ""

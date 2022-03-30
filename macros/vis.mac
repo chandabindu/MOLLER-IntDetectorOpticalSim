@@ -90,7 +90,7 @@
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset 10 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
