@@ -70,11 +70,11 @@
 
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
-/Det/LightGuideLowerConeBackAngle 15 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
-/Det/LightGuideLowerConeFrontAngle 30 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
+/Det/LightGuideLowerConeBackAngle 26 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
+/Det/LightGuideLowerConeFrontAngle 17.5 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
-/Det/LightGuideLowerInterface 9.2 cm             #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideUpperInterface 233 mm             #Distance between quartz-LG interface and upper interface plane
+/Det/LightGuideLowerInterface 8.6 cm             #Distance between quartz-LG interface and lower interface plane
+/Det/LightGuideUpperInterface 153 mm             #Distance between quartz-LG interface and upper interface plane
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -90,7 +90,7 @@
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det/LightGuideQuartzToPMTOffset 10 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)
