@@ -132,14 +132,14 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   QuartzRotXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/QuartzRotX",this);
   QuartzRotXCmd->SetGuidance("Set the rotation angle of the quartz around X"); 
   QuartzRotXCmd->SetParameterName("Angle",true);
-  QuartzRotXCmd->SetRange("Angle>=-12. && Angle<=12.");
+  QuartzRotXCmd->SetRange("Angle>=-90. && Angle<=90.");
   QuartzRotXCmd->SetDefaultUnit("deg");
   QuartzRotXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   PolarRotationCmd =  new G4UIcmdWithADoubleAndUnit("/Det/PolarRotation",this);
   PolarRotationCmd->SetGuidance("Set the rotation angle of the enitre detector around X"); 
   PolarRotationCmd->SetParameterName("Angle",true);
-  PolarRotationCmd->SetRange("Angle>=-12. && Angle<=12.");
+  PolarRotationCmd->SetRange("Angle>=-90. && Angle<=90.");
   PolarRotationCmd->SetDefaultUnit("deg");
   PolarRotationCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 

@@ -34,11 +34,11 @@ lo_start = 131 #mm
 lo_stop = 131 #mm
 lo_step = 1
 
-hr_start = 1
+hr_start = 1 #Tales values from 1-8
 hr_stop = 1
 hr_step = 1
 
-cut_start = 10 #Value does not matter if hr != 7, so setends to the same value unless hr = 7
+cut_start = 10 #Value does not matter if hr != 7,8 so set the start/stop to the same value unless hr = 7,8
 cut_stop = 10 #
 cut_step = 1
 

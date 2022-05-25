@@ -253,7 +253,7 @@ void MOLLEROptDetectorLightGuide::DefineGeometry()
   G4double LowerIP_x = LowerInterfacePlane*TMath::Tan(LowerConeSideFaceAngle)+QuartzInterfaceOpeningX/2;
   G4double LowerIP_py = LowerInterfacePlane*TMath::Tan(LowerConeFrontFaceAngle)+QuartzInterfaceOpeningZ/2;
   G4double LowerIP_ny = -LowerInterfacePlane*TMath::Tan(LowerConeBackFaceAngle)-QuartzInterfaceOpeningZ/2;
-  G4double MiddleBoxHeight = 122.0; //Sets height of box on y-axis in mm
+  G4double MiddleBoxHeight = 90.0; //Sets height of box on y-axis in mm
 
   LowerConeVertices[0] = G4TwoVector(QuartzInterfaceOpeningX/2,-QuartzInterfaceOpeningZ/2);
   LowerConeVertices[1] = G4TwoVector(-QuartzInterfaceOpeningX/2,-QuartzInterfaceOpeningZ/2);

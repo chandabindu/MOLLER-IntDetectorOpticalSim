@@ -203,7 +203,7 @@ void MOLLEROptDetector::CalculateDimensions()
   else
     DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset + 4.0*cm;
   
-  G4double MiddleBoxHeight = 122.0*mm;
+  G4double MiddleBoxHeight = 90.0*mm;
 
   DetFullLengthY = Quartz->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm + MiddleBoxHeight; // MiddleBoxHeight ADDED TO ACCOUNT FOR BOX
 }
@@ -268,7 +268,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   G4double quartzY = Quartz->GetQuartzSizeY();
   G4double quartzZ = Quartz->GetQuartzSizeZ();  
   G4double lguideY = LightGuide->GetCurrentUpperInterfacePlane();
-  G4double MiddleBoxHeight = 122.0*mm; 
+  G4double MiddleBoxHeight = 90.0*mm; 
 
   G4double Qrot = Quartz->GetQuartzRotationX();
      

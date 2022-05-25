@@ -27,7 +27,8 @@ QuartzRadDamage = 170 #MRad           This should be the peak radiation damage i
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,100,100,100,100]   #Number of events on region 1,2, and 3 which is the quartz, lower guide funnel, and upper guide funnel - vary to taste ...
+NumEvents = [100,100000,100000,100,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+                                   #Regions 7 & 8 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
 
 
@@ -81,7 +82,7 @@ hr_start = 1
 hr_stop = 1
 hr_step = 1
 
-cut_start = 10 #Value does not matter if hr != 7. Cuts currently span from 0 to 9 (The quartz is
+cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 to 9 (The quartz is broken into 10 segments either horizontally or vertically, but not both yet)
 cut_stop = 10 #
 cut_step = 1
 
