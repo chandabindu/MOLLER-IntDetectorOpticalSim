@@ -10,37 +10,45 @@ datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 26 #degress
-ba_stop = 26  #degress
+ba_start = 23 #degress
+ba_stop = 23  #degress
 ba_step = 1
 
-fa_start = 10 #degress 
-fa_stop = 30 #degress
+fa_start = 18.5 #degress 
+fa_stop = 18.5 #degress
 fa_step = 1
 
-li_start = 86 #mm
-li_stop = 86  #mm
+li_start = 62 #mm
+li_stop = 62  #mm
 li_step = 1
 
-qt_start = 20 #mm
-qt_stop = 20 #mm
+qt_start = 10 #mm
+qt_stop = 10 #mm
 qt_step = 1
 
-of_start = 0 #mm
-of_stop = 0  #mm
+of_start = 2 #mm
+of_stop = 2  #mm
 of_step = 2
 
-lo_start = 131 #mm
-lo_stop = 131 #mm
+lo_start = 163 #mm
+lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 1 #Tales values from 1-8
-hr_stop = 1
+hr_start = 4 #Tales values from 1-8
+hr_stop = 4
 hr_step = 1
 
 cut_start = 10 #Value does not matter if hr != 7,8 so set the start/stop to the same value unless hr = 7,8
 cut_stop = 10 #
 cut_step = 1
+
+theta_start = 5
+theta_stop = 5
+theta_step = 1
+
+phi_start = 0
+phi_stop = 360
+phi_step = 45
 
 
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
@@ -51,8 +59,8 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
           for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 	    for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
 	      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                FileIDString = "_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
-                rootfile = "_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_0002.root"
+                FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                rootfile = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_0002.root"
                 jobs="jobs"
                 if not os.path.exists(jobs):
                   os.system("mkdir "+jobs)

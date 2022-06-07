@@ -38,6 +38,21 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   QuartzHitRegionCmd->SetRange("QuartzHitRegion>=0");
   QuartzHitRegionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  BeamThetaCmd = new G4UIcmdWithAnInteger("/Generator/BeamTheta",this);
+  BeamThetaCmd->SetGuidance("Set angle of beam in y direction from z axis.");
+  BeamThetaCmd->SetParameterName("BeamTheta",true);
+  BeamThetaCmd->SetDefaultValue(0);
+  BeamThetaCmd->SetRange("BeamTheta<=90");
+  BeamThetaCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+  BeamPhiCmd = new G4UIcmdWithAnInteger("/Generator/BeamPhi",this);
+  BeamPhiCmd->SetGuidance("Set angle of beam in x direction from z axis.");
+  BeamPhiCmd->SetParameterName("BeamPhi",true);
+  BeamPhiCmd->SetDefaultValue(0);
+  BeamPhiCmd->SetRange("BeamPhi<=360");
+  BeamPhiCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+
 }
 
 MOLLEROptPrimaryGeneratorActionMessenger::~MOLLEROptPrimaryGeneratorActionMessenger()
@@ -60,4 +75,10 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 
   if( command == QuartzHitRegionCmd )
     { pPrimaryGeneratorAction->SetQuartzHitRegion(QuartzHitRegionCmd->GetNewIntValue(newValue)); }
+
+  if( command == BeamThetaCmd )
+    { pPrimaryGeneratorAction->SetBeamTheta(BeamThetaCmd->GetNewIntValue(newValue)); }
+
+  if( command == BeamPhiCmd )
+    { pPrimaryGeneratorAction->SetBeamPhi(BeamPhiCmd->GetNewIntValue(newValue)); }
 }

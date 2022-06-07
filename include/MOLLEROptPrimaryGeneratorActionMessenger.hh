@@ -27,6 +27,8 @@ private:
   G4UIcmdWithAnInteger     *InitEventCounterCmd;
   G4UIcmdWithAnInteger     *EventHitRegionCmd;
   G4UIcmdWithAnInteger     *QuartzHitRegionCmd;
+  G4UIcmdWithAnInteger     *BeamThetaCmd;
+  G4UIcmdWithAnInteger     *BeamPhiCmd;
 
 };
 

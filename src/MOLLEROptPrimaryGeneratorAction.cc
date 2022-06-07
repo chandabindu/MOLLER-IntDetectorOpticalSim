@@ -27,6 +27,10 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   G4double x = 0;
   G4double y = 0;
+  G4double pi = TMath::Pi();
+  G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
+  G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
+  G4double p_z = TMath::Cos(theta*pi/180);
     
   G4double Qlim[4];
   G4double LGlim[8];
@@ -102,7 +106,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
 
   particleGun->SetParticlePosition(G4ThreeVector(x*mm,y*mm, -300.0*mm));
-  particleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
+  particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;

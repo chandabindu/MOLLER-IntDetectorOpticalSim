@@ -25,6 +25,8 @@ public:
   void SetNtupleEventCounter(G4int cnt) {EventCounter = cnt;};
   void SetEventHitRgion(G4int reg) {EventRegion = reg;};
   void SetQuartzHitRegion(G4int reg) {cut = reg;};
+  void SetBeamTheta(G4int reg) {theta = reg;};
+  void SetBeamPhi(G4int reg) {phi = reg;};
     
   
 private:
@@ -32,6 +34,8 @@ private:
   G4int EventRegion;
   G4int EventCounter;
   G4int cut;
+  G4int theta;
+  G4int phi;
   
   G4ParticleGun* particleGun;
 

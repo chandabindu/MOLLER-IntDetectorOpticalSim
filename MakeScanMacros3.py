@@ -14,8 +14,8 @@ OutputFilePrefix = "MOLLEROpt_Scan"                      # String that starts al
 RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run in this scan - see below for additional run identifiers within the scan
 
 #Fixed values
-QWidth = 260  #mm
-QHeight = 120 #mm
+QWidth = 245  #mm
+QHeight = 105 #mm
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
 #LightGuideLength = 243  #mm           This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
@@ -27,7 +27,7 @@ QuartzRadDamage = 170 #MRad           This should be the peak radiation damage i
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,100,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+NumEvents = [100,100000,100000,10000,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
                                    #Regions 7 & 8 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
 
@@ -54,37 +54,46 @@ NumEvents = [100,100000,100000,100,100,100,100,100]   #Number of events on regio
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 26 #degrees
-ba_stop = 26  #degrees
+ba_start = 23 #degrees
+ba_stop = 23  #degrees
 ba_step = 1  
 
-fa_start = 10 #degrees 
-fa_stop = 30 #degrees
+fa_start = 18.5 #degrees 
+fa_stop = 18.5 #degrees
 fa_step = 1
 
-li_start = 86 #mm
-li_stop = 86  #mm
+li_start = 62 #mm
+li_stop = 62  #mm
 li_step = 1
 
-qt_start = 20 #mm
-qt_stop = 20 #mm
+qt_start = 10 #mm
+qt_stop = 10 #mm
 qt_step = 1
 
-of_start = 0 #mm
-of_stop = 0  #mm
+of_start = 2 #mm
+of_stop = 2  #mm
 of_step = 2
 
-lo_start = 131 #mm
-lo_stop = 131 #mm
+lo_start = 163 #mm
+lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 1
-hr_stop = 1
+hr_start = 4
+hr_stop = 4
 hr_step = 1
 
 cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 to 9 (The quartz is broken into 10 segments either horizontally or vertically, but not both yet)
 cut_stop = 10 #
 cut_step = 1
+
+theta_start = 5
+theta_stop = 5
+theta_step = 1
+
+phi_start = 0
+phi_stop = 360
+phi_step = 45
+
 
 text_root = ""
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
@@ -95,39 +104,43 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
 			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                              Text = ""
-                              FileIDString = "_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
-                              Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
-                              Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
-                              Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
-                              Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
-                              Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                              Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
-                              Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
-                              Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
-                              Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
-                              Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
-                              Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
-                              Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
-                              Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
-                              Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
-                              Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
-                              Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
-                              Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
-                              Text += "/Det/UpdateGeometry" + "\n"
-                              Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-			      Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
-                              Text += "/RunAction/SetID " + str(RunID) + "\n"
-                              Text += "/RunAction/SetOutputName " + FileIDString + "\n"
-                              Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
-                              Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			      text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
+                              for phi in np.arange(phi_start,phi_stop+phi_step,phi_step_:
+                                for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
+                                    Text = ""
+                                    FileIDString = "_Theta"+str(Theta)+"_Phi"+str(Phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                                    Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
+                                    Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
+                                    Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
+                                    Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
+                                    Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                                    Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
+                                    Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 
+                                    Text += "/Det/LightGuideQuartzInterfaceOpeningZ " + str(qt+7) + " mm" + "\n" 
+                                    Text += "/Det/QuartzSizeX " + str(QWidth) + " mm" + "\n"
+                                    Text += "/Det/QuartzSizeY " + str(QHeight) + " mm" + "\n"
+                                    Text += "/Det/QuartzSizeZ " + str(qt) + " mm" + "\n"
+                                    Text += "/Det/QuartzBevelSize " + str(QuartzBevelSize) + " mm" + "\n"
+                                    Text += "/Det/QuartzRotX " + str(QuartzRotX) + " deg" + "\n"   
+                                    Text += "/Det/PolarRotation " + str(PolarRotation) + " deg" + "\n" 
+                                    Text += "/Det/LightGuideQuartzToPMTOffset " + str(of) + " mm" + "\n"
+                                    Text += "#/Det/SetSegmentedRadDamageFlag" + "\n"  #currently turned off 
+                                    Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
+                                    Text += "/Det/UpdateGeometry" + "\n"
+                                    Text += "/Generator/EventHitRegion "+str(hr) + "\n"
+			            Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
+                                    Text += "/Generator/BeamTheta "+str(theta) + "\n"
+                                    Text += "/Generator/BeamPhi "+str(phi) + "\n"
+                                    Text += "/RunAction/SetID " + str(RunID) + "\n"
+                                    Text += "/RunAction/SetOutputName " + FileIDString + "\n"
+                                    Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
+                                    Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
+			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000" + str(RunID) + ".root" + "\n"
 
-                              FileName = OutputFilePrefix + FileIDString+".mac"
-                              fout = open(datadir+FileName, "w")
-                              fout.write(Text)
-                              fout.close()
-                              runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
+                                    FileName = OutputFilePrefix + FileIDString+".mac"
+                                    fout = open(datadir+FileName, "w")
+                                    fout.write(Text)
+                                    fout.close()
+                                    runscript += "./MOLLEROpt " + datadir + FileName + " > " + datadir + OutputFilePrefix + FileIDString + ".out" + " & \n"
 
 
 scfile = open("StartRuns","w")
