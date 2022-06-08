@@ -72,12 +72,16 @@ void MOLLEROptDetector::SetLowerInterfacePlane(G4double LowerPlane)
     LightGuide->SetLowerInterfacePlane(LowerPlane);
 }
 
+void MOLLEROptDetector::SetMiddleBoxHeight(G4double MiddlePlane)
+{
+  if(LightGuide)
+    LightGuide->SetMiddleBoxHeight(MiddlePlane);
+}
+
 void MOLLEROptDetector::SetUpperInterfacePlane(G4double UpperPlane)
 {
   if(LightGuide)
-    LightGuide->SetUpperInterfacePlane(UpperPlane);
-
-  
+    LightGuide->SetUpperInterfacePlane(UpperPlane); 
 }
 
 void MOLLEROptDetector::SetLowerConeFrontFaceAngle(G4double angle)
@@ -203,9 +207,8 @@ void MOLLEROptDetector::CalculateDimensions()
   else
     DetFullLengthZ = 2*PMT->GetRadius() + 2*PMTToQuartzOffset + 4.0*cm;
   
-  G4double MiddleBoxHeight = 90.0*mm;
 
-  DetFullLengthY = Quartz->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm + MiddleBoxHeight; // MiddleBoxHeight ADDED TO ACCOUNT FOR BOX
+  DetFullLengthY = Quartz->GetQuartzSizeY()+LightGuide->GetLightGuideLength()+PMT->GetPMTLength()+1.0*cm+LightGuide->GetCurrentMiddleBoxHeight();
 }
 
 void MOLLEROptDetector::ResetCenterLocation()
@@ -268,7 +271,6 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   G4double quartzY = Quartz->GetQuartzSizeY();
   G4double quartzZ = Quartz->GetQuartzSizeZ();  
   G4double lguideY = LightGuide->GetCurrentUpperInterfacePlane();
-  G4double MiddleBoxHeight = 90.0*mm; 
 
   G4double Qrot = Quartz->GetQuartzRotationX();
      
@@ -279,7 +281,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY + 5*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + 5.0*mm + MiddleBoxHeight);// RAISED PMT BY HEIGHT OF BOX BETWEEN CONES
+  PMT->SetCenterPositionInY(-0.5*DetFullLengthY+quartzY+lguideY+PMT->GetPMTLength()/2.0 + 5.0*mm + LightGuide->GetCurrentMiddleBoxHeight());
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);
   G4VisAttributes *att = new G4VisAttributes(grey);

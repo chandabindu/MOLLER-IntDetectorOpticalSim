@@ -35,6 +35,12 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   LightGuideUpperInterfaceCmd->SetParameterName("Size",true);                   
   LightGuideUpperInterfaceCmd->SetUnitCategory("Length");                       
   LightGuideUpperInterfaceCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                      
+  
+  LightGuideMiddleBoxCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideMiddleBox",this); 
+  LightGuideMiddleBoxCmd->SetGuidance("Set the light guide straight middle box height.") ;         
+  LightGuideMiddleBoxCmd->SetParameterName("Size",true);                   
+  LightGuideMiddleBoxCmd->SetUnitCategory("Length");                       
+  LightGuideMiddleBoxCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   LightGuideLowerInterfaceCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideLowerInterface",this); 
   LightGuideLowerInterfaceCmd->SetGuidance("Set the light guide to Quartz interface Y location.") ;         
@@ -167,6 +173,7 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if (DetZPositionCmd)      delete DetZPositionCmd;
 
   if(LightGuideUpperInterfaceCmd          ) delete LightGuideUpperInterfaceCmd;          
+  if(LightGuideMiddleBoxCmd               ) delete LightGuideMiddleBoxCmd;
   if(LightGuideLowerInterfaceCmd          ) delete LightGuideLowerInterfaceCmd;          
   if(LightGuideLowerConeFrontAngleCmd     ) delete LightGuideLowerConeFrontAngleCmd;     
   if(LightGuideLowerConeBackAngleCmd      ) delete LightGuideLowerConeBackAngleCmd;      
@@ -202,6 +209,7 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == DetMatCmd ) Det->SetMaterial(newValue);
 
   if( command == LightGuideUpperInterfaceCmd )         { Det->SetUpperInterfacePlane(LightGuideUpperInterfaceCmd->GetNewDoubleValue(newValue));}
+  if( command == LightGuideMiddleBoxCmd )              { Det->SetMiddleBoxHeight(LightGuideMiddleBoxCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideLowerInterfaceCmd )         { Det->SetLowerInterfacePlane(LightGuideLowerInterfaceCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideLowerConeFrontAngleCmd )    { Det->SetLowerConeFrontFaceAngle(LightGuideLowerConeFrontAngleCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideLowerConeBackAngleCmd )     { Det->SetLowerConeBackFaceAngle(LightGuideLowerConeBackAngleCmd->GetNewDoubleValue(newValue));}

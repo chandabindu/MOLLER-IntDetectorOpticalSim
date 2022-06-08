@@ -23,6 +23,7 @@ QuartzBevelSize = 0.5 #mm             This should be as small as possible - 0 is
 QuartzRotX = -3  #degrees             This is the ralative rotation between the quartz and the light guide. It is optimized to minimize background in the LG
 PolarRotation = 3  #degress           This counter rotates the detector module so that the electrons are nomarlly incident on the quartz. Opposite to former
 QuartzRadDamage = 170 #MRad           This should be the peak radiation damage in a tile. This is normally turned off and currently the wrong damage level until we get new data from Dustin
+BoxHeight = 90 #mm                    This controls the height of the box between the upper and lower cone
 
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
@@ -39,7 +40,7 @@ NumEvents = [100,100000,100000,10000,100,100,100,100]   #Number of events on reg
 #li = LightGuideLowerInterface       - length of the lower guide cone
 #qt = QuartzSizeZ                    - quartz thickness in beam direction
 #of = LightGuideQuartzToPMTOffset    - offset of PMT wrt. quartz in the beam direction
-#lo - LightGuideUpperInterface       - length of light guide overall
+#lo - LightGuideUpperInterface       - length of light guide overall (not including the box)
 #hr = electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
 
 #Refer to the detector limits presentation for details on these parameters.
@@ -111,7 +112,8 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
-                                    Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n" 
+                                    Text += "/Det/LightGuideUpperInterface " + str(lo) + " mm" + "\n"
+                                    Text += "/Det/LightGuideMiddleBox " + str(BoxHeight) + " mm" + "\n"
                                     Text += "/Det/LightGuidePMTInterfaceOpeningX " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
                                     Text += "/Det/LightGuidePMTInterfaceOpeningZ " + str(LGPMTInterfaceOpening) + " mm" + "\n" 
                                     Text += "/Det/LightGuideQuartzInterfaceOpeningX " + str(QLGOInterfOpening) + " mm" + "\n" 

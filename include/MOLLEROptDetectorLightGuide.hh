@@ -34,7 +34,7 @@ public:
 
   void SetLowerInterfacePlane(G4double LowerPlane)   {LowerInterfacePlane = LowerPlane;};
   void SetUpperInterfacePlane(G4double UpperPlane)   {UpperInterfacePlane = UpperPlane; GuideTotalLength = UpperPlane;};
-  //void SetMiddleInterfacePlane(G4double MiddlePlane) {MiddleInterfacePlane = MiddlePlane;}; //Distance from Quartz/LG interface where the upper cone starts
+  void SetMiddleBoxHeight(G4double MiddlePlane)      {MiddleBoxHeight = MiddlePlane;};
   void SetLowerConeFrontFaceAngle(G4double angle)    {LowerConeFrontFaceAngle = angle;};
   void SetLowerConeBackFaceAngle(G4double angle)     {LowerConeBackFaceAngle = angle;};
   void SetLowerConeSideFaceAngle(G4double angle)     {LowerConeSideFaceAngle = angle;};
@@ -50,7 +50,7 @@ public:
 
   G4double GetCurrentLowerInterfacePlane()     {return LowerInterfacePlane;};
   G4double GetCurrentUpperInterfacePlane()     {return UpperInterfacePlane;};
-  //G4double GetCurrentMiddleInterfacePlane()    {return MiddleInterfacePlane;};
+  G4double GetCurrentMiddleBoxHeight()         {return MiddleBoxHeight;};
   G4double GetCurrentLowerConeFrontFaceAngle() {return LowerConeFrontFaceAngle;};
   G4double GetCurrentLowerConeBackFaceAngle()  {return LowerConeBackFaceAngle;};
   G4double GetCurrentLowerConeSideFaceAngle()  {return LowerConeSideFaceAngle;};
@@ -94,9 +94,8 @@ private:
 
   G4Box*              GuideMiddleBoxSolid; //Box to be added between upper and lower LG cones
   G4Box*              GuideMiddleBoxSolid_out; //Outer skin of the box. Same purpose as LowerCone_out and UpperCone_out
-
-  G4UnionSolid	      *IntermediateInnerSolid; //Same purpose as G4UnionSolid *InnerSolid and OuterSolid;
-  G4UnionSolid	      *IntermediateOuterSolid; //
+  G4UnionSolid*	      IntermediateInnerSolid; //Same purpose as G4UnionSolid *InnerSolid and OuterSolid;
+  G4UnionSolid*	      IntermediateOuterSolid; //
 
   G4Tubs*             GuideTopCutoutSolid;
   G4Box*              GuideTopBoxSolid;
@@ -148,6 +147,12 @@ private:
   G4ThreeVector LowerConeBack[5];
   G4ThreeVector LowerConeSide1[5];
   G4ThreeVector LowerConeSide2[5];
+
+  G4ThreeVector MiddleBoxBottom[5];
+  G4ThreeVector MiddleBoxFront[5];
+  G4ThreeVector MiddleBoxBack[5];
+  G4ThreeVector MiddleBoxSide1[5];
+  G4ThreeVector MiddleBoxSide2[5];
          
   G4ThreeVector UpperConeFront[5];
   G4ThreeVector UpperConeBack[5];
@@ -156,6 +161,7 @@ private:
   G4ThreeVector UpperConeTop[5];
 
   G4double LowerInterfacePlane; //See function SetInterfacePlanes(..) for explanation 
+  G4double MiddleBoxHeight;     //Box between the upper and lower cones
   G4double UpperInterfacePlane;
 
   G4double LowerConeFrontFaceAngle; //Front meaning beam upstream and the angle (theta)

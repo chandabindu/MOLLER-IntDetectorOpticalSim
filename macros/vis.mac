@@ -73,7 +73,8 @@
 /Det/LightGuideLowerConeBackAngle 23 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
 /Det/LightGuideLowerConeFrontAngle 18.5 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 
-/Det/LightGuideLowerInterface 6.2 cm             #Distance between quartz-LG interface and lower interface plane
+/Det/LightGuideLowerInterface 62 mm              #Distance between quartz-LG interface and lower interface plane
+/Det/LightGuideMiddleBox 90 mm			 #Height of box between upper and lower cones	
 /Det/LightGuideUpperInterface 163 mm             #Distance between quartz-LG interface and upper interface plane
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
