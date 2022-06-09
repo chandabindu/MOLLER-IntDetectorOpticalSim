@@ -108,7 +108,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                               for phi in np.arange(phi_start,phi_stop+phi_step,phi_step):
                                 for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
                                     Text = ""
-                                    FileIDString = "_Theta"+str(theta)+"_Phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                                    FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
                                     Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
