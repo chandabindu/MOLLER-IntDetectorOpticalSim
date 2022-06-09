@@ -87,13 +87,13 @@ cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 t
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 5
-theta_stop = 5
-theta_step = 1
-
-phi_start = 0
-phi_stop = 360
-phi_step = 45
+theta_start = 0   #Disabled by default. Can be reenabled in src/MOLLEROptPrimaryGeneratorAction.cc
+theta_stop = 0    #
+theta_step = 1    #
+                  #
+phi_start = 0     #
+phi_stop = 0      #
+phi_step = 45     #
 
 
 text_root = ""
