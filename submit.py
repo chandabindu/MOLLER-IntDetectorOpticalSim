@@ -6,6 +6,7 @@ import numpy as np
 
 sourceDir = "./"
 
+RunID = 2
 datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
@@ -42,13 +43,13 @@ cut_start = 10 #Value does not matter if hr != 7,8 so set the start/stop to the 
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 5
-theta_stop = 5
-theta_step = 1
-
-phi_start = 0
-phi_stop = 360
-phi_step = 45
+theta_start = 0 #Off by default
+theta_stop = 0  #
+theta_step = 1  #
+                #
+phi_start = 0   #
+phi_stop = 0    #
+phi_step = 45   #
 
 
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
