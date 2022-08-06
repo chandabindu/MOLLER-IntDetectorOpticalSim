@@ -15,7 +15,7 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   G4ParticleDefinition* particle = G4Electron::Definition();
   particleGun->SetParticleDefinition(particle);
-  particleGun->SetParticleEnergy(8000.0*MeV);
+  particleGun->SetParticleEnergy(Energy*MeV);
 }
 
 MOLLEROptPrimaryGeneratorAction::~MOLLEROptPrimaryGeneratorAction()

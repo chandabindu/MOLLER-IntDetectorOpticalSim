@@ -17,13 +17,14 @@ RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run 
 QWidth = 245  #mm
 QHeight = 105 #mm
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
-#LightGuideLength = 243  #mm           This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
+#LightGuideLength = 243  #mm          This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
 QuartzBevelSize = 0.5 #mm             This should be as small as possible - 0 is desirable but not peferred by manufacturer
 QuartzRotX = -3  #degrees             This is the ralative rotation between the quartz and the light guide. It is optimized to minimize background in the LG
 PolarRotation = 3  #degress           This counter rotates the detector module so that the electrons are nomarlly incident on the quartz. Opposite to former
 QuartzRadDamage = 170 #MRad           This should be the peak radiation damage in a tile. This is normally turned off and currently the wrong damage level until we get new data from Dustin
 BoxHeight = 90 #mm                    This controls the height of the box between the upper and lower cone
+Energy = 8000 #MeV		      This sets the energy of the beam
 
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
@@ -132,6 +133,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
 			            Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
                                     Text += "/Generator/BeamTheta "+str(theta) + "\n"
                                     Text += "/Generator/BeamPhi "+str(phi) + "\n"
+				    Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
                                     Text += "/RunAction/SetID " + str(RunID) + "\n"
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"

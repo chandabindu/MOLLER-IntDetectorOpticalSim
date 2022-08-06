@@ -55,8 +55,9 @@
 
 /Generator/EventHitRegion 4                      #1 = quartz, 2 = lower LG cone, 3 = upper LG cone, 4 = 2x2 mm^2 spot on center of quartz, 5 = 2x2 mm^2 on center of lower guide, 6 = 2x2 mm^2 spot on upper guide, 7 = vertically segmented quartz with segment chosen below, 8 = horizontally segmented quartz with segment chosen below
 /Generator/QuartzHitRegion 0                     #From 0->9. Segment of the cut of the quartz you wish to scan over (Quartz is broken up into 10 segments on the x-axis). Value does not matter if EventHitRegion != 7
-/Generator/BeamTheta 0
-/Generator/BeamPhi 0
+/Generator/BeamTheta 0				 #Units of degrees
+/Generator/BeamPhi 0				 #Units of degrees
+/Generator/BeamEnergy 8000 			 #Units of MeV
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457

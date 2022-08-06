@@ -52,6 +52,13 @@ MOLLEROptPrimaryGeneratorActionMessenger::MOLLEROptPrimaryGeneratorActionMesseng
   BeamPhiCmd->SetRange("BeamPhi<=360");
   BeamPhiCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
+  BeamEnergyCmd = new G4UIcmdWithAnInteger("/Generator/BeamEnergy",this);
+  BeamEnergyCmd->SetGuidance("Set Energy of beam.");
+  BeamEnergyCmd->SetParameterName("BeamEnergy",true);
+  BeamEnergyCmd->SetDefaultValue(8000);
+  BeamEnergyCmd->SetRange("BeamEnergy > 0");
+  BeamEnergyCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
 
 }
 
@@ -81,4 +88,8 @@ void MOLLEROptPrimaryGeneratorActionMessenger::SetNewValue(G4UIcommand* command,
 
   if( command == BeamPhiCmd )
     { pPrimaryGeneratorAction->SetBeamPhi(BeamPhiCmd->GetNewIntValue(newValue)); }
+ 
+  if( command == BeamEnergyCmd )
+    { pPrimaryGeneratorAction->SetBeamEnergy(BeamEnergyCmd->GetNewIntValue(newValue)); }
+
 }

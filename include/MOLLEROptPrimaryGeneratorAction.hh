@@ -27,6 +27,7 @@ public:
   void SetQuartzHitRegion(G4int reg) {cut = reg;};
   void SetBeamTheta(G4int reg) {theta = reg;};
   void SetBeamPhi(G4int reg) {phi = reg;};
+  void SetBeamEnergy(G4int reg) {Energy = reg;};
     
   
 private:
@@ -36,6 +37,7 @@ private:
   G4int cut;
   G4int theta;
   G4int phi;
+  G4int Energy;
   
   G4ParticleGun* particleGun;
 
