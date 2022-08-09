@@ -15,7 +15,6 @@ MOLLEROptPrimaryGeneratorAction::MOLLEROptPrimaryGeneratorAction(MOLLEROptConstr
 
   G4ParticleDefinition* particle = G4Electron::Definition();
   particleGun->SetParticleDefinition(particle);
-  particleGun->SetParticleEnergy(Energy*MeV);
 }
 
 MOLLEROptPrimaryGeneratorAction::~MOLLEROptPrimaryGeneratorAction()
@@ -110,6 +109,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   particleGun->SetParticlePosition(G4ThreeVector((x-300.0*p_x)*mm,(y-300.0*p_y)*mm, -(300*p_z)*mm));
   particleGun->SetParticleMomentumDirection(G4ThreeVector(p_x, p_y, p_z));
+  particleGun->SetParticleEnergy(Energy*MeV);
 
   particleGun->GeneratePrimaryVertex(anEvent);
   EventCounter += 1;
