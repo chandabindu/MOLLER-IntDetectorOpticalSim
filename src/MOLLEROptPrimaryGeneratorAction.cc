@@ -27,7 +27,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double x = 0;
   G4double y = 0;
   G4double pi = TMath::Pi();
-  G4double AA = 5*pi/180;   //Angular acceptance of the beam (how much it can deviate from the z-axis)
+  G4double AA = 0*pi/180;   //Angular acceptance of the beam (how much it can deviate from the z-axis)
   G4double cosTheta = 1-(1-TMath::Cos(AA))*G4UniformRand(); G4double sinTheta = std::sqrt(1-cosTheta*cosTheta); G4double Phi = 2*pi*G4UniformRand();
   //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
   //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
@@ -53,49 +53,43 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(LGlim[6]<=0) LGlim[6] += 1; else LGlim[6] -= 1; 
   if(LGlim[7]<=0) LGlim[7] += 1; else LGlim[7] -= 1; 
 
-  // //On Quartz    
-  // G4double x = -4.20 + 8.40*G4UniformRand();//-3.8 + 7.6*G4UniformRand();  //-8.5 + 17.0*G4UniformRand();
-  // G4double y = -7.5 + 15.0*G4UniformRand();//-6.7 + 13.4*G4UniformRand(); //-2.5 + 5.0*G4UniformRand();
-  // //On Lower Light Guide
-  // G4double x = -3.8 + 7.6*G4UniformRand();//-42.0 + 84.0*G4UniformRand();  //-87.5 + 175.0*G4UniformRand();
-  // G4double y = 8.0 + 6.0*G4UniformRand();//-72.5 + 145.0*G4UniformRand(); //-25.0 + 50.0*G4UniformRand();
-  // //On Upper Light Guide
-  // G4double x = -3.8 + 7.6*G4UniformRand();-42.0 + 84.0*G4UniformRand();  //-87.5 + 175.0*G4UniformRand();
-  // // G4double y = 13.0 + 19.0*G4UniformRand();//-72.5 + 145.0*G4UniformRand(); //-25.0 + 50.0*G4UniformRand();
-  // G4double y = 14.0 + 24.0*G4UniformRand();-72.5 + 145.0*G4UniformRand(); //-25.0 + 50.0*G4UniformRand();
 
   if(EventRegion == 2){
   //On Lower Light Guide cone
-    x = LGlim[0] + (LGlim[1]-LGlim[0])*G4UniformRand();
+    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = LGlim[2] + (LGlim[3]-LGlim[2])*G4UniformRand();
-    
   }
   else if(EventRegion == 3){
-    //On Upper Light Guide cone
-    x = LGlim[4] + (LGlim[5]-LGlim[4])*G4UniformRand();
-    y = LGlim[6]+10*mm + (LGlim[7]-LGlim[6]-20*mm)*G4UniformRand();
+    //On box between LG cones
+    x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
+    y = LGlim[3] + (90*mm-LGlim[3]-10*mm)*G4UniformRand(); //hard-coded to the box height. Update at some point 
   }
   else if(EventRegion == 4){
+    //On Upper Light Guide cone
+    x = LGlim[4] + (LGlim[5]-LGlim[4])*G4UniformRand();
+    y = LGlim[6]+90*mm + (LGlim[7]-LGlim[6]-10*mm)*G4UniformRand(); //Also hard-coded
+  }
+  else if(EventRegion == 5){
     //2x2 mm^2 spot on quartz
     x = (Qlim[1]+Qlim[0])/2.0 -2 +4*G4UniformRand();
     y = (Qlim[3]+Qlim[2])/2.0 -2 +4*G4UniformRand();
   }
-  else if(EventRegion == 5){
+  else if(EventRegion == 6){
     //2x2 mm^2 spot on lower guide cone
     x = (LGlim[1]+LGlim[0])/2.0 -2 +4*G4UniformRand();
     y = (LGlim[3]+LGlim[2])/2.0 -2 +4*G4UniformRand();
   }  
-  else if(EventRegion == 6){
+  else if(EventRegion == 7){
     //2x2 mm^2 spot on upper guide cone
     x = (LGlim[5]+LGlim[4])/2.0 -2 +4*G4UniformRand();
     y = (LGlim[7]+LGlim[6])/2.0 -2 +4*G4UniformRand();
   }  
-  else if(EventRegion == 7){
+  else if(EventRegion == 8){
     //Vertical cut on the quartz (currently 10 implemented)
     x = Qlim[0] + ((Qlim[1]-Qlim[0])/10)*cut + ((Qlim[1]-Qlim[0])/10)*G4UniformRand();
     y = Qlim[2] + (Qlim[3]-Qlim[2])*G4UniformRand();
    }
-  else if(EventRegion == 8){
+  else if(EventRegion == 9){
     //Horizontal cut on the quartz (currently 10 implemented)
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
     y = Qlim[2] + ((Qlim[3]-Qlim[2])/10)*cut + ((Qlim[3]-Qlim[2])/10)*G4UniformRand();

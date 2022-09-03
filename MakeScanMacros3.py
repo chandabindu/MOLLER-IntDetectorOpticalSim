@@ -29,7 +29,7 @@ Energy = 8000 #MeV		      This sets the energy of the beam
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,10000,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
                                    #Regions 7 & 8 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
 

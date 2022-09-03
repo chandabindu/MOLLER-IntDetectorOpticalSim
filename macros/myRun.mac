@@ -6,7 +6,11 @@
 #           /      \        
 #          / Upper  \        
 #         /  Guide   \      
-#        /   Cone     \  ________ Lower Interface 
+#        /   Cone     \   
+#	 |	      |
+#	 |   Middle   |
+#	 |   Box      |
+#	 |	      |  ________ Lower Interface 
 #        \            /
 #         \  Lower   /		
 #          \ Guide  /			
@@ -30,7 +34,7 @@
 
 /Det/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
 /Det/LightGuideMiddleBox 90 mm                   #Height of box between upper and lower cones
-/Det/LightGuideUpperInterface 163 mm             #Distance between quartz-LG interface and upper interface plane
+/Det/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -53,7 +57,7 @@
 
 /Det/UpdateGeometry
 
-/Generator/EventHitRegion 4                      #1 = quartz, 2 = lower LG cone, 3 = upper LG cone, 4 = 2x2 mm^2 spot on center of quartz, 5 = 2x2 mm^2 on center of lower guide, 6 = 2x2 mm^2 spot on upper guide, 7 = vertically segmented quartz with segment chosen below, 8 = horizontally segmented quartz with segment chosen below
+/Generator/EventHitRegion 4                      #1 = quartz, 2 = lower LG cone, 3 = middle box, 4 = upper LG cone, 5 = 2x2 mm^2 spot on center of quartz, 6 = 2x2 mm^2 on center of lower guide, 7 = 2x2 mm^2 spot on upper guide, 8 = vertically segmented quartz with segment chosen below, 9 = horizontally segmented quartz with segment chosen below
 /Generator/QuartzHitRegion 0                     #From 0->9. Segment of the cut of the quartz you wish to scan over (Quartz is broken up into 10 segments on the x-axis). Value does not matter if EventHitRegion != 7
 /Generator/BeamTheta 0				 #Units of degrees
 /Generator/BeamPhi 0				 #Units of degrees
