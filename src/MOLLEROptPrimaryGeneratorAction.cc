@@ -62,7 +62,7 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   else if(EventRegion == 3){
     //On box between LG cones
     x = Qlim[0] + (Qlim[1]-Qlim[0])*G4UniformRand();
-    y = LGlim[3] + (90*mm-LGlim[3]-10*mm)*G4UniformRand(); //hard-coded to the box height. Update at some point 
+    y = LGlim[6] + (90*mm)*G4UniformRand(); //hard-coded to the box height. Update at some point 
   }
   else if(EventRegion == 4){
     //On Upper Light Guide cone
