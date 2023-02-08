@@ -105,6 +105,11 @@ set(MOLLER_SCRIPTS
   macros/myRun.mac
   macros/vis.mac
   data/OpticalPropertiesInputData.txt
+  R6ParamScan/placeholder.md
+  rootfiles/placeholder.md
+  MakeScanMacros3.py
+  submit.py
+  submit.sh
 )
 
 foreach(_script ${MOLLER_SCRIPTS})
