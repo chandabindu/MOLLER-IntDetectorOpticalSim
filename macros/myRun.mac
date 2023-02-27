@@ -44,7 +44,7 @@
 
 /Det/QuartzSizeZ 20 mm
 /Det/QuartzSizeX 260 mm
-/Det/QuartzSizeY 120 mm                          #Without the 45 degree cut
+/Det/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide

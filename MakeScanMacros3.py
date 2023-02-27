@@ -15,7 +15,7 @@ RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run 
 
 #Fixed values
 QWidth = 245  #mm
-QHeight = 105 #mm
+QHeight = 105 #mm                     This does not count the segment with the 45* cut. That part has max height equal to quartz thickness (qt parameter below)
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
 #LightGuideLength = 243  #mm          This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
@@ -29,9 +29,9 @@ Energy = 8000 #MeV		      This sets the energy of the beam
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events on region 1-8 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
-                                   #Regions 7 & 8 are the vertical and horizontal quartz cuts respectively
-                                   #The LG funnel regions can run many more events than the quartz, because there not many photons generated there
+NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+                                   #Regions 8 & 9 are the vertical and horizontal quartz cuts respectively
+                                   #The LG funnel regions can run many more events than the quartz since not many photons are generated there
 
 
 #If new parameters are to be varied, implement a new nested loop below.
@@ -42,7 +42,11 @@ NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events
 #qt = QuartzSizeZ                    - quartz thickness in beam direction
 #of = LightGuideQuartzToPMTOffset    - offset of PMT wrt. quartz in the beam direction
 #lo - LightGuideUpperInterface       - length of light guide overall (not including the box)
-#hr = electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
+
+#The following parameters control the beam
+#hr = Electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
+#cut = quartz segmentation           - segment of quartz to hit. Location and size of segment determined by total number of segments, which is adjusted in src/MOLLEROptPrimaryGeneratorAction.cc
+#theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz
 
 #Refer to the detector limits presentation for details on these parameters.
 #The correspondence with parameters specified there is:
