@@ -30,7 +30,7 @@
 #/Det/LightGuideLowerConeSideAngle 21 deg        #These are normally straight, unless the quartz is very narrow
 
 /Det/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cones surface 
-/Det/LightGuideLowerConeFrontAngle 18 deg        #Angle between positive y axis (length of quartz) and the upstram lower cones surface (not counting the box)
+/Det/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cones surface (not counting the box)
 
 /Det/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
 /Det/LightGuideMiddleBox 90 mm                   #Height of box between upper and lower cones
@@ -39,18 +39,18 @@
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
 
-/Det/LightGuideQuartzInterfaceOpeningX 25.3 cm   #These should be set according to the quartz size (always add 8 mm to quartz width)
-/Det/LightGuideQuartzInterfaceOpeningZ 1.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz)
+/Det/LightGuideQuartzInterfaceOpeningX 26.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width)
+/Det/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz)
 
-/Det/QuartzSizeZ 10 mm
-/Det/QuartzSizeX 245 mm
-/Det/QuartzSizeY 105 mm                          #Without the 45 degree cut
+/Det/QuartzSizeZ 20 mm
+/Det/QuartzSizeX 260 mm
+/Det/QuartzSizeY 100 mm                          #Without the 45 degree cut
 /Det/QuartzBevelSize 0.5 mm                      #Should not normally have a bevel. So the normal condition is 0 mm
 
 /Det/QuartzRotX -3 deg                           #rotate the quartz w.r.t. the light guide
 /Det/PolarRotation 3 deg                         #counter rotate the detector as a whole
 
-/Det/LightGuideQuartzToPMTOffset 2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
+/Det/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #/Det/SetSegmentedRadDamageFlag                  #Uncomment to include quartz radiation damage. Segments the quartz into 2 cm bins with varying rad damange factors
 #/MOLLEROpt/QuartzRadDamage 70                   #Set peak quartz radaiation damage to 70 MRad (other possibility is 170)

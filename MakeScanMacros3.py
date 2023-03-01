@@ -14,8 +14,8 @@ OutputFilePrefix = "MOLLEROpt_Scan"                      # String that starts al
 RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run in this scan - see below for additional run identifiers within the scan
 
 #Fixed values
-QWidth = 245  #mm
-QHeight = 105 #mm                     This does not count the segment with the 45* cut. That part has max height equal to quartz thickness (qt parameter below)
+QWidth = 260  #mm
+QHeight = 100 #mm                     This does not count the segment with the 45* cut. That part has max height equal to quartz thickness (qt parameter below)
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
 #LightGuideLength = 243  #mm          This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
@@ -64,20 +64,20 @@ ba_start = 20 #degrees
 ba_stop = 20  #degrees
 ba_step = 1  
 
-fa_start = 18 #degrees 
-fa_stop = 18 #degrees
+fa_start = 17 #degrees 
+fa_stop = 17 #degrees
 fa_step = 1
 
 li_start = 83 #mm
 li_stop = 83  #mm
 li_step = 1
 
-qt_start = 10 #mm
-qt_stop = 10 #mm
+qt_start = 20 #mm
+qt_stop = 20 #mm
 qt_step = 1
 
-of_start = 2 #mm
-of_stop = 2  #mm
+of_start = 0 #mm
+of_stop = 0  #mm
 of_step = 2
 
 lo_start = 163 #mm

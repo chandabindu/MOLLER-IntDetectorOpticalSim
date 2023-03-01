@@ -15,20 +15,20 @@ ba_start = 20 #degress
 ba_stop = 20  #degress
 ba_step = 1
 
-fa_start = 18 #degress 
-fa_stop = 18 #degress
+fa_start = 17 #degress 
+fa_stop = 17 #degress
 fa_step = 1
 
 li_start = 83 #mm
 li_stop = 83  #mm
 li_step = 1
 
-qt_start = 10 #mm
-qt_stop = 10 #mm
+qt_start = 20 #mm
+qt_stop = 20 #mm
 qt_step = 1
 
-of_start = 2 #mm
-of_stop = 2  #mm
+of_start = 0 #mm
+of_stop = 0  #mm
 of_step = 2
 
 lo_start = 163 #mm
