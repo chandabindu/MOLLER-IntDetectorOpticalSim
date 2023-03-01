@@ -60,16 +60,16 @@ NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 23 #degrees
-ba_stop = 23  #degrees
+ba_start = 20 #degrees
+ba_stop = 20  #degrees
 ba_step = 1  
 
-fa_start = 18.5 #degrees 
-fa_stop = 18.5 #degrees
+fa_start = 18 #degrees 
+fa_stop = 18 #degrees
 fa_step = 1
 
-li_start = 62 #mm
-li_stop = 62  #mm
+li_start = 83 #mm
+li_stop = 83  #mm
 li_step = 1
 
 qt_start = 10 #mm
@@ -84,8 +84,8 @@ lo_start = 163 #mm
 lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 4
-hr_stop = 4
+hr_start = 1
+hr_stop = 1
 hr_step = 1
 
 cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 to 9 (The quartz is broken into 10 segments either horizontally or vertically, but not both yet)
