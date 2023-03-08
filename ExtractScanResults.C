@@ -21,8 +21,8 @@ void ExtractResults()
   std::string line;
   TFile *file;
   
-  Double_t param=17.0;     //Change based on the scan being done
-  Double_t param_step=1.0; //
+  Double_t param=17.0;     //Change based on what is being scanned
+  Double_t param_step=1.0; //Increment for the horizontal axis
   Double_t fa=89; //Value doesn't seem to matter
   Int_t hr;
   Int_t hitR[3]={1,2,3};
@@ -69,8 +69,8 @@ void ExtractResults()
 	fA_PEmean[m]->SetPoint(fA_PEmean[m]->GetN(),param_run,fitP[1]);
 	fA_PEmean[m]->SetPointError(fA_PEmean[m]->GetN()-1,0,fitE[1]);
 	
-	fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,pow(fitP[3]/fitP[1],2));
-	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,2*pow(fitP[3]/fitP[1],2)*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
+	fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,fitP[3]/fitP[1]);
+	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
       }
       else if(hr == 2){
 	
@@ -114,8 +114,8 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     gr2->SetName(Form("Exnse_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
     gr2->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]");
-    gr2->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]");
+    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
+    gr2->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //
     fA_PEmean.push_back(gr);
     fA_Exnse.push_back(gr2);
     C_mp->cd(1);
@@ -139,7 +139,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]");
+    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
     fA_PEmean_hR2.push_back(gr);
     return fA_PEmean_hR2.size()-1;
 
@@ -157,7 +157,7 @@ Int_t FindGraph(Int_t fA, Int_t hR)
     TGraphErrors* gr = new TGraphErrors();
     gr->SetName(Form("PEMean_fA%d_hR%d",fA,hR));
     gr->SetMarkerStyle(21);
-    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]");
+    gr->GetXaxis()->SetTitle("Lower Funnel Downstream Angle [Deg]"); //Change based on what is being scanned
     fA_PEmean_hR3.push_back(gr);
     return fA_PEmean_hR3.size()-1;
 
