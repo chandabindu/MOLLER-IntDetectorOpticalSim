@@ -105,19 +105,21 @@ private:
   Double_t *AbsPtr;
   Int_t NOptPar;
   G4MaterialPropertiesTable* myMPT_FusedSilica;
+  G4MaterialPropertiesTable* myMPT_FusedSilica_window;
   vector <G4MaterialPropertiesTable*> QuartzCells_MPT;
   G4bool SegRadDamgeFlag;
 
   MOLLEROptTrackingReadout* TrackingReadout;
 
   G4double *RefractiveIndex_Quartz;
+  G4double *AbsPtr_window;
 
   TH2D *PixellatedRelativeRate;
   TH1D* QEffhst;  
   TH1D* LGRefl30;  
   TH1D* LGRefl45;  
   TH1D* LGRefl60;  
-  TH1D* LGRefl90;  
+  TH1D* LGRefl90; 
   TH1D* CathIndR;  
   TH1D* CathIndI;  
 
