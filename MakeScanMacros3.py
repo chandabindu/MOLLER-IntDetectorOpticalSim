@@ -29,7 +29,7 @@ Energy = 8000 #MeV		      This sets the energy of the beam
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+NumEvents = [100,100000,100000,100000,100000,100,100,100000,100000]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
                                    #Regions 8 & 9 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz since not many photons are generated there
 
@@ -60,16 +60,16 @@ NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events
 
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 23 #degrees
-ba_stop = 23  #degrees
+ba_start = 20 #degrees
+ba_stop = 20  #degrees
 ba_step = 1  
 
-fa_start = 18.5 #degrees 
-fa_stop = 18.5 #degrees
+fa_start = 18 #degrees 
+fa_stop = 18 #degrees
 fa_step = 1
 
-li_start = 62 #mm
-li_stop = 62  #mm
+li_start = 83 #mm
+li_stop = 83  #mm
 li_step = 1
 
 qt_start = 10 #mm
@@ -84,8 +84,8 @@ lo_start = 163 #mm
 lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 4
-hr_stop = 4
+hr_start = 5
+hr_stop = 5
 hr_step = 1
 
 cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 to 9 (The quartz is broken into 10 segments either horizontally or vertically, but not both yet)
@@ -142,7 +142,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
+			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
 
                                     FileName = OutputFilePrefix + FileIDString + "_000"+str(RunID) + ".mac"
                                     fout = open(datadir+FileName, "w")
