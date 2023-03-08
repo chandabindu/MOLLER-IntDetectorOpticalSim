@@ -84,8 +84,8 @@ lo_start = 163 #mm
 lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 1
-hr_stop = 1
+hr_start = 5
+hr_stop = 5
 hr_step = 1
 
 cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 to 9 (The quartz is broken into 10 segments either horizontally or vertically, but not both yet)
@@ -142,7 +142,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/root_files/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
+			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/Material-tests/10mm-Heraeus-MiroSilver/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
 
                                     FileName = OutputFilePrefix + FileIDString + "_000"+str(RunID) + ".mac"
                                     fout = open(datadir+FileName, "w")
