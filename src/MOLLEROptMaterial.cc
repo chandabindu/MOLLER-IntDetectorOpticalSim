@@ -701,7 +701,14 @@ void MOLLEROptMaterial::DefineMaterials()
 
 
   // Quartz SiO2 (e.g. Spectrosil 2000), optical properties will be added 
-  name        = "Quartz";
+  name        = "windowQuartz";
+  density     = 2.203*g/cm3;
+  ncomponents = 2;
+  G4Material* matwindowQuartz = new G4Material(name,density, ncomponents);
+  matwindowQuartz->AddElement(elSi, natoms=1);
+  matwindowQuartz->AddElement(elO , natoms=2);
+
+   name       = "Quartz";
   density     = 2.203*g/cm3;
   ncomponents = 2;
   G4Material* matQuartz = new G4Material(name,density, ncomponents);
@@ -1019,6 +1026,7 @@ void MOLLEROptMaterial::DefineMaterials()
    // Fused Silica (Spectrosil 2000) for the Cerenkov Detector
 
    RefractiveIndex_Quartz = new G4double[nEntries];
+   AbsPtr_window = new G4double[nEntries];
     // G4double RefractiveIndex_Quartz[nEntries];
 
    //Sellmeier Coefficients:
@@ -1047,9 +1055,10 @@ void MOLLEROptMaterial::DefineMaterials()
    // double b =b 1; // set this equal to 1 for a GeV electrons
    
    for(int i = 0; i < nEntries; i++){
-     x = 1.242/(OptPar->EPhoton[i]/eV);
+     x = 1242.0/(OptPar->EPhoton[i]/eV);
      // RefractiveIndex_Quartz[i] = TMath::Sqrt(1 + b1*x*x/(x*x - c1) + b2*x*x/(x*x - c2) + b3*x*x/(x*x - c3));
      RefractiveIndex_Quartz[i] = 1.438 + (.01197*OptPar->EPhoton[i]/eV) - (.001955*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV) + (.0004793*OptPar->EPhoton[i]*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV/eV);
+     AbsPtr_window[i] = 5.51192 -0.927701*1242.0/x + 0.00843522*pow(1242.0/x,2) - 1.63346e-05*pow(1242.0/x,3) + 9.42376e-09*pow(1242.0/x,4);
 
    }   
    myMPT_FusedSilica = new G4MaterialPropertiesTable();
@@ -1057,6 +1066,12 @@ void MOLLEROptMaterial::DefineMaterials()
    myMPT_FusedSilica->AddProperty("ABSLENGTH", OptPar->EPhoton, AbsPtr, nEntries);
    //myMPT_FusedSilica->AddProperty("REFLECTIVITY", OptPar->EPhoton,OptPar->QRefl, nEntries);
    matQuartz->SetMaterialPropertiesTable(myMPT_FusedSilica);
+
+   myMPT_FusedSilica_window= new G4MaterialPropertiesTable();
+   myMPT_FusedSilica_window->AddProperty("RINDEX",    OptPar->EPhoton, RefractiveIndex_Quartz , nEntries);
+   myMPT_FusedSilica_window->AddProperty("ABSLENGTH", OptPar->EPhoton, AbsPtr_window, nEntries);
+   //myMPT_FusedSilica->AddProperty("REFLECTIVITY", OptPar->EPhoton,OptPar->QRefl, nEntries);
+   matwindowQuartz->SetMaterialPropertiesTable(myMPT_FusedSilica_window);
 
 
    // G4double RefractiveIndex_Si[nEntries];

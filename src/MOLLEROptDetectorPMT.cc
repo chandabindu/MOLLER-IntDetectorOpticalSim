@@ -9,7 +9,7 @@ MOLLEROptDetectorPMT::MOLLEROptDetectorPMT(MOLLEROptTrackingReadout *TrRO, G4Str
   Materials = mat;
   PMTMaterial = Materials->GetMaterial("Air");  //PMT with quartz window
   PMTCathodeMaterial = Materials->GetMaterial("Aluminum");//Photocathode");  //PMT with quartz window
-  PMTWindowMaterial = Materials->GetMaterial("Quartz");  //PMT with quartz window
+  PMTWindowMaterial = Materials->GetMaterial("windowQuartz");  //PMT with quartz window
 
   PMTLogical  = NULL;
   PMTPhysical = NULL;
