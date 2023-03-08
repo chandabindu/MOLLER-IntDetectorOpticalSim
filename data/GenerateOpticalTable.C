@@ -158,7 +158,7 @@ void FillGuideReflectivity()
   ifstream iFile("miro4270_30.txt");
   ifstream iFile2("miro4270_45.txt");
   ifstream iFile3("miro4270_60.txt");
-  ifstream iFile4("miroIV_90.txt"); //miro4270_90.txt file is missing. miroIV_90 is close enough for the purpose of the MOLLEROpt simulations, but not an exact match
+  ifstream iFile4("miro4270_2.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;
