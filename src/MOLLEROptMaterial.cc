@@ -1058,7 +1058,7 @@ void MOLLEROptMaterial::DefineMaterials()
      x = 1242.0/(OptPar->EPhoton[i]/eV);
      // RefractiveIndex_Quartz[i] = TMath::Sqrt(1 + b1*x*x/(x*x - c1) + b2*x*x/(x*x - c2) + b3*x*x/(x*x - c3));
      RefractiveIndex_Quartz[i] = 1.438 + (.01197*OptPar->EPhoton[i]/eV) - (.001955*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV) + (.0004793*OptPar->EPhoton[i]*OptPar->EPhoton[i]*OptPar->EPhoton[i]/eV/eV/eV);
-     AbsPtr_window[i] = 5.51192 -0.927701*1242.0/x + 0.00843522*pow(1242.0/x,2) - 1.63346e-05*pow(1242.0/x,3) + 9.42376e-09*pow(1242.0/x,4);
+     AbsPtr_window[i] = 5.51192 -0.927701*x + 0.00843522*pow(x,2) - 1.63346e-05*pow(x,3) + 9.42376e-09*pow(x,4);
 
    }   
    myMPT_FusedSilica = new G4MaterialPropertiesTable();
