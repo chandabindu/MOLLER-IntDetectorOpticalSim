@@ -12,15 +12,15 @@ TProfile *CathIndR = new TProfile("CathIndR","",100,1.38,6.21,0,4.0);
 TProfile *CathIndI = new TProfile("CathIndI","",100,1.38,6.21,0,4.0);
 
 //LG material reflectivity profiles
-TProfile *Miro30Refl = new TProfile("Miro30Refl","",100,1.38,6.21,0,1.0);
-TProfile *Miro45Refl = new TProfile("Miro45Refl","",100,1.38,6.21,0,1.0);
-TProfile *Miro60Refl = new TProfile("Miro60Refl","",100,1.38,6.21,0,1.0);
-TProfile *Miro90Refl = new TProfile("Miro90Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG30Refl = new TProfile("LG30Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG45Refl = new TProfile("LG45Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG60Refl = new TProfile("LG60Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG90Refl = new TProfile("LG90Refl","",100,1.38,6.21,0,1.0);
 
-TProfile *Miro30Reflwv = new TProfile("Miro30Reflwv","",750,150,900,0,1.0);
-TProfile *Miro45Reflwv = new TProfile("Miro45Reflwv","",750,150,900,0,1.0);
-TProfile *Miro60Reflwv = new TProfile("Miro60Reflwv","",750,150,900,0,1.0);
-TProfile *Miro90Reflwv = new TProfile("Miro90Reflwv","",750,150,900,0,1.0);
+TProfile *LG30Reflwv = new TProfile("LG30Reflwv","",750,150,900,0,1.0);
+TProfile *LG45Reflwv = new TProfile("LG45Reflwv","",750,150,900,0,1.0);
+TProfile *LG60Reflwv = new TProfile("LG60Reflwv","",750,150,900,0,1.0);
+TProfile *LG90Reflwv = new TProfile("LGReflwv","",750,150,900,0,1.0);
 
 //Quantum absorption profiles 
 TProfile *QAbsorption  = new TProfile("QAbsorption","",60,1.38,6.21,0,250.0);
@@ -155,10 +155,10 @@ void FillGuideReflectivity()
   //From the Idaho reflectivity measurements
   //These files were generated from the original Idaho data
   //files with the script "mat_analysis.C"
-  ifstream iFile("miro4270_30.txt");
-  ifstream iFile2("miro4270_45.txt");
-  ifstream iFile3("miro4270_60.txt");
-  ifstream iFile4("miro4270_2.txt");
+  ifstream iFile("uvs30.txt");
+  ifstream iFile2("uvs45.txt");
+  ifstream iFile3("uvs60.txt");
+  ifstream iFile4("uvs.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;
@@ -172,8 +172,8 @@ void FillGuideReflectivity()
     wvl = x;
 
     eng = 1242.0/wvl;
-    Miro30Refl->Fill(eng,y,1);
-    Miro30Reflwv->Fill(x,y,1);
+    LG30Refl->Fill(eng,y,1);
+    LG30Reflwv->Fill(x,y,1);
 
   }
 
@@ -186,8 +186,8 @@ void FillGuideReflectivity()
     wvl = x;
 
     eng = 1242.0/wvl;
-    Miro45Refl->Fill(eng,y,1);
-    Miro45Reflwv->Fill(x,y,1);
+    LG45Refl->Fill(eng,y,1);
+    LG45Reflwv->Fill(x,y,1);
 
   }
 
@@ -199,8 +199,8 @@ void FillGuideReflectivity()
     
     wvl = x;
     eng = 1242.0/wvl;
-    Miro60Refl->Fill(eng,y,1);
-    Miro60Reflwv->Fill(x,y,1);
+    LG60Refl->Fill(eng,y,1);
+    LG60Reflwv->Fill(x,y,1);
   }
 
   iFile3.close();
@@ -212,8 +212,8 @@ void FillGuideReflectivity()
     wvl = x;
     
     eng = 1242.0/wvl;
-    Miro90Refl->Fill(eng,y,1);
-    Miro90Reflwv->Fill(x,y,1);
+    LG90Refl->Fill(eng,y,1);
+    LG90Reflwv->Fill(x,y,1);
   }
 
   iFile4.close();
@@ -353,10 +353,10 @@ void MakeTable()
 
 
   FillGuideReflectivity();
-  Miro90Refl->Draw();
-  Miro60Refl->Draw("same");
-  Miro45Refl->Draw("same");
-  Miro30Refl->Draw("same");
+  LG90Refl->Draw();
+  LG60Refl->Draw("same");
+  LG45Refl->Draw("same");
+  LG30Refl->Draw("same");
 
   FillPMTQE();
   PMTQE->Draw("same");
@@ -368,10 +368,10 @@ void MakeTable()
   
   TCanvas *c2 = new TCanvas("","",600,400);
   c2->cd();
-  Miro90Reflwv->Draw();
-  Miro60Reflwv->Draw("same");
-  Miro45Reflwv->Draw("same");
-  Miro30Reflwv->Draw("same");
+  LG90Reflwv->Draw();
+  LG60Reflwv->Draw("same");
+  LG45Reflwv->Draw("same");
+  LG30Reflwv->Draw("same");
 
   TCanvas *c3 = new TCanvas("","",600,400);
   c3->cd();
@@ -394,10 +394,10 @@ void MakeTable()
 
     PMTQEout->SetPoint(n,PhotonEnergy[n],PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])));
     QReflout->SetPoint(n,PhotonEnergy[n],QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])));
-    LGR30out->SetPoint(n,PhotonEnergy[n],Miro30Refl->GetBinContent(Miro30Refl->FindBin(PhotonEnergy[n])));
-    LGR45out->SetPoint(n,PhotonEnergy[n],Miro45Refl->GetBinContent(Miro45Refl->FindBin(PhotonEnergy[n])));
-    LGR60out->SetPoint(n,PhotonEnergy[n],Miro60Refl->GetBinContent(Miro60Refl->FindBin(PhotonEnergy[n])));
-    LGR90out->SetPoint(n,PhotonEnergy[n],Miro90Refl->GetBinContent(Miro90Refl->FindBin(PhotonEnergy[n])));
+    LGR30out->SetPoint(n,PhotonEnergy[n],LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])));
+    LGR45out->SetPoint(n,PhotonEnergy[n],LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])));
+    LGR60out->SetPoint(n,PhotonEnergy[n],LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])));
+    LGR90out->SetPoint(n,PhotonEnergy[n],LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])));
     Absout->SetPoint(n,PhotonEnergy[n],QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])));
     Abs70out->SetPoint(n,PhotonEnergy[n],QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])));
     Abs170out->SetPoint(n,PhotonEnergy[n],QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n])));
@@ -406,10 +406,10 @@ void MakeTable()
     oFile << PhotonEnergy[n] << ' '
 	  << PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])) << ' '
 	  << QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])) << ' '
-	  << Miro30Refl->GetBinContent(Miro30Refl->FindBin(PhotonEnergy[n])) << ' '    
-      	  << Miro45Refl->GetBinContent(Miro45Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << Miro60Refl->GetBinContent(Miro60Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << Miro90Refl->GetBinContent(Miro90Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])) << ' '    
+      	  << LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])) << ' '     
 	  // << QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])) << ' '     
 	  << AbsLPre->Eval(PhotonEnergy[n]) << ' '
 	  << QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])) << ' ' 
