@@ -155,10 +155,14 @@ void FillGuideReflectivity()
   //From the Idaho reflectivity measurements
   //These files were generated from the original Idaho data
   //files with the script "mat_analysis.C"
-  ifstream iFile("uvs30.txt");
-  ifstream iFile2("uvs45.txt");
-  ifstream iFile3("uvs60.txt");
-  ifstream iFile4("uvs.txt");
+  /*ifstream iFile("miro4270_30.txt");
+  ifstream iFile2("miro4270_45.txt");
+  ifstream iFile3("miro4270_60.txt");
+  ifstream iFile4("miro4270_2.txt");*/
+  ifstream iFile("bogdanMylar_30.txt");
+  ifstream iFile2("bogdanMylar_45.txt");
+  ifstream iFile3("bogdanMylar_60.txt");
+  ifstream iFile4("bogdanMylar.txt");
 
   Float_t x,y,e;
   Int_t n = 0, bin;

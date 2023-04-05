@@ -29,7 +29,7 @@ Energy = 8000 #MeV		      This sets the energy of the beam
 RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
-NumEvents = [100,100000,100000,100000,10000,100,100,100,100]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+NumEvents = [100000,100000,100000,100000,100000,100,100,100,100]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
                                    #Regions 8 & 9 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz since not many photons are generated there
 
@@ -142,7 +142,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/Material-tests/10mm-Heraeus-MiroSilver/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
+			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
 
                                     FileName = OutputFilePrefix + FileIDString + "_000"+str(RunID) + ".mac"
                                     fout = open(datadir+FileName, "w")

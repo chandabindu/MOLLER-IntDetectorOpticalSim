@@ -191,8 +191,8 @@ void DoFit(TH1D *hst, Double_t *fitR, Double_t *fitE)
   // Setting fit range and start values
   Double_t fr[2];
   Double_t sv[4], pllo[4], plhi[4], fp[4], fpe[4];
-  fr[0] = peaks_m[0] - 10;
-  fr[1] = peaks_m[0] + 10;
+  fr[0] = peaks_m[0] - 8;
+  fr[1] = peaks_m[0] + 8;
 
   sv[0] = fr[1] - fr[0];
   sv[1] = peaks_m[0];
@@ -260,7 +260,7 @@ Double_t langaufun(Double_t *x, Double_t *par) {
       Double_t mpshift  = -0.22278298;       // Landau maximum location
  
       // Control constants
-      Double_t np = 100.0;      // number of convolution steps
+      Double_t np = 10000.0;      // number of convolution steps
       Double_t sc =   5.0;      // convolution extends to +-sc Gaussian sigmas
  
       // Variables

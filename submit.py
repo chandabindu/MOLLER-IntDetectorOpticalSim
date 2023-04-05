@@ -68,7 +68,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                     if not os.path.exists(jobs):
                       os.system("mkdir "+jobs)
 
-      	            outDir="/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/SIMFOLDER/build/rootfiles/"            
+      	            outDir="/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/"            
                     home = sourceDir
                     FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
                     if os.path.exists(FileName):
