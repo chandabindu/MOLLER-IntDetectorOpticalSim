@@ -29,6 +29,7 @@ private:
   G4UIcmdWithAnInteger     *QuartzHitRegionCmd;
   G4UIcmdWithAnInteger     *BeamThetaCmd;
   G4UIcmdWithAnInteger     *BeamPhiCmd;
+  G4UIcmdWithAnInteger     *BeamSolidAngleCmd;
   G4UIcmdWithAnInteger     *BeamEnergyCmd;
 
 };

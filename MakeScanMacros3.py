@@ -46,7 +46,8 @@ NumEvents = [100000,100000,100000,100000,100000,100,100,100,100]   #Number of ev
 #The following parameters control the beam
 #hr = Electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
 #cut = quartz segmentation           - segment of quartz to hit. Location and size of segment determined by total number of segments, which is adjusted in src/MOLLEROptPrimaryGeneratorAction.cc
-#theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz
+#theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz. These are currently disabled and do nothing
+#sa = Solid angle of beam            - controls the angular spread of the beam about the z-axis (beam axis)
 
 #Refer to the detector limits presentation for details on these parameters.
 #The correspondence with parameters specified there is:
@@ -92,14 +93,12 @@ cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 t
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 0   #Disabled by default. Can be reenabled in src/MOLLEROptPrimaryGeneratorAction.cc
-theta_stop = 0    #
-theta_step = 1    #
-                  #
-phi_start = 0     #
-phi_stop = 0      #
-phi_step = 45     #
+sa_start = 0 #degrees
+sa_stop = 85 #
+sa_step = 5  #
 
+theta = 0 #degrees
+phi = 0   #degrees
 
 text_root = ""
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
@@ -109,11 +108,10 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                              for phi in np.arange(phi_start,phi_stop+phi_step,phi_step):
-                                for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
+			    for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+                                for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
                                     Text = ""
-                                    FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                                    FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
                                     Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
@@ -137,6 +135,7 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
 			            Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
                                     Text += "/Generator/BeamTheta "+str(theta) + "\n"
                                     Text += "/Generator/BeamPhi "+str(phi) + "\n"
+                                    Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
 				    Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
                                     Text += "/RunAction/SetID " + str(RunID) + "\n"
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"

@@ -35,22 +35,20 @@ lo_start = 163 #mm
 lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 1 #Takes values from 1-9
-hr_stop = 1
+hr_start = 5 #Takes values from 1-9
+hr_stop = 5
 hr_step = 1
 
-cut_start = 10 #Value does not matter if hr != 7,8 so set the start/stop to the same value unless hr = 7,8
+cut_start = 10 #Value does not matter if hr != 8,9 so set the start/stop to the same value unless hr = 8,9
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 0 #Off by default
-theta_stop = 0  #
-theta_step = 1  #
-                #
-phi_start = 0   #
-phi_stop = 0    #
-phi_step = 45   #
+sa_start = 0   #degrees
+sa_stop = 0    #
+sa_step = 45   #
 
+theta = 0 #degrees
+phi = 0   #degrees
 
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
   for fa in np.arange(fa_start,fa_stop+fa_step,fa_step):
@@ -60,10 +58,9 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
           for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
 	    for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
 	      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                for phi in np.arange(phi_start,phi_stop+phi_step,phi_step):
-                  for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
-                    FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID)
-                    rootfile = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID) + ".root"
+                for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
+                    FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID)
+                    rootfile = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID) + ".root"
                     jobs="jobs"
                     if not os.path.exists(jobs):
                       os.system("mkdir "+jobs)
