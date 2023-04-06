@@ -27,8 +27,8 @@ void MOLLEROptPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   G4double x = 0;
   G4double y = 0;
   G4double pi = TMath::Pi();
-  //G4double sa = 45*pi/180;   Angular acceptance of the beam (how much it can deviate from the z-axis). This is now set from the macros
-  G4double cosTheta = 1-(1-TMath::Cos(sa))*G4UniformRand(); G4double sinTheta = std::sqrt(1-cosTheta*cosTheta); G4double Phi = 2*pi*G4UniformRand();
+  G4double sa_rad = sa*pi/180;   //Angular acceptance of the beam in radians (how much it deviates from the z-axis)
+  G4double cosTheta = 1-(1-TMath::Cos(sa_rad))*G4UniformRand(); G4double sinTheta = std::sqrt(1-cosTheta*cosTheta); G4double Phi = 2*pi*G4UniformRand();
   //G4double p_x = (TMath::Sin(theta*pi/180))*TMath::Cos(phi*pi/180);
   //G4double p_y = (TMath::Sin(theta*pi/180))*TMath::Sin(phi*pi/180);
   //G4double p_z = TMath::Cos(theta*pi/180);			     //Allows you to assign angles to the beam using macros. Replaced by sa
