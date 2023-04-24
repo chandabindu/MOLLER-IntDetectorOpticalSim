@@ -70,7 +70,7 @@ void ExtractResults()
 	fA_PEmean[m]->SetPointError(fA_PEmean[m]->GetN()-1,0,fitE[1]);
 	
 	fA_Exnse[m]->SetPoint(fA_Exnse[m]->GetN(),param_run,pow(fitP[3]/fitP[1],2));
-	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,2*pow(fitP[3]/fitP[1],2)*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
+	fA_Exnse[m]->SetPointError(fA_Exnse[m]->GetN()-1,0,(fitP[3]/fitP[1])*sqrt(fitE[3]*fitE[3]/fitP[3]/fitP[3] + fitE[1]*fitE[1]/fitP[1]/fitP[1]));
       }
       else if(hr == 2){
 	
