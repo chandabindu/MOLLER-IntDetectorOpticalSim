@@ -108,8 +108,8 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
             for qt in np.arange(qt_start,qt_stop+qt_step,qt_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-			                  for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-			                      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
+			    for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
                                 for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
                                     Text = ""
                                     FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
@@ -133,16 +133,16 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
                                     Text += "/Det/UpdateGeometry" + "\n"
                                     Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-			                              Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
+			            Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
                                     Text += "/Generator/BeamTheta "+str(theta) + "\n"
                                     Text += "/Generator/BeamPhi "+str(phi) + "\n"
                                     Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
-				                            Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
+				    Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
                                     Text += "/RunAction/SetID " + str(RunID) + "\n"
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			                              text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"			      
+			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/mod-reflectivity-studies/20mm-mylar-tosoh/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"			      
 
                                     FileName = OutputFilePrefix + FileIDString + "_000"+str(RunID) + ".mac"
                                     fout = open(datadir+FileName, "w")
