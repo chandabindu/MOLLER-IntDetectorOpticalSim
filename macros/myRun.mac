@@ -33,8 +33,8 @@
 /Det/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cones surface (not counting the box)
 
 /Det/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
-/Det/LightGuideMiddleBox .01 mm                   #Height of box between upper and lower cones
-/Det/LightGuideUpperInterface 252.99 mm             #Distance between upper and lower interface planes
+/Det/LightGuideMiddleBox 90 mm                   #Height of box between upper and lower cones
+/Det/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
 
 /Det/LightGuidePMTInterfaceOpeningX 7.0 cm       #These should stay fixed - set by the PMT size 
 /Det/LightGuidePMTInterfaceOpeningZ 7.0 cm
@@ -66,4 +66,4 @@
 
 /RunAction/SetID 3
 /random/setSeeds 346082 823457
-/run/beamOn 10000
+/run/beamOn 1

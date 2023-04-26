@@ -1331,11 +1331,11 @@ G4double G4OpBoundaryProcess::GetAngleDependentReflectivity(G4MaterialProperties
       for(uint n = 0; n < Keys.size(); n++)
 	if(std::stof(&(Keys[n].data()[16])) == angles[k]){
 	  PropertyPointer = propertyTable->GetProperty(Keys[n].data());
-	  // G4cout << "IncAngle = " << IncAngle << ", angle = " << angles[k] << ", Key = " << Keys[n].data() << G4endl;
+	  // G4cout << "1st IncAngle = " << IncAngle << ", angle = " << angles[k] << ", Key = " << Keys[n].data() << G4endl;
 	  return PropertyPointer->Value(thePhotonMomentum);
 	}
     }
-    if(k == angles.size()-1 && IncAngle >= angles[k]){
+    /*if(k == angles.size()-1 && IncAngle >= angles[k]){
       for(uint n = 0; n < Keys.size(); n++)
 	if(std::stof(&(Keys[n].data()[16])) == angles[k]){
 	  // G4cout << "IncAngle = " << IncAngle << ", angle = " << angles[k] << ", Key = " << Keys[n].data() << G4endl;
@@ -1343,7 +1343,7 @@ G4double G4OpBoundaryProcess::GetAngleDependentReflectivity(G4MaterialProperties
 	  return PropertyPointer->Value(thePhotonMomentum);
 	}
     }
-    /*if(k && IncAngle < angles[k] && IncAngle >= angles[k-1]){
+    if(k && IncAngle < angles[k] && IncAngle >= angles[k-1]){
       for(uint n = 0; n < Keys.size(); n++)
 	if(std::stof(&(Keys[n].data()[16])) == angles[k]){
 	  // G4cout << "IncAngle = " << IncAngle << ", angle = " << angles[k] << ", Key = " << Keys[n].data() << G4endl;
@@ -1351,7 +1351,7 @@ G4double G4OpBoundaryProcess::GetAngleDependentReflectivity(G4MaterialProperties
 	  return PropertyPointer->Value(thePhotonMomentum);
 	}
     }*/
-    //These next parts were added by Jonathon Mott. The angle used for the reflectivity will be the angle that is closest to IncAngle (the actual reflection angle)
+    //Following if statements added by Jonathon Mott. The angle used for the reflectivity will be the angle that is closest to IncAngle (the actual reflection angle)
     if(k && IncAngle < angles[k] && IncAngle >= (angles[k-1] + (angles[k]-angles[k-1])/(2.))){
       for(uint n = 0; n < Keys.size(); n++)
 	if(std::stof(&(Keys[n].data()[16])) == angles[k]){
