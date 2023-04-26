@@ -11,46 +11,44 @@ datadir =  "R6ParamScan/"
 OutputFilePrefix = "MOLLEROpt_Scan"
 
 #Loop over values (to fix a variable set the start and stop both to the desired value)
-ba_start = 23 #degress
-ba_stop = 23  #degress
+ba_start = 20 #degress
+ba_stop = 20  #degress
 ba_step = 1
 
-fa_start = 18.5 #degress 
-fa_stop = 18.5 #degress
+fa_start = 17 #degress 
+fa_stop = 17 #degress
 fa_step = 1
 
-li_start = 62 #mm
-li_stop = 62  #mm
+li_start = 83 #mm
+li_stop = 83  #mm
 li_step = 1
 
-qt_start = 10 #mm
-qt_stop = 10 #mm
+qt_start = 20 #mm
+qt_stop = 20 #mm
 qt_step = 1
 
-of_start = 2 #mm
-of_stop = 2  #mm
+of_start = 0 #mm
+of_stop = 0  #mm
 of_step = 2
 
 lo_start = 163 #mm
 lo_stop = 163 #mm
 lo_step = 1
 
-hr_start = 4 #Tales values from 1-8
-hr_stop = 4
+hr_start = 5 #Takes values from 1-9
+hr_stop = 5
 hr_step = 1
 
-cut_start = 10 #Value does not matter if hr != 7,8 so set the start/stop to the same value unless hr = 7,8
+cut_start = 10 #Value does not matter if hr != 8,9 so set the start/stop to the same value unless hr = 8,9
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 0 #Off by default
-theta_stop = 0  #
-theta_step = 1  #
-                #
-phi_start = 0   #
-phi_stop = 0    #
-phi_step = 45   #
+sa_start = 0   #degrees
+sa_stop = 0    #
+sa_step = 5   #
 
+theta = 0 #degrees
+phi = 0   #degrees
 
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
   for fa in np.arange(fa_start,fa_stop+fa_step,fa_step):
@@ -58,17 +56,16 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
       for qt in np.arange(qt_start,qt_stop+qt_step,qt_step):
         for of in np.arange(of_start,of_stop+of_step,of_step):
           for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-	    for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-	      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                for phi in np.arange(phi_start,phi_stop+phi_step,phi_step):
-                  for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
-                    FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID)
-                    rootfile = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID) + ".root"
+	          for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
+	             for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+                 for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
+                    FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID)
+                    rootfile = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID) + ".root"
                     jobs="jobs"
                     if not os.path.exists(jobs):
                       os.system("mkdir "+jobs)
-
-      	            outDir="/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/SIMFOLDER/build/rootfiles/"            
+                      
+      	            outDir="/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/"            
                     home = sourceDir
                     FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
                     if os.path.exists(FileName):

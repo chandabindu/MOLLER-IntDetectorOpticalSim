@@ -5,23 +5,24 @@ double PhotonEnergy[58] = {1.55,1.58,1.61,1.64,1.67,1.70,1.73,1.76,1.79,1.82,1.8
 			   3.44, 3.54, 3.65, 3.76, 3.87, 4.00, 4.13, 4.28, 4.43, 4.59, 
 			   4.77, 4.96, 5.17, 5.39, 5.64, 5.90, 6.20};
 
+//PMT profiles
 TProfile *PMTQE = new TProfile("PMTQE","",100,1.38,6.21,0,1.0);
 TProfile *QRefl = new TProfile("QRefl","",100,1.38,6.21,0,1.0);
 TProfile *CathIndR = new TProfile("CathIndR","",100,1.38,6.21,0,4.0);
 TProfile *CathIndI = new TProfile("CathIndI","",100,1.38,6.21,0,4.0);
 
-TProfile *Mylar30Refl = new TProfile("Mylar30Refl","",100,1.38,6.21,0,1.0);
-TProfile *Mylar90Refl = new TProfile("Mylar90Refl","",100,1.38,6.21,0,1.0);
-TProfile *Bogdan30Refl = new TProfile("Bogdan30Refl","",100,1.38,6.21,0,1.0);
-TProfile *Bogdan45Refl = new TProfile("Bogdan45Refl","",100,1.38,6.21,0,1.0);
-TProfile *Bogdan60Refl = new TProfile("Bogdan60Refl","",100,1.38,6.21,0,1.0);
-TProfile *Bogdan90Refl = new TProfile("Bogdan90Refl","",100,1.38,6.21,0,1.0);
+//LG material reflectivity profiles
+TProfile *LG30Refl = new TProfile("LG30Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG45Refl = new TProfile("LG45Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG60Refl = new TProfile("LG60Refl","",100,1.38,6.21,0,1.0);
+TProfile *LG90Refl = new TProfile("LG90Refl","",100,1.38,6.21,0,1.0);
 
-TProfile *Bogdan30Reflwv = new TProfile("Bogdan30Reflwv","",750,150,900,0,1.0);
-TProfile *Bogdan45Reflwv = new TProfile("Bogdan45Reflwv","",750,150,900,0,1.0);
-TProfile *Bogdan60Reflwv = new TProfile("Bogdan60Reflwv","",750,150,900,0,1.0);
-TProfile *Bogdan90Reflwv = new TProfile("Bogdan90Reflwv","",750,150,900,0,1.0);
+TProfile *LG30Reflwv = new TProfile("LG30Reflwv","",750,150,900,0,1.0);
+TProfile *LG45Reflwv = new TProfile("LG45Reflwv","",750,150,900,0,1.0);
+TProfile *LG60Reflwv = new TProfile("LG60Reflwv","",750,150,900,0,1.0);
+TProfile *LG90Reflwv = new TProfile("LGReflwv","",750,150,900,0,1.0);
 
+//Quantum absorption profiles 
 TProfile *QAbsorption  = new TProfile("QAbsorption","",60,1.38,6.21,0,250.0);
 TProfile *QAbsorption70  = new TProfile("QAbsorption70","",60,1.38,6.21,0,250.0);
 TProfile *QAbsorption170  = new TProfile("QAbsorption170","",60,1.38,6.21,0,250.0);
@@ -153,15 +154,16 @@ void FillGuideReflectivity()
 
   //From the Idaho reflectivity measurements
   //These files were generated from the original Idaho data
-  //files with the script "analysis2.C"
-  
-  ifstream iFile( "my1milMylar_30.txt");
-  ifstream iFile2("my1milMylar.txt");
-  ifstream iFile3("bogdanMylar_30.txt");
-  ifstream iFile4("bogdanMylar_45.txt");
-  ifstream iFile5("bogdanMylar_60.txt");
-  ifstream iFile6("bogdanMylar.txt");
-  
+  //files with the script "mat_analysis.C"
+  /*ifstream iFile("miro4270_30.txt");
+  ifstream iFile2("miro4270_45.txt");
+  ifstream iFile3("miro4270_60.txt");
+  ifstream iFile4("miro4270_2.txt");*/
+  ifstream iFile("bogdanMylar_30.txt");
+  ifstream iFile2("bogdanMylar_45.txt");
+  ifstream iFile3("bogdanMylar_60.txt");
+  ifstream iFile4("bogdanMylar.txt");
+
   Float_t x,y,e;
   Int_t n = 0, bin;
 
@@ -174,7 +176,8 @@ void FillGuideReflectivity()
     wvl = x;
 
     eng = 1242.0/wvl;
-    Mylar30Refl->Fill(eng,y,1);
+    LG30Refl->Fill(eng,y,1);
+    LG30Reflwv->Fill(x,y,1);
 
   }
 
@@ -187,7 +190,8 @@ void FillGuideReflectivity()
     wvl = x;
 
     eng = 1242.0/wvl;
-    Mylar90Refl->Fill(eng,y,1);
+    LG45Refl->Fill(eng,y,1);
+    LG45Reflwv->Fill(x,y,1);
 
   }
 
@@ -199,8 +203,8 @@ void FillGuideReflectivity()
     
     wvl = x;
     eng = 1242.0/wvl;
-    Bogdan30Refl->Fill(eng,y,1);
-    Bogdan30Reflwv->Fill(x,y,1);
+    LG60Refl->Fill(eng,y,1);
+    LG60Reflwv->Fill(x,y,1);
   }
 
   iFile3.close();
@@ -212,37 +216,12 @@ void FillGuideReflectivity()
     wvl = x;
     
     eng = 1242.0/wvl;
-    Bogdan45Refl->Fill(eng,y,1);
-    Bogdan45Reflwv->Fill(x,y,1);
+    LG90Refl->Fill(eng,y,1);
+    LG90Reflwv->Fill(x,y,1);
   }
 
   iFile4.close();
 
-  while(!iFile5.eof()){
-    
-    iFile5 >> x >> y >> e;
-    
-    wvl = x;
-    
-    eng = 1242.0/wvl;
-    Bogdan60Refl->Fill(eng,y,1);
-    Bogdan60Reflwv->Fill(x,y,1);
-  }
-
-  iFile5.close();
-
-  while(!iFile6.eof()){
-    
-    iFile6 >> x >> y >> e;
-    
-    wvl = x;
-    
-    eng = 1242.0/wvl;
-    Bogdan90Refl->Fill(eng,y,1);
-    Bogdan90Reflwv->Fill(x,y,1);
-  }
-
-  iFile6.close();
 }
 
 
@@ -378,12 +357,10 @@ void MakeTable()
 
 
   FillGuideReflectivity();
-  //Mylar90Refl->Draw();
-  // Mylar30Refl->Draw("same");
-  Bogdan90Refl->Draw();
-  Bogdan60Refl->Draw("same");
-  Bogdan45Refl->Draw("same");
-  Bogdan30Refl->Draw("same");
+  LG90Refl->Draw();
+  LG60Refl->Draw("same");
+  LG45Refl->Draw("same");
+  LG30Refl->Draw("same");
 
   FillPMTQE();
   PMTQE->Draw("same");
@@ -395,10 +372,10 @@ void MakeTable()
   
   TCanvas *c2 = new TCanvas("","",600,400);
   c2->cd();
-  Bogdan90Reflwv->Draw();
-  Bogdan60Reflwv->Draw("same");
-  Bogdan45Reflwv->Draw("same");
-  Bogdan30Reflwv->Draw("same");
+  LG90Reflwv->Draw();
+  LG60Reflwv->Draw("same");
+  LG45Reflwv->Draw("same");
+  LG30Reflwv->Draw("same");
 
   TCanvas *c3 = new TCanvas("","",600,400);
   c3->cd();
@@ -421,10 +398,10 @@ void MakeTable()
 
     PMTQEout->SetPoint(n,PhotonEnergy[n],PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])));
     QReflout->SetPoint(n,PhotonEnergy[n],QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])));
-    LGR30out->SetPoint(n,PhotonEnergy[n],Bogdan30Refl->GetBinContent(Bogdan30Refl->FindBin(PhotonEnergy[n])));
-    LGR45out->SetPoint(n,PhotonEnergy[n],Bogdan45Refl->GetBinContent(Bogdan45Refl->FindBin(PhotonEnergy[n])));
-    LGR60out->SetPoint(n,PhotonEnergy[n],Bogdan60Refl->GetBinContent(Bogdan60Refl->FindBin(PhotonEnergy[n])));
-    LGR90out->SetPoint(n,PhotonEnergy[n],Bogdan90Refl->GetBinContent(Bogdan90Refl->FindBin(PhotonEnergy[n])));
+    LGR30out->SetPoint(n,PhotonEnergy[n],LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])));
+    LGR45out->SetPoint(n,PhotonEnergy[n],LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])));
+    LGR60out->SetPoint(n,PhotonEnergy[n],LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])));
+    LGR90out->SetPoint(n,PhotonEnergy[n],LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])));
     Absout->SetPoint(n,PhotonEnergy[n],QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])));
     Abs70out->SetPoint(n,PhotonEnergy[n],QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])));
     Abs170out->SetPoint(n,PhotonEnergy[n],QAbsorption170->GetBinContent(QAbsorption170->FindBin(PhotonEnergy[n])));
@@ -433,12 +410,10 @@ void MakeTable()
     oFile << PhotonEnergy[n] << ' '
 	  << PMTQE->GetBinContent(PMTQE->FindBin(PhotonEnergy[n])) << ' '
 	  << QRefl->GetBinContent(QRefl->FindBin(PhotonEnergy[n])) << ' '
-	  // << Mylar30Refl->GetBinContent(Mylar30Refl->FindBin(PhotonEnergy[n])) << ' '
-	  // << Mylar90Refl->GetBinContent(Mylar90Refl->FindBin(PhotonEnergy[n])) << ' '
-	  << Bogdan30Refl->GetBinContent(Bogdan30Refl->FindBin(PhotonEnergy[n])) << ' '    
-      	  << Bogdan45Refl->GetBinContent(Bogdan45Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << Bogdan60Refl->GetBinContent(Bogdan60Refl->FindBin(PhotonEnergy[n])) << ' '     
-	  << Bogdan90Refl->GetBinContent(Bogdan90Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG30Refl->GetBinContent(LG30Refl->FindBin(PhotonEnergy[n])) << ' '    
+      	  << LG45Refl->GetBinContent(LG45Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG60Refl->GetBinContent(LG60Refl->FindBin(PhotonEnergy[n])) << ' '     
+	  << LG90Refl->GetBinContent(LG90Refl->FindBin(PhotonEnergy[n])) << ' '     
 	  // << QAbsorption->GetBinContent(QAbsorption->FindBin(PhotonEnergy[n])) << ' '     
 	  << AbsLPre->Eval(PhotonEnergy[n]) << ' '
 	  << QAbsorption70->GetBinContent(QAbsorption70->FindBin(PhotonEnergy[n])) << ' ' 

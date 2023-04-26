@@ -14,8 +14,8 @@ OutputFilePrefix = "MOLLEROpt_Scan"                      # String that starts al
 RunID = 2  #Set this to distinguish scans - the same ID is assigned to each run in this scan - see below for additional run identifiers within the scan
 
 #Fixed values
-QWidth = 245  #mm
-QHeight = 105 #mm                     This does not count the segment with the 45* cut. That part has max height equal to quartz thickness (qt parameter below)
+QWidth = 260  #mm
+QHeight = 100 #mm                     This does not count the segment with the 45* cut. That part has max height equal to quartz thickness (qt parameter below)
 QLGOInterfOpening = QWidth + 8  #mm   This is the opening where the quartz and light guide meet. The extra space is dictated by CAD design
 #LightGuideLength = 243  #mm          This is the total guide length, fixed for each module by the detector tiling (location) and the cathode position
 LGPMTInterfaceOpening = 70 #mm        This is fixed by the PMT size, which is 3 inches for the main detector 
@@ -30,6 +30,7 @@ RndSeed1 = random.randrange(300000, 600000)
 RndSeed2 = random.randrange(600001, 900000)
 
 NumEvents = [100,100000,100000,100000,100000,100,100,100000,100000]   #Number of events on region 1-9 involving the quartz, lower guide funnel, and upper guide funnel - vary to taste ... 
+
                                    #Regions 8 & 9 are the vertical and horizontal quartz cuts respectively
                                    #The LG funnel regions can run many more events than the quartz since not many photons are generated there
 
@@ -46,7 +47,8 @@ NumEvents = [100,100000,100000,100000,100000,100,100,100000,100000]   #Number of
 #The following parameters control the beam
 #hr = Electron hit region            - quartz, lower cone/funnel, or upper cone/funnel
 #cut = quartz segmentation           - segment of quartz to hit. Location and size of segment determined by total number of segments, which is adjusted in src/MOLLEROptPrimaryGeneratorAction.cc
-#theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz
+#theta/phi = beam angles             - controls the angle of the beam about the normal to the quartz. These are currently disabled and do nothing
+#sa = Solid angle of beam            - controls the angular spread of the beam about the z-axis (beam axis)
 
 #Refer to the detector limits presentation for details on these parameters.
 #The correspondence with parameters specified there is:
@@ -64,20 +66,20 @@ ba_start = 20 #degrees
 ba_stop = 20  #degrees
 ba_step = 1  
 
-fa_start = 18 #degrees 
-fa_stop = 18 #degrees
+fa_start = 17 #degrees 
+fa_stop = 17 #degrees
 fa_step = 1
 
 li_start = 83 #mm
 li_stop = 83  #mm
 li_step = 1
 
-qt_start = 10 #mm
-qt_stop = 10 #mm
+qt_start = 20 #mm
+qt_stop = 20 #mm
 qt_step = 1
 
-of_start = 2 #mm
-of_stop = 2  #mm
+of_start = 0 #mm
+of_stop = 0  #mm
 of_step = 2
 
 lo_start = 163 #mm
@@ -92,14 +94,12 @@ cut_start = 10 #Value does not matter if hr != 7,8. Cuts currently span from 0 t
 cut_stop = 10 #
 cut_step = 1
 
-theta_start = 0   #Disabled by default. Can be reenabled in src/MOLLEROptPrimaryGeneratorAction.cc
-theta_stop = 0    #
-theta_step = 1    #
-                  #
-phi_start = 0     #
-phi_stop = 0      #
-phi_step = 45     #
+sa_start = 0 #degrees
+sa_stop =0 #
+sa_step = 5  #
 
+theta = 0 #degrees
+phi = 0   #degrees
 
 text_root = ""
 for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
@@ -108,12 +108,11 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
             for qt in np.arange(qt_start,qt_stop+qt_step,qt_step):
                 for of in np.arange(of_start,of_stop+of_step,of_step):
                     for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-			for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-			  for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                              for phi in np.arange(phi_start,phi_stop+phi_step,phi_step):
-                                for theta in np.arange(theta_start,theta_stop+theta_step,theta_step):
+			                  for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
+			                      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+                                for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
                                     Text = ""
-                                    FileIDString = "_theta"+str(theta)+"_phi"+str(phi)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
+                                    FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo)
                                     Text += "/Det/LightGuideLowerConeBackAngle " + str(ba) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerConeFrontAngle " + str(fa) + " deg" + "\n"
                                     Text += "/Det/LightGuideLowerInterface "+ str(li) + " mm" + "\n"
@@ -134,15 +133,16 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
                                     Text += "#/MOLLEROpt/QuartzRadDamage " + str(QuartzRadDamage) + "\n"  #currently turned off
                                     Text += "/Det/UpdateGeometry" + "\n"
                                     Text += "/Generator/EventHitRegion "+str(hr) + "\n"
-			            Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
+			                              Text += "/Generator/QuartzHitRegion "+str(cut) + "\n"
                                     Text += "/Generator/BeamTheta "+str(theta) + "\n"
                                     Text += "/Generator/BeamPhi "+str(phi) + "\n"
-				    Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
+                                    Text += "/Generator/BeamSolidAngle "+str(sa) + "\n"
+				                            Text += "/Generator/BeamEnergy "+str(Energy) + "\n"
                                     Text += "/RunAction/SetID " + str(RunID) + "\n"
                                     Text += "/RunAction/SetOutputName " + FileIDString + "\n"
                                     Text += "/random/setSeeds " + str(RndSeed1) + " " + str(RndSeed2) + "\n"
                                     Text += "/run/beamOn " + str(NumEvents[hr-1]) + "\n"
-			            text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/sim_folders/INSERTSIMFOLDER/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"
+			                              text_root += "/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/" + FileIDString + "_000"+str(RunID) + ".root" + "\n"			      
 
                                     FileName = OutputFilePrefix + FileIDString + "_000"+str(RunID) + ".mac"
                                     fout = open(datadir+FileName, "w")
