@@ -45,7 +45,7 @@ cut_step = 1
 
 sa_start = 0   #degrees
 sa_stop = 0    #
-sa_step = 45   #
+sa_step = 5   #
 
 theta = 0 #degrees
 phi = 0   #degrees
@@ -56,15 +56,15 @@ for ba in np.arange(ba_start,ba_stop+ba_step,ba_step):
       for qt in np.arange(qt_start,qt_stop+qt_step,qt_step):
         for of in np.arange(of_start,of_stop+of_step,of_step):
           for hr in np.arange(hr_start,hr_stop+hr_step,hr_step):
-	    for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
-	      for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
-                for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
+	          for lo in np.arange(lo_start,lo_stop+lo_step,lo_step):
+	             for cut in np.arange(cut_start,cut_stop+cut_step,cut_step):
+                 for sa in np.arange(sa_start,sa_stop+sa_step,sa_step):
                     FileIDString = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID)
                     rootfile = "_sa"+str(sa)+"_cut"+str(cut)+"_fA"+str(fa)+"_bA"+str(ba)+"_hR"+str(hr)+"_lI"+str(li)+"_qT"+str(qt) + "_oF"+str(of) + "_lo"+str(lo) + "_000"+str(RunID) + ".root"
                     jobs="jobs"
                     if not os.path.exists(jobs):
                       os.system("mkdir "+jobs)
-
+                      
       	            outDir="/lustre19/expphy/volatile/halla/moller12gev/jonmott/2023-sims/SolidAngle-tests/angle/build/rootfiles/"            
                     home = sourceDir
                     FileName="./R6ParamScan/"+OutputFilePrefix + FileIDString+".mac"
