@@ -5,81 +5,85 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
 { 
 
   Dir = new G4UIdirectory("/Det/");
-  Dir -> SetGuidance("Detector control.");
+  Dir1 = new G4UIdirectory("/R1/");
+  Dir2 = new G4UIdirectory("/R2/");
+  Dir1 -> SetGuidance("General ring control.");
+  Dir1 -> SetGuidance("R1 control.");
+  Dir2 -> SetGuidance("R2 control.");
 
-  DetZPositionCmd =  new G4UIcmdWithADoubleAndUnit("/Det/SetCenterPositionInZ",this);
-  DetZPositionCmd->SetGuidance("Set the Z position of the Detetect container center"); 
-  DetZPositionCmd->SetParameterName("Size",true);
-  DetZPositionCmd->SetUnitCategory("Length");
-  DetZPositionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  DetZPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInZ",this);
+  DetZPositionCmd1->SetGuidance("Set the Z position of the Detetect container center"); 
+  DetZPositionCmd1->SetParameterName("Size",true);
+  DetZPositionCmd1->SetUnitCategory("Length");
+  DetZPositionCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  DetYPositionCmd =  new G4UIcmdWithADoubleAndUnit("/Det/SetCenterPositionInY",this);
-  DetYPositionCmd->SetGuidance("Set the Y position of the Detector container center"); 
-  DetYPositionCmd->SetParameterName("Size",true);
-  DetYPositionCmd->SetUnitCategory("Length");
-  DetYPositionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  DetYPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInY",this);
+  DetYPositionCmd1->SetGuidance("Set the Y position of the Detector container center"); 
+  DetYPositionCmd1->SetParameterName("Size",true);
+  DetYPositionCmd1->SetUnitCategory("Length");
+  DetYPositionCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  DetXPositionCmd =  new G4UIcmdWithADoubleAndUnit("/Det/SetCenterPositionInX",this);
-  DetXPositionCmd->SetGuidance("Set the X position of the Detector container center"); 
-  DetXPositionCmd->SetParameterName("Size",true);
-  DetXPositionCmd->SetUnitCategory("Length");
-  DetXPositionCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  DetXPositionCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/SetCenterPositionInX",this);
+  DetXPositionCmd1->SetGuidance("Set the X position of the Detector container center"); 
+  DetXPositionCmd1->SetParameterName("Size",true);
+  DetXPositionCmd1->SetUnitCategory("Length");
+  DetXPositionCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   DetMatCmd = new G4UIcmdWithAString("/Det/SetMaterial",this);
   DetMatCmd->SetGuidance("Select Material of the Detetector.");
   DetMatCmd->SetParameterName("choice",false);
   DetMatCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  LightGuideUpperInterfaceCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideUpperInterface",this); 
-  LightGuideUpperInterfaceCmd->SetGuidance("Set the light guide to PMT interface Y location.") ;         
-  LightGuideUpperInterfaceCmd->SetParameterName("Size",true);                   
-  LightGuideUpperInterfaceCmd->SetUnitCategory("Length");                       
-  LightGuideUpperInterfaceCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                      
+  LightGuideUpperInterfaceCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideUpperInterface",this); 
+  LightGuideUpperInterfaceCmd1->SetGuidance("Set the light guide to PMT interface Y location.") ;         
+  LightGuideUpperInterfaceCmd1->SetParameterName("Size",true);                   
+  LightGuideUpperInterfaceCmd1->SetUnitCategory("Length");                       
+  LightGuideUpperInterfaceCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                      
   
-  LightGuideMiddleBoxCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideMiddleBox",this); 
-  LightGuideMiddleBoxCmd->SetGuidance("Set the light guide straight middle box height.") ;         
-  LightGuideMiddleBoxCmd->SetParameterName("Size",true);                   
-  LightGuideMiddleBoxCmd->SetUnitCategory("Length");                       
-  LightGuideMiddleBoxCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  LightGuideMiddleBoxCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideMiddleBox",this); 
+  LightGuideMiddleBoxCmd1->SetGuidance("Set the light guide straight middle box height.") ;         
+  LightGuideMiddleBoxCmd1->SetParameterName("Size",true);                   
+  LightGuideMiddleBoxCmd1->SetUnitCategory("Length");                       
+  LightGuideMiddleBoxCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  LightGuideLowerInterfaceCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideLowerInterface",this); 
-  LightGuideLowerInterfaceCmd->SetGuidance("Set the light guide to Quartz interface Y location.") ;         
-  LightGuideLowerInterfaceCmd->SetParameterName("Size",true);                   
-  LightGuideLowerInterfaceCmd->SetUnitCategory("Length");                       
-  LightGuideLowerInterfaceCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                      
+  LightGuideLowerInterfaceCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideLowerInterface",this); 
+  LightGuideLowerInterfaceCmd1->SetGuidance("Set the light guide to Quartz interface Y location.") ;         
+  LightGuideLowerInterfaceCmd1->SetParameterName("Size",true);                   
+  LightGuideLowerInterfaceCmd1->SetUnitCategory("Length");                       
+  LightGuideLowerInterfaceCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                      
 
-  LightGuideLowerConeFrontAngleCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideLowerConeFrontAngle",this);   
-  LightGuideLowerConeFrontAngleCmd->SetGuidance("Set the upstream face angle of the lower cone wrt. the Y axis (up)");      
-  LightGuideLowerConeFrontAngleCmd->SetParameterName("Angle",true);                                            
-  LightGuideLowerConeFrontAngleCmd->SetRange("Angle>=0. && Angle<=45.");
-  LightGuideLowerConeFrontAngleCmd->SetDefaultUnit("deg");
-  LightGuideLowerConeFrontAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                         
+  LightGuideLowerConeFrontAngleCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideLowerConeFrontAngle",this);   
+  LightGuideLowerConeFrontAngleCmd1->SetGuidance("Set the upstream face angle of the lower cone wrt. the Y axis (up)");      
+  LightGuideLowerConeFrontAngleCmd1->SetParameterName("Angle",true);                                            
+  LightGuideLowerConeFrontAngleCmd1->SetRange("Angle>=0. && Angle<=45.");
+  LightGuideLowerConeFrontAngleCmd1->SetDefaultUnit("deg");
+  LightGuideLowerConeFrontAngleCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                         
 
-  LightGuideLowerConeBackAngleCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideLowerConeBackAngle",this);   
-  LightGuideLowerConeBackAngleCmd->SetGuidance("Set the downstream face angle of the lower cone wrt. the Y axis");      
-  LightGuideLowerConeBackAngleCmd->SetParameterName("Angle",true);                                            
-  LightGuideLowerConeBackAngleCmd->SetRange("Angle>=0. && Angle<=45.");
-  LightGuideLowerConeBackAngleCmd->SetDefaultUnit("deg");
-  LightGuideLowerConeBackAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                         
+  LightGuideLowerConeBackAngleCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideLowerConeBackAngle",this);   
+  LightGuideLowerConeBackAngleCmd1->SetGuidance("Set the downstream face angle of the lower cone wrt. the Y axis");      
+  LightGuideLowerConeBackAngleCmd1->SetParameterName("Angle",true);                                            
+  LightGuideLowerConeBackAngleCmd1->SetRange("Angle>=0. && Angle<=45.");
+  LightGuideLowerConeBackAngleCmd1->SetDefaultUnit("deg");
+  LightGuideLowerConeBackAngleCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                         
 
-  LightGuideLowerConeSideAngleCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideLowerConeSideAngle",this);   
-  LightGuideLowerConeSideAngleCmd->SetGuidance("Set the side face angle of the lower cone wrt. the Y axis");      
-  LightGuideLowerConeSideAngleCmd->SetParameterName("Angle",true);                                            
-  LightGuideLowerConeSideAngleCmd->SetRange("Angle>=0. && Angle<=45.");
-  LightGuideLowerConeSideAngleCmd->SetDefaultUnit("deg");
-  LightGuideLowerConeSideAngleCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                         
+  LightGuideLowerConeSideAngleCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideLowerConeSideAngle",this);   
+  LightGuideLowerConeSideAngleCmd1->SetGuidance("Set the side face angle of the lower cone wrt. the Y axis");      
+  LightGuideLowerConeSideAngleCmd1->SetParameterName("Angle",true);                                            
+  LightGuideLowerConeSideAngleCmd1->SetRange("Angle>=0. && Angle<=45.");
+  LightGuideLowerConeSideAngleCmd1->SetDefaultUnit("deg");
+  LightGuideLowerConeSideAngleCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                         
 
-  LightGuideQuartzInterfaceOpeningXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideQuartzInterfaceOpeningX",this); 
-  LightGuideQuartzInterfaceOpeningXCmd->SetGuidance("Set the light guide to Quartz interface beam-left/right opening.") ;    
-  LightGuideQuartzInterfaceOpeningXCmd->SetParameterName("Size",true);                                          
-  LightGuideQuartzInterfaceOpeningXCmd->SetUnitCategory("Length");                                              
-  LightGuideQuartzInterfaceOpeningXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                       
+  LightGuideQuartzInterfaceOpeningXCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideQuartzInterfaceOpeningX",this); 
+  LightGuideQuartzInterfaceOpeningXCmd1->SetGuidance("Set the light guide to Quartz interface beam-left/right opening.") ;    
+  LightGuideQuartzInterfaceOpeningXCmd1->SetParameterName("Size",true);                                          
+  LightGuideQuartzInterfaceOpeningXCmd1->SetUnitCategory("Length");                                              
+  LightGuideQuartzInterfaceOpeningXCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                       
 
-  LightGuideQuartzInterfaceOpeningZCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideQuartzInterfaceOpeningZ",this); 
-  LightGuideQuartzInterfaceOpeningZCmd->SetGuidance("Set the light guide to Quartz interface beam direction opening.") ;    
-  LightGuideQuartzInterfaceOpeningZCmd->SetParameterName("Size",true);                                          
-  LightGuideQuartzInterfaceOpeningZCmd->SetUnitCategory("Length");                                              
-  LightGuideQuartzInterfaceOpeningZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                       
+  LightGuideQuartzInterfaceOpeningZCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideQuartzInterfaceOpeningZ",this); 
+  LightGuideQuartzInterfaceOpeningZCmd1->SetGuidance("Set the light guide to Quartz interface beam direction opening.") ;    
+  LightGuideQuartzInterfaceOpeningZCmd1->SetParameterName("Size",true);                                          
+  LightGuideQuartzInterfaceOpeningZCmd1->SetUnitCategory("Length");                                              
+  LightGuideQuartzInterfaceOpeningZCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                       
 
   LightGuidePMTInterfaceOpeningXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuidePMTInterfaceOpeningX",this); 
   LightGuidePMTInterfaceOpeningXCmd->SetGuidance("Set the light guide to PMT interface beam-left/right opening.") ;    
@@ -93,11 +97,11 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   LightGuidePMTInterfaceOpeningZCmd->SetUnitCategory("Length");                                              
   LightGuidePMTInterfaceOpeningZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
   
-  LightGuideQuartzToPMTOffsetCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideQuartzToPMTOffset",this);      
-  LightGuideQuartzToPMTOffsetCmd->SetGuidance("Set the offset between the quartz and PMT light guide openings in the beam direction.") ;         
-  LightGuideQuartzToPMTOffsetCmd->SetParameterName("Size",true);                                               
-  LightGuideQuartzToPMTOffsetCmd->SetUnitCategory("Length");                                                   
-  LightGuideQuartzToPMTOffsetCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                            
+  LightGuideQuartzToPMTOffsetCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/LightGuideQuartzToPMTOffset",this);      
+  LightGuideQuartzToPMTOffsetCmd1->SetGuidance("Set the offset between the quartz and PMT light guide openings in the beam direction.") ;         
+  LightGuideQuartzToPMTOffsetCmd1->SetParameterName("Size",true);                                               
+  LightGuideQuartzToPMTOffsetCmd1->SetUnitCategory("Length");                                                   
+  LightGuideQuartzToPMTOffsetCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                            
   
   LightGuideOffsetZCmd =  new G4UIcmdWithADoubleAndUnit("/Det/LightGuideToQuartzOverallOffsetInZ",this);
   LightGuideOffsetZCmd->SetGuidance("Set the offset of the entire light guide w.r.t the quartz"); 
@@ -117,23 +121,23 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
   LightGuideOffsetXCmd->SetUnitCategory("Length");
   LightGuideOffsetXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  QuartzSizeZCmd =  new G4UIcmdWithADoubleAndUnit("/Det/QuartzSizeZ",this);
-  QuartzSizeZCmd->SetGuidance("Set the size of the quartz in Z"); 
-  QuartzSizeZCmd->SetParameterName("Size",true);
-  QuartzSizeZCmd->SetUnitCategory("Length");
-  QuartzSizeZCmd->AvailableForStates(G4State_PreInit,G4State_Idle);                  
+  QuartzSizeZCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/QuartzSizeZ",this);
+  QuartzSizeZCmd1->SetGuidance("Set the size of the quartz in Z"); 
+  QuartzSizeZCmd1->SetParameterName("Size",true);
+  QuartzSizeZCmd1->SetUnitCategory("Length");
+  QuartzSizeZCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);                  
 
-  QuartzSizeYCmd =  new G4UIcmdWithADoubleAndUnit("/Det/QuartzSizeY",this);
-  QuartzSizeYCmd->SetGuidance("Set the size of the quartz in Y"); 
-  QuartzSizeYCmd->SetParameterName("Size",true);
-  QuartzSizeYCmd->SetUnitCategory("Length");
-  QuartzSizeYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  QuartzSizeYCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/QuartzSizeY",this);
+  QuartzSizeYCmd1->SetGuidance("Set the size of the quartz in Y"); 
+  QuartzSizeYCmd1->SetParameterName("Size",true);
+  QuartzSizeYCmd1->SetUnitCategory("Length");
+  QuartzSizeYCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-  QuartzSizeXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/QuartzSizeX",this);
-  QuartzSizeXCmd->SetGuidance("Set the size of the quartz in X"); 
-  QuartzSizeXCmd->SetParameterName("Size",true);
-  QuartzSizeXCmd->SetUnitCategory("Length");
-  QuartzSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+  QuartzSizeXCmd1 =  new G4UIcmdWithADoubleAndUnit("/R1/QuartzSizeX",this);
+  QuartzSizeXCmd1->SetGuidance("Set the size of the quartz in X"); 
+  QuartzSizeXCmd1->SetParameterName("Size",true);
+  QuartzSizeXCmd1->SetUnitCategory("Length");
+  QuartzSizeXCmd1->AvailableForStates(G4State_PreInit,G4State_Idle);
 
   QuartzRotXCmd =  new G4UIcmdWithADoubleAndUnit("/Det/QuartzRotX",this);
   QuartzRotXCmd->SetGuidance("Set the rotation angle of the quartz around X"); 
@@ -168,21 +172,21 @@ MOLLEROptDetectorMessenger::MOLLEROptDetectorMessenger(MOLLEROptDetector* theDet
 
 MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
 {
-  if (DetXPositionCmd)      delete DetXPositionCmd;
-  if (DetYPositionCmd)      delete DetYPositionCmd;
-  if (DetZPositionCmd)      delete DetZPositionCmd;
+  if (DetXPositionCmd1)      delete DetXPositionCmd1;
+  if (DetYPositionCmd1)      delete DetYPositionCmd1;
+  if (DetZPositionCmd1)      delete DetZPositionCmd1;
 
-  if(LightGuideUpperInterfaceCmd          ) delete LightGuideUpperInterfaceCmd;          
-  if(LightGuideMiddleBoxCmd               ) delete LightGuideMiddleBoxCmd;
-  if(LightGuideLowerInterfaceCmd          ) delete LightGuideLowerInterfaceCmd;          
-  if(LightGuideLowerConeFrontAngleCmd     ) delete LightGuideLowerConeFrontAngleCmd;     
-  if(LightGuideLowerConeBackAngleCmd      ) delete LightGuideLowerConeBackAngleCmd;      
-  if(LightGuideLowerConeSideAngleCmd      ) delete LightGuideLowerConeSideAngleCmd;      
-  if(LightGuideQuartzInterfaceOpeningXCmd ) delete LightGuideQuartzInterfaceOpeningXCmd; 
-  if(LightGuideQuartzInterfaceOpeningZCmd ) delete LightGuideQuartzInterfaceOpeningZCmd; 
+  if(LightGuideUpperInterfaceCmd1          ) delete LightGuideUpperInterfaceCmd1;          
+  if(LightGuideMiddleBoxCmd1               ) delete LightGuideMiddleBoxCmd1;
+  if(LightGuideLowerInterfaceCmd1          ) delete LightGuideLowerInterfaceCmd1;          
+  if(LightGuideLowerConeFrontAngleCmd1     ) delete LightGuideLowerConeFrontAngleCmd1;     
+  if(LightGuideLowerConeBackAngleCmd1      ) delete LightGuideLowerConeBackAngleCmd1;      
+  if(LightGuideLowerConeSideAngleCmd1      ) delete LightGuideLowerConeSideAngleCmd1;      
+  if(LightGuideQuartzInterfaceOpeningXCmd1 ) delete LightGuideQuartzInterfaceOpeningXCmd1; 
+  if(LightGuideQuartzInterfaceOpeningZCmd1 ) delete LightGuideQuartzInterfaceOpeningZCmd1; 
   if(LightGuidePMTInterfaceOpeningXCmd    ) delete LightGuidePMTInterfaceOpeningXCmd;    
   if(LightGuidePMTInterfaceOpeningZCmd    ) delete LightGuidePMTInterfaceOpeningZCmd;    
-  if(LightGuideQuartzToPMTOffsetCmd       ) delete LightGuideQuartzToPMTOffsetCmd;       
+  if(LightGuideQuartzToPMTOffsetCmd1       ) delete LightGuideQuartzToPMTOffsetCmd1;       
   if(LightGuideOffsetXCmd                 ) delete LightGuideOffsetXCmd;                 
   if(LightGuideOffsetYCmd                 ) delete LightGuideOffsetYCmd;                 
   if(LightGuideOffsetZCmd                 ) delete LightGuideOffsetZCmd;
@@ -190,9 +194,9 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if(UpdateGeometryCmd                    ) delete UpdateGeometryCmd;
   if(SegRadDamageCmd                      ) delete SegRadDamageCmd;
   
-  if(QuartzSizeXCmd                       ) delete QuartzSizeXCmd;                       
-  if(QuartzSizeYCmd                       ) delete QuartzSizeYCmd;                       
-  if(QuartzSizeZCmd                       ) delete QuartzSizeZCmd;                       
+  if(QuartzSizeXCmd1                       ) delete QuartzSizeXCmd1;                       
+  if(QuartzSizeYCmd1                       ) delete QuartzSizeYCmd1;                       
+  if(QuartzSizeZCmd1                       ) delete QuartzSizeZCmd1;                       
   if(QuartzBevelCmd                       ) delete QuartzBevelCmd;                       
   if(QuartzRotXCmd                        ) delete QuartzRotXCmd;                       
   if(PolarRotationCmd                     ) delete PolarRotationCmd;                       
@@ -201,24 +205,24 @@ MOLLEROptDetectorMessenger::~MOLLEROptDetectorMessenger()
   if (Dir)                                  delete Dir;
 }
 
-void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue)
+void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue1,G4String newValue2)
 { 
-  if( command == DetXPositionCmd ) Det->SetCenterPositionInX(DetXPositionCmd->GetNewDoubleValue(newValue));
-  if( command == DetYPositionCmd ) Det->SetCenterPositionInY(DetYPositionCmd->GetNewDoubleValue(newValue));
-  if( command == DetZPositionCmd ) Det->SetCenterPositionInZ(DetZPositionCmd->GetNewDoubleValue(newValue));
+  if( command.contains("DetXPositionCmd") ) Det->SetCenterPositionInX(DetXPositionCmd1->GetNewDoubleValue(newValue),DetXPositionCmd2->GetNewDoubleValue(newValue));
+  if( command == DetYPositionCmd1 ) Det->SetCenterPositionInY(DetYPositionCmd1->GetNewDoubleValue(newValue));
+  if( command == DetZPositionCmd1 ) Det->SetCenterPositionInZ(DetZPositionCmd1->GetNewDoubleValue(newValue));
   if( command == DetMatCmd ) Det->SetMaterial(newValue);
 
-  if( command == LightGuideUpperInterfaceCmd )         { Det->SetUpperInterfacePlane(LightGuideUpperInterfaceCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideMiddleBoxCmd )              { Det->SetMiddleBoxHeight(LightGuideMiddleBoxCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideLowerInterfaceCmd )         { Det->SetLowerInterfacePlane(LightGuideLowerInterfaceCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideLowerConeFrontAngleCmd )    { Det->SetLowerConeFrontFaceAngle(LightGuideLowerConeFrontAngleCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideLowerConeBackAngleCmd )     { Det->SetLowerConeBackFaceAngle(LightGuideLowerConeBackAngleCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideLowerConeSideAngleCmd )     { Det->SetLowerConeSideFaceAngle(LightGuideLowerConeSideAngleCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideQuartzInterfaceOpeningXCmd ){ Det->SetQuartzInterfaceOpeningX(LightGuideQuartzInterfaceOpeningXCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideQuartzInterfaceOpeningZCmd ){ Det->SetQuartzInterfaceOpeningZ(LightGuideQuartzInterfaceOpeningZCmd->GetNewDoubleValue(newValue));}
+  if( command == LightGuideUpperInterfaceCmd1 )         { Det->SetUpperInterfacePlane(LightGuideUpperInterfaceCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideMiddleBoxCmd1 )              { Det->SetMiddleBoxHeight(LightGuideMiddleBoxCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideLowerInterfaceCmd1 )         { Det->SetLowerInterfacePlane(LightGuideLowerInterfaceCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideLowerConeFrontAngleCmd1 )    { Det->SetLowerConeFrontFaceAngle(LightGuideLowerConeFrontAngleCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideLowerConeBackAngleCmd1 )     { Det->SetLowerConeBackFaceAngle(LightGuideLowerConeBackAngleCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideLowerConeSideAngleCmd1 )     { Det->SetLowerConeSideFaceAngle(LightGuideLowerConeSideAngleCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideQuartzInterfaceOpeningXCmd1 ){ Det->SetQuartzInterfaceOpeningX(LightGuideQuartzInterfaceOpeningXCmd1->GetNewDoubleValue(newValue));}
+  if( command == LightGuideQuartzInterfaceOpeningZCmd1 ){ Det->SetQuartzInterfaceOpeningZ(LightGuideQuartzInterfaceOpeningZCmd1->GetNewDoubleValue(newValue));}
   if( command == LightGuidePMTInterfaceOpeningXCmd )   { Det->SetPMTInterfaceOpeningX(LightGuidePMTInterfaceOpeningXCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuidePMTInterfaceOpeningZCmd )   { Det->SetPMTInterfaceOpeningZ(LightGuidePMTInterfaceOpeningZCmd->GetNewDoubleValue(newValue));}
-  if( command == LightGuideQuartzToPMTOffsetCmd )      { Det->SetQuartzToPMTOffsetInZ(LightGuideQuartzToPMTOffsetCmd->GetNewDoubleValue(newValue));}
+  if( command == LightGuideQuartzToPMTOffsetCmd1 )      { Det->SetQuartzToPMTOffsetInZ(LightGuideQuartzToPMTOffsetCmd1->GetNewDoubleValue(newValue));}
   if( command == LightGuideOffsetXCmd )                { Det->SetLightGuideOffsetInX(LightGuideOffsetXCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideOffsetYCmd )                { Det->SetLightGuideOffsetInY(LightGuideOffsetYCmd->GetNewDoubleValue(newValue));}
   if( command == LightGuideOffsetZCmd )                { Det->SetLightGuideOffsetInZ(LightGuideOffsetZCmd->GetNewDoubleValue(newValue));}
@@ -226,9 +230,9 @@ void MOLLEROptDetectorMessenger::SetNewValue(G4UIcommand* command,G4String newVa
   if( command == UpdateGeometryCmd )                   { Det->UpdateThisGeometry();}
   if( command == SegRadDamageCmd)                      { Det->SetSegRadDamageFlag();}
   
-  if( command == QuartzSizeXCmd )                      { Det->SetQuartzSizeX(QuartzSizeXCmd->GetNewDoubleValue(newValue));}
-  if( command == QuartzSizeYCmd )                      { Det->SetQuartzSizeY(QuartzSizeYCmd->GetNewDoubleValue(newValue));}
-  if( command == QuartzSizeZCmd )                      { Det->SetQuartzSizeZ(QuartzSizeZCmd->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeXCmd1 )                      { Det->SetQuartzSizeX(QuartzSizeXCmd1->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeYCmd1 )                      { Det->SetQuartzSizeY(QuartzSizeYCmd1->GetNewDoubleValue(newValue));}
+  if( command == QuartzSizeZCmd1 )                      { Det->SetQuartzSizeZ(QuartzSizeZCmd1->GetNewDoubleValue(newValue));}
   if( command == QuartzBevelCmd )                      { Det->SetQuartzBevel(QuartzBevelCmd->GetNewDoubleValue(newValue));}
   if( command == QuartzRotXCmd )                       { Det->SetQuartzRotX(QuartzRotXCmd->GetNewDoubleValue(newValue));}
   if( command == PolarRotationCmd )                    { Det->SetPolarRotationAngle(PolarRotationCmd->GetNewDoubleValue(newValue));}

@@ -44,7 +44,8 @@ private:
   void DumpGeometricalTree(G4VPhysicalVolume* aVolume,G4int depth=0);
   
   MOLLEROptDetector*              Detector;
-  MOLLEROptDetectorLightGuide*    LightGuide;
+  //MOLLEROptDetector*		  Detector2;
+  //MOLLEROptDetectorLightGuide*    LightGuide;
 
   MOLLEROptMessenger*  MOLLERMessenger;
   //MOLLEROptDetectorMessenger *DetMessenger;

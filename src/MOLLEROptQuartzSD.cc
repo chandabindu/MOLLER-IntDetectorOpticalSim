@@ -72,7 +72,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 	    QEx = 1;
 	    
 	  }
-	  if((postStep->GetPhysicalVolume()->GetName().contains("Ring5_Physical") ||
+	  if((postStep->GetPhysicalVolume()->GetName().contains("Ring_Physical") ||
 	      postStep->GetPhysicalVolume()->GetName().contains("LG_Physical") )&&
 	     preStep->GetPhysicalVolume()->GetName().contains("Quartz_Physical")){
 	    incidentAngle = 90.0 - 180*0.5*(1 - acos(imom.dot(fmom))/TMath::Pi());
