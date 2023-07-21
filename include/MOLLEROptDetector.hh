@@ -59,7 +59,7 @@ public:
   void SetPMTInterfaceOpeningZ(G4double size);
   void SetPMTInterfaceOpeningX(G4double size);
   void SetQuartzToPMTOffsetInZ(G4double val);
-  void SetQuartzBevel(G4double bev) {Quartz->SetBevelSize(bev);};
+  void SetQuartzBevel(G4double bev) {Quartz1->SetBevelSize(bev);};
 
   void SetPMTCathodeRadius(G4double size);
   void SetPMTCathodeThickness(G4double size);
@@ -67,7 +67,7 @@ public:
   void UpdateThisGeometry();
   void CalculateDimensions();
   void ResetCenterLocation();
-  void SetSegRadDamageFlag() {if(Quartz) Quartz->SetSegRadDamageFlag(); Materials->SetSegRadDamage();};
+  void SetSegRadDamageFlag() {if(Quartz1) Quartz1->SetSegRadDamageFlag(); Materials->SetSegRadDamage();};
 
   G4LogicalVolume*   GetLogicalVolume()    {return DetLogical; } 
   G4VPhysicalVolume* GetPhysicalVolume()   {return DetPhysical;}
@@ -90,10 +90,10 @@ private:
   MOLLEROptDetectorMessenger*  detMessenger;
   MOLLEROptTrackingReadout *TrackingReadout;
   MOLLEROptMaterial* Materials;
-  MOLLEROptDetectorLightGuide* LightGuide; 
-  MOLLEROptDetectorQuartz*     Quartz;
-  MOLLEROptDetectorQuartz*     Quartz2;
-  MOLLEROptDetectorPMT*        PMT;
+  MOLLEROptDetectorLightGuide* LightGuide1; 
+  MOLLEROptDetectorQuartz*     Quartz1;
+  //MOLLEROptDetectorQuartz*     Quartz2;
+  MOLLEROptDetectorPMT*        PMT1;
   //MOLLEROptDetectorStructure*  Structure;
 
   G4VPhysicalVolume* MotherVolume;
