@@ -3,6 +3,7 @@
 MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   :G4VSensitiveDetector(name)
 {
+  G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
   theCollectionName = G4String("QuartzHitCollection");
 
@@ -17,6 +18,7 @@ MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
 
 void MOLLEROptQuartzSD::Initialize(G4HCofThisEvent* HCE)
 {
+
   HitsCollection = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
   theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
   
@@ -86,7 +88,7 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 				      incidentAngle);
 	// G4cout << "Quartz Incident Angle: " << incidentAngle << G4endl;	  
 	
-	HitsCollection->insert(aHit); 
+	//HitsCollection->insert(aHit); 
       }
     }
   }

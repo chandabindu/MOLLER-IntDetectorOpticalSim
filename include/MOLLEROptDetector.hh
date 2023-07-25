@@ -67,6 +67,7 @@ public:
   void SetQuartzInterfaceOpeningX2(G4double size);
   void SetQuartzToPMTOffsetInZ2(G4double val);
 
+  //General objects
   void SetQuartzRotX(G4double r);
   void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
   void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in radians
@@ -85,10 +86,10 @@ public:
   void UpdateThisGeometry();
   void CalculateDimensions();
   void ResetCenterLocation();
-  void SetSegRadDamageFlag() {if(Quartz1) Quartz1->SetSegRadDamageFlag(); if(Quartz2) Quartz2->SetSegRadDamageFlag(); Materials->SetSegRadDamage();}
+  void SetSegRadDamageFlag() {if(Quartz2) Quartz2->SetSegRadDamageFlag(); if(Quartz2) Quartz2->SetSegRadDamageFlag(); Materials->SetSegRadDamage();}
 
-  G4LogicalVolume*   GetLogicalVolume()    {return DetLogical1; return DetLogical2;}
-  G4VPhysicalVolume* GetPhysicalVolume()   {return DetPhysical1; return DetPhysical2;}
+  G4LogicalVolume*   GetLogicalVolume()    {return DetLogical;}
+  G4VPhysicalVolume* GetPhysicalVolume()   {return DetPhysical;}
 
   void GetQuartzLimits(G4double *vals);
   void GetLightGuideLimits(G4double *vals);
@@ -118,12 +119,9 @@ private:
 
   G4VPhysicalVolume* MotherVolume;
 
-  G4LogicalVolume*   DetLogical1; 
-  G4VPhysicalVolume* DetPhysical1;
-  G4Box*             DetSolid1; 
-  G4LogicalVolume*   DetLogical2; 
-  G4VPhysicalVolume* DetPhysical2;
-  G4Box*             DetSolid2;
+  G4LogicalVolume*   DetLogical; 
+  G4VPhysicalVolume* DetPhysical;
+  G4Box*             DetSolid; 
 
   G4Material*        DetMaterial;
 
@@ -150,7 +148,7 @@ private:
   G4double PolarAngle;
 
   G4double PMTToQuartzOffset1;
-  G4double PMTToQuartzOffset2;
+  G4double PMTToQuartzOffset2;  
 
   //Detector Mounting structure
 

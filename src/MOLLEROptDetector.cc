@@ -20,13 +20,13 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
 
   MotherVolume = NULL;
   
-  DetLogical1  = NULL;
-  DetPhysical1 = NULL;
-  DetSolid1 = NULL;
+  DetLogical  = NULL;
+  DetPhysical = NULL;
+  DetSolid = NULL;
 
-  DetLogical2  = NULL;
-  DetPhysical2 = NULL;
-  DetSolid2 = NULL;
+  //DetLogical2  = NULL;
+  //DetPhysical2 = NULL;
+  //DetSolid2 = NULL;
 
   RotationDet = NULL;
 
@@ -120,76 +120,76 @@ void MOLLEROptDetector::SetQuartzRotX(G4double rX)
 void MOLLEROptDetector::SetQuartzSizeX1(G4double x)
 {
   if(Quartz1)
-    Quartz1->SetQuartzSizeX1(x);
+    Quartz1->SetQuartzSizeX(x);
 }
 
 void MOLLEROptDetector::SetQuartzSizeY1(G4double y)
 {
   if(Quartz1)
-    Quartz1->SetQuartzSizeY1(y);
+    Quartz1->SetQuartzSizeY(y);
 }
 				       
 void MOLLEROptDetector::SetQuartzSizeZ1(G4double z)
 {
   if(Quartz1)
-    Quartz1->SetQuartzSizeZ1(z);
+    Quartz1->SetQuartzSizeZ(z);
 }
 				       
 void MOLLEROptDetector::SetLowerInterfacePlane1(G4double LowerPlane)
 {
   if(LightGuide1)
-    LightGuide1->SetLowerInterfacePlane1(LowerPlane);
+    LightGuide1->SetLowerInterfacePlane(LowerPlane);
 }
 
 void MOLLEROptDetector::SetMiddleBoxHeight1(G4double MiddlePlane)
 {
   if(LightGuide1)
-    LightGuide1->SetMiddleBoxHeight1(MiddlePlane);
+    LightGuide1->SetMiddleBoxHeight(MiddlePlane);
 }
 
 void MOLLEROptDetector::SetUpperInterfacePlane1(G4double UpperPlane)
 {
   if(LightGuide1)
-    LightGuide1->SetUpperInterfacePlane1(UpperPlane); 
+    LightGuide1->SetUpperInterfacePlane(UpperPlane); 
 }
 
 void MOLLEROptDetector::SetLowerConeFrontFaceAngle1(G4double angle)
 {
   if(LightGuide1)
-    LightGuide1->SetLowerConeFrontFaceAngle1(angle);
+    LightGuide1->SetLowerConeFrontFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetLowerConeBackFaceAngle1(G4double angle)
 {
   if(LightGuide1)
-    LightGuide1->SetLowerConeBackFaceAngle1(angle);
+    LightGuide1->SetLowerConeBackFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetLowerConeSideFaceAngle1(G4double angle)
 {  
   if(LightGuide1)
-    LightGuide1->SetLowerConeSideFaceAngle1(angle);
+    LightGuide1->SetLowerConeSideFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetQuartzInterfaceOpeningZ1(G4double size)
 {
   if(LightGuide1)
-    LightGuide1->SetQuartzInterfaceOpeningZ1(size);
+    LightGuide1->SetQuartzInterfaceOpeningZ(size);
 }
 
 void MOLLEROptDetector::SetQuartzInterfaceOpeningX1(G4double size)
 {
   if(LightGuide1)
-    LightGuide1->SetQuartzInterfaceOpeningX1(size);
+    LightGuide1->SetQuartzInterfaceOpeningX(size);
 }
 
 void MOLLEROptDetector::SetQuartzToPMTOffsetInZ1(G4double val)
 {
   PMTToQuartzOffset1 = val;
   if(LightGuide1)
-    LightGuide1->SetQuartzToPMTOffsetInZ1(val);
+    LightGuide1->SetQuartzToPMTOffsetInZ(val);
   if(PMT1)
-    PMT1->SetCenterPositionInZ1(val);
+    PMT1->SetCenterPositionInZ(val);
 }
 
 
@@ -199,76 +199,76 @@ void MOLLEROptDetector::SetQuartzToPMTOffsetInZ1(G4double val)
 void MOLLEROptDetector::SetQuartzSizeX2(G4double x)
 {
   if(Quartz2)
-    Quartz2->SetQuartzSizeX2(x);
+    Quartz2->SetQuartzSizeX(x);
 }
 
 void MOLLEROptDetector::SetQuartzSizeY2(G4double y)
 {
   if(Quartz2)
-    Quartz2->SetQuartzSizeY2(y);
+    Quartz2->SetQuartzSizeY(y);
 }
 				       
 void MOLLEROptDetector::SetQuartzSizeZ2(G4double z)
 {
   if(Quartz2)
-    Quartz2->SetQuartzSizeZ2(z);
+    Quartz2->SetQuartzSizeZ(z);
 }
 				       
 void MOLLEROptDetector::SetLowerInterfacePlane2(G4double LowerPlane)
 {
   if(LightGuide2)
-    LightGuide2->SetLowerInterfacePlane2(LowerPlane);
+    LightGuide2->SetLowerInterfacePlane(LowerPlane);
 }
 
 void MOLLEROptDetector::SetMiddleBoxHeight2(G4double MiddlePlane)
 {
   if(LightGuide2)
-    LightGuide2->SetMiddleBoxHeight2(MiddlePlane);
+    LightGuide2->SetMiddleBoxHeight(MiddlePlane);
 }
 
 void MOLLEROptDetector::SetUpperInterfacePlane2(G4double UpperPlane)
 {
   if(LightGuide2)
-    LightGuide2->SetUpperInterfacePlane2(UpperPlane); 
+    LightGuide2->SetUpperInterfacePlane(UpperPlane); 
 }
 
 void MOLLEROptDetector::SetLowerConeFrontFaceAngle2(G4double angle)
 {
   if(LightGuide2)
-    LightGuide2->SetLowerConeFrontFaceAngle2(G4double angle);
+    LightGuide2->SetLowerConeFrontFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetLowerConeBackFaceAngle2(G4double angle)
 {
   if(LightGuide2)
-    LightGuide2->SetLowerConeBackFaceAngle2(angle);
+    LightGuide2->SetLowerConeBackFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetLowerConeSideFaceAngle2(G4double angle)
 {  
   if(LightGuide2)
-    LightGuide2->SetLowerConeSideFaceAngle2(angle);
+    LightGuide2->SetLowerConeSideFaceAngle(angle);
 }
 
 void MOLLEROptDetector::SetQuartzInterfaceOpeningZ2(G4double size)
 {
   if(LightGuide2)
-    LightGuide2->SetQuartzInterfaceOpeningZ2(size);
+    LightGuide2->SetQuartzInterfaceOpeningZ(size);
 }
 
 void MOLLEROptDetector::SetQuartzInterfaceOpeningX2(G4double size)
 {
   if(LightGuide2)
-    LightGuide2->SetQuartzInterfaceOpeningX2(size);
+    LightGuide2->SetQuartzInterfaceOpeningX(size);
 }
 
 void MOLLEROptDetector::SetQuartzToPMTOffsetInZ2(G4double val)
 {
   PMTToQuartzOffset2 = val;
   if(LightGuide2)
-    LightGuide2->SetQuartzToPMTOffsetInZ2(val);
+    LightGuide2->SetQuartzToPMTOffsetInZ(val);
   if(PMT2)
-    PMT2->SetCenterPositionInZ2(val);
+    PMT2->SetCenterPositionInZ(val);
 }
 
 
@@ -279,8 +279,8 @@ void MOLLEROptDetector::UpdateThisGeometry()
 
   G4GeometryManager::GetInstance()->OpenGeometry();
   
-  delete DetPhysical1;
-  delete DetPhysical2;
+  delete DetPhysical;
+  //delete DetPhysical2;
   RotationDet->rotateX(PolarAngle);  
   PMT1->UpdateGeometry();
   Quartz1->UpdateGeometry();
@@ -289,18 +289,18 @@ void MOLLEROptDetector::UpdateThisGeometry()
   Quartz2->UpdateGeometry();
   LightGuide2->UpdateGeometry();
   CalculateDimensions();
-  DetSolid1 = new G4Box(DetType1+"_Solid",
-		       0.5* DetFullLengthX1, 
-		       0.5* DetFullLengthY1,
-		       0.5* DetFullLengthZ1);
-  DetSolid2 = new G4Box(DetType2+"_Solid",
+  DetSolid = new G4Box(DetType1+"_Solid",
+		       10* DetFullLengthX1, 
+		       10* DetFullLengthY1,
+		       20* DetFullLengthZ1);
+  /*DetSolid2 = new G4Box(DetType2+"_Solid",
 		       0.5* DetFullLengthX2, 
 		       0.5* DetFullLengthY2,
-		       0.5* DetFullLengthZ2);
-  DetLogical1 = new G4LogicalVolume( DetSolid1, DetMaterial, DetType1+"_Logical");
-  DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
-  DetLogical1->SetSolid(DetSolid1);
-  DetLogical2->SetSolid(DetSolid2);
+		       0.5* DetFullLengthZ2);*/
+  DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType1+"_Logical");
+  //DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
+  DetLogical->SetSolid(DetSolid);
+  //DetLogical2->SetSolid(DetSolid2);
   ResetCenterLocation();
   ConstructDetector(MotherVolume);
   //ConstructMountingStructure(MotherVolume);
@@ -337,7 +337,7 @@ void MOLLEROptDetector::CalculateDimensions()
 
 void MOLLEROptDetector::ResetCenterLocation()
 {
-  PositionDetX1 = 0.0*cm;
+  /*PositionDetX1 = 0.0*cm;
   PositionDetY1 = 0.0*cm;//DetFullLengthY/2 - Quartz->GetQuartzSizeY()/2;
   PositionDetZ1 = 0.0*cm;
 
@@ -347,11 +347,11 @@ void MOLLEROptDetector::ResetCenterLocation()
 
   PositionDetX2 = 0.0*cm;
   PositionDetY2 = 0.0*cm;
-  PositionDetZ2 = 20.0*cm;
+  PositionDetZ2 = 0.0*cm;
 
   PositionDet2.setX(PositionDetX2);
   PositionDet2.setY(PositionDetY2);
-  PositionDet2.setZ(PositionDetZ2);
+  PositionDet2.setZ(PositionDetZ2);*/
 }
 
 void MOLLEROptDetector::Initialize()
@@ -373,17 +373,17 @@ void MOLLEROptDetector::Initialize()
 
   RotationDet = new G4RotationMatrix;
 
-  DetSolid1 = new G4Box(DetType1+"_Solid",
-		       0.5* DetFullLengthX1, 
-		       0.5* DetFullLengthY1,
-		       0.5* DetFullLengthZ1);
-  DetSolid2 = new G4Box(DetType2+"_Solid",
+  DetSolid = new G4Box(DetType1+"_Solid",
+		       10* DetFullLengthX1, 
+		       5* DetFullLengthY1,
+		       10* DetFullLengthZ1);
+  /*DetSolid2 = new G4Box(DetType2+"_Solid",
 		       0.5* DetFullLengthX2, 
 		       0.5* DetFullLengthY2,
-		       0.5* DetFullLengthZ2);
+		       0.5* DetFullLengthZ2);*/
   
-  DetLogical1 = new G4LogicalVolume( DetSolid1, DetMaterial, DetType1+"_Logical");
-  DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
+  DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType1+"_Logical");
+  //DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
 
 }
 
@@ -395,16 +395,16 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
     MotherVolume = Mother;
   }
 
-  DetPhysical1 = new G4PVPlacement(RotationDet,
+  DetPhysical = new G4PVPlacement(RotationDet,
 				  PositionDet1,   
 				  DetType1+"_Physical",
-				  DetLogical1,
+				  DetLogical,
 				  MotherVolume,false,1);    
-  DetPhysical2 = new G4PVPlacement(RotationDet,
+  /*DetPhysical2 = new G4PVPlacement(RotationDet,
 				  PositionDet2,   
 				  DetType2+"_Physical",
 				  DetLogical2,
-				  MotherVolume,false,1);
+				  MotherVolume,false,1);*/
   
   G4double quartzY1 = Quartz1->GetQuartzSizeY();
   G4double quartzZ1 = Quartz1->GetQuartzSizeZ();  
@@ -415,37 +415,44 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   G4double Qrot = Quartz1->GetQuartzRotationX();
      
-  Quartz1->Construct(DetPhysical1);
-  Quartz1->SetCenterPositionInZ(0.5*quartzY1*(TMath::Sin(Qrot)));
-  Quartz1->SetCenterPositionInY(-0.5*DetFullLengthY1 + 0.5*quartzY1 + 0.5*quartzY1*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ1*fabs(TMath::Sin(Qrot)) + 5*mm);
-  LightGuide1->Construct(DetPhysical1);
-  LightGuide1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1 + 5*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
-  PMT1->Construct(DetPhysical1);
+  Quartz1->Construct(DetPhysical);
+  Quartz1->SetCenterPositionInZ(0.5*quartzY1*(TMath::Sin(Qrot)) + PositionDetZ1);
+  Quartz1->SetCenterPositionInY(-0.5*DetFullLengthY1 + 0.5*quartzY1 + 0.5*quartzY1*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ1*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY1);
+  LightGuide1->Construct(DetPhysical);
+  LightGuide1->SetCenterPositionInZ(PositionDetZ1);  
+  LightGuide1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1 + 5*mm + PositionDetY1);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
+  PMT1->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1+lguideY1+PMT1->GetPMTLength()/2.0 + 5.0*mm + LightGuide1->GetCurrentMiddleBoxHeight());
+  PMT1->SetCenterPositionInZ(PositionDetZ1);    
+  PMT1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1+lguideY1+PMT1->GetPMTLength()/2.0 + 5.0*mm + LightGuide1->GetCurrentMiddleBoxHeight() + PositionDetY1);
 
-  Quartz2->Construct(DetPhysical2);
-  Quartz2->SetCenterPositionInZ(0.5*quartzY2*(TMath::Sin(Qrot)));
-  Quartz2->SetCenterPositionInY(-0.5*DetFullLengthY2 + 0.5*quartzY2 + 0.5*quartzY2*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ2*fabs(TMath::Sin(Qrot)) + 5*mm);
-  LightGuide2->Construct(DetPhysical2);
-  LightGuide2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2 + 5*mm);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
-  PMT2->Construct(DetPhysical2);
+  //Quartz2->Construct(DetPhysical2);
+  Quartz2->Construct(DetPhysical);
+  Quartz2->SetCenterPositionInZ(0.5*quartzY2*(TMath::Sin(Qrot)) + PositionDetZ2);
+  Quartz2->SetCenterPositionInY(-0.5*DetFullLengthY2 + 0.5*quartzY2 + 0.5*quartzY2*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ2*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY2);
+  //LightGuide2->Construct(DetPhysical2);
+  LightGuide2->Construct(DetPhysical);
+  LightGuide2->SetCenterPositionInZ(PositionDetZ2);
+  LightGuide2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2 + 5*mm + PositionDetY2);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
+  //PMT2->Construct(DetPhysical2);
+  PMT2->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2+lguideY2+PMT2->GetPMTLength()/2.0 + 5.0*mm + LightGuide2->GetCurrentMiddleBoxHeight());
+  PMT2->SetCenterPositionInZ(PositionDetZ2);  
+  PMT2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2+lguideY2+PMT2->GetPMTLength()/2.0 + 5.0*mm + LightGuide2->GetCurrentMiddleBoxHeight() + PositionDetY2);
 
   G4Colour  grey      ( 127/255., 127/255., 127/255.);
   G4VisAttributes *att = new G4VisAttributes(grey);
   att->SetVisibility(true);
   att->SetForceWireframe(true);
-  DetLogical1->SetVisAttributes(att);
-  DetLogical2->SetVisAttributes(att);
+  DetLogical->SetVisAttributes(att);
+  //DetLogical2->SetVisAttributes(att);
 
   if(!detMessenger)
     detMessenger = new MOLLEROptDetectorMessenger(this);  
 
 
-  return DetPhysical1;
-  return DetPhysical2;
+  return DetPhysical;
+  //return DetPhysical2;
 } 
 
 void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
@@ -484,7 +491,7 @@ void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
 					       Trans2,   
 					       DetType2+"_logV",
 					       logV ,
-					       Mother,false,1); 
+					       Mother,false,1);
 
     G4Colour green    (   0/255., 255/255.,   0/255.);
     G4VisAttributes *att2 = new G4VisAttributes(green);
@@ -500,115 +507,120 @@ void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)
 }
 
 
-
-void MOLLEROptDetector::SetMaterial(G4String materialName)
+//Ring 1 objects
+void MOLLEROptDetector::SetCenterPositionInX1(G4double xPos)
 {
-  DetMaterial = Materials->GetMaterial(materialName);
-}
+    PositionDetX1 = xPos;
 
-void MOLLEROptDetector::SetCenterPositionInX(G4double xPos1, G4double xPos2)
-{
-    PositionDetX1 = xPos1;
-    PositionDetX2 = xPos2;
-
-    DetPhysical1->SetTranslation(G4ThreeVector(PositionDetX1,
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX1,
 					      PositionDetY1, 
 					      PositionDetZ1));
-    DetPhysical2->SetTranslation(G4ThreeVector(PositionDetX2,
-					      PositionDetY2, 
-					      PositionDetZ2));
 }
 
-void MOLLEROptDetector::SetCenterPositionInY(G4double yPos1, G4double yPos2)
+void MOLLEROptDetector::SetCenterPositionInY1(G4double yPos)
 {
-    PositionDetY1 = yPos1;
-    PositionDetY2 = yPos2;
+    PositionDetY1 = yPos;
 
-    DetPhysical2->SetTranslation(G4ThreeVector(PositionDetX2,
-					      PositionDetY2, 
-					      PositionDetZ2));
-}
-
-void MOLLEROptDetector::SetCenterPositionInZ(G4double zPos1, G4double zPos2)
-{
-    PositionDetZ1 = zPos1;
-    PositionDetZ2 = zPos2;
-
-    DetPhysical1->SetTranslation(G4ThreeVector(PositionDetX1,
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX1,
 					      PositionDetY1, 
 					      PositionDetZ1));
-    DetPhysical2->SetTranslation(G4ThreeVector(PositionDetX2,
+}
+
+void MOLLEROptDetector::SetCenterPositionInZ1(G4double zPos)
+{
+    PositionDetZ1 = zPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX1,
+					      PositionDetY1, 
+					      PositionDetZ1));
+}
+
+//Ring 2 objects
+void MOLLEROptDetector::SetCenterPositionInX2(G4double xPos)
+{
+    PositionDetX2 = xPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX2,
 					      PositionDetY2, 
 					      PositionDetZ2));
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInX(G4double x1, G4double x2)
+void MOLLEROptDetector::SetCenterPositionInY2(G4double yPos)
+{
+    PositionDetY2 = yPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX2,
+					      PositionDetY2, 
+					      PositionDetZ2));
+}
+
+void MOLLEROptDetector::SetCenterPositionInZ2(G4double zPos)
+{
+    PositionDetZ2 = zPos;
+
+    DetPhysical->SetTranslation(G4ThreeVector(PositionDetX2,
+					      PositionDetY2, 
+					      PositionDetZ2));
+}
+
+//General objects (with edits)
+void MOLLEROptDetector::SetLightGuideOffsetInX(G4double x)
 {
   G4double cX1;
   G4double cX2;
-  
-  if(LightGuide1 &&  PMT1){
 
-    cX1 = LightGuide1->GetCurrentCenterPositionInX() + x1*cm;
+  if(LightGuide1 &&  PMT1){
+    cX1 = LightGuide1->GetCurrentCenterPositionInX() + x*cm;
     LightGuide1->SetCenterPositionInX(cX1);
-    cX1 = PMT1->GetCurrentCenterPositionInX() + x1*cm;
+    cX1 = PMT1->GetCurrentCenterPositionInX() + x*cm;
     PMT1->SetCenterPositionInX(cX1);
   }
-  
-  if(LightGuide2 &&  PMT2){
 
-    cX2 = LightGuide2->GetCurrentCenterPositionInX() + x2*cm;
+  if(LightGuide2 &&  PMT2){
+    cX2 = LightGuide2->GetCurrentCenterPositionInX() + x*cm;
     LightGuide2->SetCenterPositionInX(cX2);
-    cX2 = PMT2->GetCurrentCenterPositionInX() + x2*cm;
+    cX2 = PMT2->GetCurrentCenterPositionInX() + x*cm;
     PMT2->SetCenterPositionInX(cX2);
   }
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInY(G4double y1, G4double y2)
+void MOLLEROptDetector::SetLightGuideOffsetInY(G4double y)
 {
   G4double cY1;
   G4double cY2;
   
   if(LightGuide1 &&  PMT1){
-
-    cY1 = LightGuide1->GetCurrentCenterPositionInY() + y1*cm;
+    cY1 = LightGuide1->GetCurrentCenterPositionInY() + y*cm;
     LightGuide1->SetCenterPositionInY(cY1);
-    cY1 = PMT1->GetCurrentCenterPositionInY() + y1*cm;
+    cY1 = PMT1->GetCurrentCenterPositionInY() + y*cm;
     PMT1->SetCenterPositionInY(cY1);
   }
-
   if(LightGuide2 &&  PMT2){
-
-    cY2 = LightGuide2->GetCurrentCenterPositionInY() + y2*cm;
+    cY2 = LightGuide2->GetCurrentCenterPositionInY() + y*cm;
     LightGuide2->SetCenterPositionInY(cY2);
-    cY2 = PMT2->GetCurrentCenterPositionInY() + y2*cm;
+    cY2 = PMT2->GetCurrentCenterPositionInY() + y*cm;
     PMT2->SetCenterPositionInY(cY2);
   }
-
 }
 
-void MOLLEROptDetector::SetLightGuideOffsetInZ(G4double z1, G4double z2)
+void MOLLEROptDetector::SetLightGuideOffsetInZ(G4double z)
 {
   G4double cZ1;
   G4double cZ2;
   
   if(LightGuide1 &&  PMT1){
-
-    cZ1 = LightGuide1->GetCurrentCenterPositionInZ() + z1*cm;
+    cZ1 = LightGuide1->GetCurrentCenterPositionInZ() + z*cm;
     LightGuide1->SetCenterPositionInZ(cZ1);
-    cZ1 = PMT1->GetCurrentCenterPositionInZ() + z1*cm;
+    cZ1 = PMT1->GetCurrentCenterPositionInZ() + z*cm;
     PMT1->SetCenterPositionInZ(cZ1);
   }
-  
   if(LightGuide2 &&  PMT2){
-
-    cZ2 = LightGuide2->GetCurrentCenterPositionInZ() + z2*cm;
+    cZ2 = LightGuide2->GetCurrentCenterPositionInZ() + z*cm;
     LightGuide2->SetCenterPositionInZ(cZ2);
-    cZ2 = PMT2->GetCurrentCenterPositionInZ() + z2*cm;
+    cZ2 = PMT2->GetCurrentCenterPositionInZ() + z*cm;
     PMT2->SetCenterPositionInZ(cZ2);
   }
 }
-
 
 void MOLLEROptDetector::GetQuartzLimits(G4double *vals)
 {
@@ -622,4 +634,8 @@ void MOLLEROptDetector::GetLightGuideLimits(G4double *vals)
   LightGuide2->GetLightGuideLimits(vals);
 }
 
+void MOLLEROptDetector::SetMaterial(G4String materialName)
+{
+  DetMaterial = Materials->GetMaterial(materialName);
+}
 

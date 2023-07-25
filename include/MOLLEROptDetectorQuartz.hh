@@ -24,9 +24,9 @@ public:
   void SetCenterPositionInX(G4double xPos);
   void SetCenterPositionInY(G4double yPos);
   void SetCenterPositionInZ(G4double zPos);
-  G4double GetCurrentCenterPositionInX() {return QuartzPhysical->GetTranslation().x();}//PositionX;};
-  G4double GetCurrentCenterPositionInY() {return QuartzPhysical->GetTranslation().y();}//PositionY;};
-  G4double GetCurrentCenterPositionInZ() {return QuartzPhysical->GetTranslation().z();}//PositionZ;};
+  G4double GetCurrentCenterPositionInX()   {return QuartzPhysical->GetTranslation().x();}//PositionX;};
+  G4double GetCurrentCenterPositionInY()   {return QuartzPhysical->GetTranslation().y();}//PositionY;};
+  G4double GetCurrentCenterPositionInZ()   {return QuartzPhysical->GetTranslation().z();}//PositionZ;};
   G4ThreeVector GetCurrentCenterPosition() {return QuartzPhysical->GetTranslation();};
   void SetAzimuthalRotationAngle(G4double a); //w.r.t. to the positive y axis (up) in radians
   void SetPolarRotationAngle(G4double a); //w.r.t. to the positive z axis (downstream) in radians
@@ -34,14 +34,16 @@ public:
   //The standard coordinate system is: z=beam direction, y=beam up, x = beam left
   //Dimensions below assume a detector that is located at the origin with the 45 degreee
   //exit face at the upper y end and the width of the detector along +-x.
+
+  //Ring 1 objects
   void SetQuartzSizeX(G4double x){FullLengthX = x;}; 
   void SetQuartzSizeY(G4double y){FullLengthY = y;}; 
   void SetQuartzSizeZ(G4double z){FullLengthZ = z;};
   void SetBevelSize(G4double bev) {bevel = bev;};
   void SetQuartzRotX(G4double r);
-  G4double GetQuartzSizeX(){return FullLengthX;}; 
-  G4double GetQuartzSizeY(){return FullLengthY;}; 
-  G4double GetQuartzSizeZ(){return FullLengthZ;};
+  G4double GetQuartzSizeX() {return FullLengthX;}; 
+  G4double GetQuartzSizeY() {return FullLengthY;}; 
+  G4double GetQuartzSizeZ() {return FullLengthZ;};
 
   G4double GetQuartzRotationX(){return QRotationX;};
 

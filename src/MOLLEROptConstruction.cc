@@ -26,15 +26,13 @@ MOLLEROptConstruction::MOLLEROptConstruction(MOLLEROptTrackingReadout *trReadout
 MOLLEROptConstruction::~MOLLEROptConstruction()
 {
   if (Detector)          delete Detector;
-  //if (Detector2)          delete Detector2;
   //if (Material)         delete Material;
   if (MOLLERMessenger)    delete MOLLERMessenger;             
 }
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector = new MOLLEROptDetector(TrackingReadout,"6Ring","new_Ring",Materials);
-  //Detector2 = new MOLLEROptDetector(TrackingReadout,"2Ring",Materials);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring",Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
   
   fWorldLengthInX =  15.0*m;
@@ -63,6 +61,7 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   // LightGuide->ConstructComponent(World_Physical);
   // LightGuide->SetCenterPositionInY(7.5*cm);
 
+  //Ring 1
   Detector->SetQuartzSizeX1(8.4*cm);
   Detector->SetQuartzSizeY1(15*cm);  //without the 45 degree cut region
   Detector->SetQuartzSizeZ1(1.5*cm);
@@ -74,7 +73,9 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetLowerConeSideFaceAngle1(0*degree);
   Detector->SetQuartzInterfaceOpeningZ1(1.8*cm);
   Detector->SetQuartzInterfaceOpeningX1(9.2*cm);
-
+  Detector->SetQuartzToPMTOffsetInZ1(-0.3*cm);  
+  
+  //Ring 2
   Detector->SetQuartzSizeX2(8.4*cm);
   Detector->SetQuartzSizeY2(15*cm);  //without the 45 degree cut region
   Detector->SetQuartzSizeZ2(1.5*cm);
@@ -86,13 +87,11 @@ G4VPhysicalVolume* MOLLEROptConstruction::Construct()
   Detector->SetLowerConeSideFaceAngle2(0*degree);
   Detector->SetQuartzInterfaceOpeningZ2(1.8*cm);
   Detector->SetQuartzInterfaceOpeningX2(9.2*cm);
+  Detector->SetQuartzToPMTOffsetInZ2(-0.3*cm);  
 
+  //General objects
   Detector->SetPMTInterfaceOpeningZ(5.6*cm);
   Detector->SetPMTInterfaceOpeningX(5.6*cm);  
-
-  Detector->SetQuartzToPMTOffsetInZ1(-0.3*cm);
-  Detector->SetQuartzToPMTOffsetInZ2(-0.3*cm);
-
   Detector->SetPMTCathodeRadius(3.5*cm);
   Detector->SetPMTCathodeThickness(0.1*cm);
   Detector->SetAzimuthalRotationAngle(0);
