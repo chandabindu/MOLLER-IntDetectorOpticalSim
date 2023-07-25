@@ -9,6 +9,7 @@
 #include "MOLLEROptTrackingReadout.hh"
 #include "MOLLEROptDetectorLightGuide.hh"
 #include "MOLLEROptDetectorQuartz.hh"
+#include "MOLLEROptDetectorQuartz2.hh"
 #include "MOLLEROptDetectorPMT.hh"
 #include "MOLLEROptDetectorMessenger.hh"
 
@@ -114,7 +115,7 @@ private:
   MOLLEROptDetectorQuartz*     Quartz1;
   MOLLEROptDetectorPMT*        PMT1;
   MOLLEROptDetectorLightGuide* LightGuide2; 
-  MOLLEROptDetectorQuartz*     Quartz2;
+  MOLLEROptDetectorQuartz2*    Quartz2;
   MOLLEROptDetectorPMT*        PMT2;
 
   G4VPhysicalVolume* MotherVolume;

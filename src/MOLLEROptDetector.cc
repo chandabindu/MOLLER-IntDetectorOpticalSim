@@ -12,7 +12,7 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   LightGuide1 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type1,Materials);
   PMT1 = new  MOLLEROptDetectorPMT(TrackingReadout,type1,Materials,LightGuide1);
 
-  Quartz2 = new  MOLLEROptDetectorQuartz(TrackingReadout,type2,Materials);
+  Quartz2 = new  MOLLEROptDetectorQuartz2(TrackingReadout,type2,Materials);
   LightGuide2 = new  MOLLEROptDetectorLightGuide(TrackingReadout,type2,Materials);
   PMT2 = new  MOLLEROptDetectorPMT(TrackingReadout,type2,Materials,LightGuide2);
 
@@ -310,6 +310,7 @@ void MOLLEROptDetector::UpdateThisGeometry()
 
 void MOLLEROptDetector::CalculateDimensions()
 {
+  //Ring 1 
   if(LightGuide1->GetLightGuideWidth() > 2*PMT1->GetRadius())
     DetFullLengthX1 = LightGuide1->GetLightGuideWidth() + 1.0*cm;
   else
@@ -319,7 +320,8 @@ void MOLLEROptDetector::CalculateDimensions()
     DetFullLengthZ1 = LightGuide1->GetLightGuideDepth() + 2*PMTToQuartzOffset1 + 4.0*cm;
   else
     DetFullLengthZ1 = 2*PMT1->GetRadius() + 2*PMTToQuartzOffset1 + 4.0*cm;
-
+  
+  //Ring 2
   if(LightGuide2->GetLightGuideWidth() > 2*PMT2->GetRadius())
     DetFullLengthX2 = LightGuide2->GetLightGuideWidth() + 1.0*cm;
   else
@@ -415,6 +417,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 
   G4double Qrot = Quartz1->GetQuartzRotationX();
      
+  //Ring 1
   Quartz1->Construct(DetPhysical);
   Quartz1->SetCenterPositionInZ(0.5*quartzY1*(TMath::Sin(Qrot)) + PositionDetZ1);
   Quartz1->SetCenterPositionInY(-0.5*DetFullLengthY1 + 0.5*quartzY1 + 0.5*quartzY1*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ1*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY1);
@@ -426,6 +429,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   PMT1->SetCenterPositionInZ(PositionDetZ1);    
   PMT1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1+lguideY1+PMT1->GetPMTLength()/2.0 + 5.0*mm + LightGuide1->GetCurrentMiddleBoxHeight() + PositionDetY1);
 
+  //Ring 2
   //Quartz2->Construct(DetPhysical2);
   Quartz2->Construct(DetPhysical);
   Quartz2->SetCenterPositionInZ(0.5*quartzY2*(TMath::Sin(Qrot)) + PositionDetZ2);
@@ -445,14 +449,12 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   att->SetVisibility(true);
   att->SetForceWireframe(true);
   DetLogical->SetVisAttributes(att);
-  //DetLogical2->SetVisAttributes(att);
 
   if(!detMessenger)
     detMessenger = new MOLLEROptDetectorMessenger(this);  
 
 
   return DetPhysical;
-  //return DetPhysical2;
 } 
 
 void MOLLEROptDetector::ConstructMountingStructure(G4VPhysicalVolume* Mother)

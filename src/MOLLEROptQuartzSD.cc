@@ -3,12 +3,20 @@
 MOLLEROptQuartzSD::MOLLEROptQuartzSD(G4String name, MOLLEROptTrackingReadout* TrRO)
   :G4VSensitiveDetector(name)
 {
-  G4cout << "\n\n" << name << "\n\n" <<G4endl;
+  //G4cout << "\n\n" << name << "\n\n" <<G4endl;
   TrackingReadout = TrRO;
-  theCollectionName = G4String("QuartzHitCollection");
+  if(SensitiveDetectorName == "Quartz"){
+    theCollectionName = G4String("QuartzHitCollection");
+  }
+  else if(SensitiveDetectorName == "Quartz2"){
+    theCollectionName = G4String("QuartzHitCollection2");
+  }
 
   collectionName.insert(theCollectionName); 
   theCollectionID = -1;
+  //G4cout << "\n\n" << SensitiveDetectorName<<" \n\n" << G4endl;  
+  //G4cout << "\n\n" << name<<" \n\n" << G4endl;  
+  
 }
 
 MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
@@ -18,11 +26,21 @@ MOLLEROptQuartzSD::~MOLLEROptQuartzSD()
 
 void MOLLEROptQuartzSD::Initialize(G4HCofThisEvent* HCE)
 {
+  //G4cout << "\n\n" << collectionName[0] <<" \n\n" << G4endl;
+  if(theCollectionName == "QuartzHitCollection"){
+    HitsCollection = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection);
+    //G4cout << "\n\n DET 1 \n\n" << G4endl;
+  }
+  else if(theCollectionName == "QuartzHitCollection2"){
+    HitsCollection2 = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
+    theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
+    HCE->AddHitsCollection(theCollectionID , HitsCollection2);
+    //G4cout << "\n\n DET 2 \n\n" << G4endl;
+  }
+    //G4cout << "\n\n Initialized \n\n" << G4endl;
 
-  HitsCollection = new MOLLEROptQuartzHitsCollection(SensitiveDetectorName,collectionName[0]);
-  theCollectionID = G4SDManager::GetSDMpointer()->GetCollectionID(collectionName[0]); 
-  
-  HCE->AddHitsCollection(theCollectionID , HitsCollection);
 }
 
 G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouchable)
@@ -87,8 +105,14 @@ G4bool MOLLEROptQuartzSD::ProcessHits(G4Step* aStep, G4TouchableHistory* theTouc
 				      1239.842/(aStep->GetTrack()->GetKineticEnergy()/eV),
 				      incidentAngle);
 	// G4cout << "Quartz Incident Angle: " << incidentAngle << G4endl;	  
-	
-	//HitsCollection->insert(aHit); 
+  	//G4cout << "\n\n" << theCollectionName <<" \n\n" << G4endl;	
+	if(theCollectionName == "QuartzHitCollection"){
+	  HitsCollection->insert(aHit); 
+	  //G4cout << "\n\n ENTERED \n\n " << G4endl;	  
+	}
+	else if(theCollectionName == "QuartzHitCollection2"){
+          HitsCollection2->insert(aHit);
+	}
       }
     }
   }
