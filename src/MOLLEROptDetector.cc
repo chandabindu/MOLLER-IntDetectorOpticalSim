@@ -903,7 +903,6 @@ void MOLLEROptDetector::UpdateThisGeometry()
   G4GeometryManager::GetInstance()->OpenGeometry();
   
   delete DetPhysical;
-  //delete DetPhysical2;
   RotationDet->rotateX(PolarAngle);  
   PMT1->UpdateGeometry();
   Quartz1->UpdateGeometry();
@@ -911,22 +910,33 @@ void MOLLEROptDetector::UpdateThisGeometry()
   PMT2->UpdateGeometry();
   Quartz2->UpdateGeometry();
   LightGuide2->UpdateGeometry();
+  PMT3->UpdateGeometry();
+  Quartz3->UpdateGeometry();
+  LightGuide3->UpdateGeometry();
+  PMT4->UpdateGeometry();
+  Quartz4->UpdateGeometry();
+  LightGuide4->UpdateGeometry();
+  PMT5->UpdateGeometry();
+  Quartz5->UpdateGeometry();
+  LightGuide5->UpdateGeometry();
+  PMT6->UpdateGeometry();
+  Quartz6->UpdateGeometry();
+  LightGuide6->UpdateGeometry();
+  PMT7->UpdateGeometry();
+  Quartz7->UpdateGeometry();
+  LightGuide7->UpdateGeometry();
+  PMT8->UpdateGeometry();
+  Quartz8->UpdateGeometry();
+  LightGuide8->UpdateGeometry();
   CalculateDimensions();
   DetSolid = new G4Box(DetType1+"_Solid",
 		       10* DetFullLengthX1, 
 		       10* DetFullLengthY1,
 		       20* DetFullLengthZ1);
-  /*DetSolid2 = new G4Box(DetType2+"_Solid",
-		       0.5* DetFullLengthX2, 
-		       0.5* DetFullLengthY2,
-		       0.5* DetFullLengthZ2);*/
   DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType1+"_Logical");
-  //DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
   DetLogical->SetSolid(DetSolid);
-  //DetLogical2->SetSolid(DetSolid2);
   ResetCenterLocation();
   ConstructDetector(MotherVolume);
-  //ConstructMountingStructure(MotherVolume);
   G4RunManager::GetRunManager()->GeometryHasBeenModified();
    
 }
