@@ -54,10 +54,6 @@ MOLLEROptDetector::MOLLEROptDetector(MOLLEROptTrackingReadout *TrRO, G4String ty
   DetPhysical = NULL;
   DetSolid = NULL;
 
-  //DetLogical2  = NULL;
-  //DetPhysical2 = NULL;
-  //DetSolid2 = NULL;
-
   RotationDet = NULL;
 
   fReadFile ="../data/December2021/GDML/Ring5/R5-Module-Al.gdml";
@@ -1049,15 +1045,8 @@ void MOLLEROptDetector::ResetCenterLocation()
 
   PositionDet1.setX(PositionDetX1);
   PositionDet1.setY(PositionDetY1);
-  PositionDet1.setZ(PositionDetZ1);  
+  PositionDet1.setZ(PositionDetZ1);*/  
 
-  PositionDetX2 = 0.0*cm;
-  PositionDetY2 = 0.0*cm;
-  PositionDetZ2 = 0.0*cm;
-
-  PositionDet2.setX(PositionDetX2);
-  PositionDet2.setY(PositionDetY2);
-  PositionDet2.setZ(PositionDetZ2);*/
 }
 
 void MOLLEROptDetector::Initialize()
@@ -1107,14 +1096,8 @@ void MOLLEROptDetector::Initialize()
 		       20* DetFullLengthX1, 
 		       5* DetFullLengthY1,
 		       20* DetFullLengthZ1);
-  /*DetSolid2 = new G4Box(DetType2+"_Solid",
-		       0.5* DetFullLengthX2, 
-		       0.5* DetFullLengthY2,
-		       0.5* DetFullLengthZ2);*/
   
   DetLogical = new G4LogicalVolume( DetSolid, DetMaterial, DetType1+"_Logical");
-  //DetLogical2 = new G4LogicalVolume( DetSolid2, DetMaterial, DetType2+"_Logical");
-
 }
 
 G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mother)
@@ -1130,36 +1113,39 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
 				  DetType1+"_Physical",
 				  DetLogical,
 				  MotherVolume,false,1);    
-  /*DetPhysical2 = new G4PVPlacement(RotationDet,
-				  PositionDet2,   
-				  DetType2+"_Physical",
-				  DetLogical2,
-				  MotherVolume,false,1);*/
   
   G4double quartzY1 = Quartz1->GetQuartzSizeY();
   G4double quartzZ1 = Quartz1->GetQuartzSizeZ();  
   G4double lguideY1 = LightGuide1->GetCurrentUpperInterfacePlane();
+  G4double Offset1  = LightGuide1->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY2 = Quartz2->GetQuartzSizeY();
   G4double quartzZ2 = Quartz2->GetQuartzSizeZ();
   G4double lguideY2 = LightGuide2->GetCurrentUpperInterfacePlane();
+  G4double Offset2  = LightGuide2->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY3 = Quartz3->GetQuartzSizeY();
   G4double quartzZ3 = Quartz3->GetQuartzSizeZ();
   G4double lguideY3 = LightGuide3->GetCurrentUpperInterfacePlane();
+  G4double Offset3  = LightGuide3->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY4 = Quartz4->GetQuartzSizeY();
   G4double quartzZ4 = Quartz4->GetQuartzSizeZ();
   G4double lguideY4 = LightGuide4->GetCurrentUpperInterfacePlane();
+  G4double Offset4  = LightGuide4->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY5 = Quartz5->GetQuartzSizeY();
   G4double quartzZ5 = Quartz5->GetQuartzSizeZ();
   G4double lguideY5 = LightGuide5->GetCurrentUpperInterfacePlane();
+  G4double Offset5  = LightGuide5->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY6 = Quartz6->GetQuartzSizeY();
   G4double quartzZ6 = Quartz6->GetQuartzSizeZ();
   G4double lguideY6 = LightGuide6->GetCurrentUpperInterfacePlane();
+  G4double Offset6  = LightGuide6->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY7 = Quartz7->GetQuartzSizeY();
   G4double quartzZ7 = Quartz7->GetQuartzSizeZ();
   G4double lguideY7 = LightGuide7->GetCurrentUpperInterfacePlane();
+  G4double Offset7  = LightGuide7->GetCurrentQuartzToPMTOffsetInZ();
   G4double quartzY8 = Quartz8->GetQuartzSizeY();
   G4double quartzZ8 = Quartz8->GetQuartzSizeZ();
   G4double lguideY8 = LightGuide8->GetCurrentUpperInterfacePlane();
+  G4double Offset8  = LightGuide8->GetCurrentQuartzToPMTOffsetInZ();
 
   G4double Qrot = Quartz1->GetQuartzRotationX();
      
@@ -1172,7 +1158,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1 + 5*mm + PositionDetY1);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT1->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT1->SetCenterPositionInZ(PositionDetZ1);    
+  PMT1->SetCenterPositionInZ(PositionDetZ1+Offset1);    
   PMT1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1+lguideY1+PMT1->GetPMTLength()/2.0 + 5.0*mm + LightGuide1->GetCurrentMiddleBoxHeight() + PositionDetY1);
 
   //Ring 2
@@ -1187,7 +1173,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   //PMT2->Construct(DetPhysical2);
   PMT2->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT2->SetCenterPositionInZ(PositionDetZ2);  
+  PMT2->SetCenterPositionInZ(PositionDetZ2+Offset2);  
   PMT2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2+lguideY2+PMT2->GetPMTLength()/2.0 + 5.0*mm + LightGuide2->GetCurrentMiddleBoxHeight() + PositionDetY2);
 
   //Ring 3
@@ -1199,7 +1185,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide3->SetCenterPositionInY(-0.5*DetFullLengthY3+quartzY3 + 5*mm + PositionDetY3);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT3->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT3->SetCenterPositionInZ(PositionDetZ3);    
+  PMT3->SetCenterPositionInZ(PositionDetZ3+Offset3);    
   PMT3->SetCenterPositionInY(-0.5*DetFullLengthY3+quartzY3+lguideY3+PMT3->GetPMTLength()/2.0 + 5.0*mm + LightGuide3->GetCurrentMiddleBoxHeight() + PositionDetY3);
 
   //Ring 4
@@ -1211,7 +1197,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide4->SetCenterPositionInY(-0.5*DetFullLengthY4+quartzY4 + 5*mm + PositionDetY4);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT4->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT4->SetCenterPositionInZ(PositionDetZ4);    
+  PMT4->SetCenterPositionInZ(PositionDetZ4+Offset4);    
   PMT4->SetCenterPositionInY(-0.5*DetFullLengthY4+quartzY4+lguideY4+PMT4->GetPMTLength()/2.0 + 5.0*mm + LightGuide4->GetCurrentMiddleBoxHeight() + PositionDetY4);
 
   //Ring 5
@@ -1223,7 +1209,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide5->SetCenterPositionInY(-0.5*DetFullLengthY5+quartzY5 + 5*mm + PositionDetY5);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT5->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT5->SetCenterPositionInZ(PositionDetZ5);    
+  PMT5->SetCenterPositionInZ(PositionDetZ5+Offset5);    
   PMT5->SetCenterPositionInY(-0.5*DetFullLengthY5+quartzY5+lguideY5+PMT5->GetPMTLength()/2.0 + 5.0*mm + LightGuide5->GetCurrentMiddleBoxHeight() + PositionDetY5);
 
   //Ring 6
@@ -1235,7 +1221,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide6->SetCenterPositionInY(-0.5*DetFullLengthY6+quartzY6 + 5*mm + PositionDetY6);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT6->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT6->SetCenterPositionInZ(PositionDetZ6);    
+  PMT6->SetCenterPositionInZ(PositionDetZ6+Offset6);    
   PMT6->SetCenterPositionInY(-0.5*DetFullLengthY6+quartzY6+lguideY6+PMT6->GetPMTLength()/2.0 + 5.0*mm + LightGuide6->GetCurrentMiddleBoxHeight() + PositionDetY6);
 
   //Ring 7
@@ -1247,7 +1233,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide7->SetCenterPositionInY(-0.5*DetFullLengthY7+quartzY7 + 5*mm + PositionDetY7);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT7->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT7->SetCenterPositionInZ(PositionDetZ7);    
+  PMT7->SetCenterPositionInZ(PositionDetZ7+Offset7);    
   PMT7->SetCenterPositionInY(-0.5*DetFullLengthY7+quartzY7+lguideY7+PMT7->GetPMTLength()/2.0 + 5.0*mm + LightGuide7->GetCurrentMiddleBoxHeight() + PositionDetY7);
 
   //Ring 8
@@ -1259,7 +1245,7 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
   LightGuide8->SetCenterPositionInY(-0.5*DetFullLengthY8+quartzY8 + 5*mm + PositionDetY8);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT8->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
-  PMT8->SetCenterPositionInZ(PositionDetZ8);    
+  PMT8->SetCenterPositionInZ(PositionDetZ8+Offset8);    
   PMT8->SetCenterPositionInY(-0.5*DetFullLengthY8+quartzY8+lguideY8+PMT8->GetPMTLength()/2.0 + 5.0*mm + LightGuide8->GetCurrentMiddleBoxHeight() + PositionDetY8);
 
 

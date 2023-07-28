@@ -54,6 +54,7 @@ public:
   G4double GetCurrentLowerConeSideFaceAngle()  {return LowerConeSideFaceAngle;};
   G4double GetCurrentPMTInterfaceOpeningY()    {return PMTInterfaceOpeningZ;};
   G4double GetCurrentPMTInterfaceOpeningX()    {return PMTInterfaceOpeningX;};
+  G4double GetCurrentQuartzToPMTOffsetInZ()    {return QuartzToPMTOffsetInZ;};
   G4double GetCurrentCenterPositionInX()       {return GuidePhysical->GetTranslation().x();}//PositionX;};
   G4double GetCurrentCenterPositionInY()       {return GuidePhysical->GetTranslation().y();}//PositionY;};
   G4double GetCurrentCenterPositionInZ()       {return GuidePhysical->GetTranslation().z();}//PositionZ;};
