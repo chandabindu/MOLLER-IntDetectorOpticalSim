@@ -1151,100 +1151,124 @@ G4VPhysicalVolume* MOLLEROptDetector::ConstructDetector(G4VPhysicalVolume* Mothe
      
   //Ring 1
   Quartz1->Construct(DetPhysical);
+  Quartz1->SetCenterPositionInX(PositionDetX1);
   Quartz1->SetCenterPositionInZ(0.5*quartzY1*(TMath::Sin(Qrot)) + PositionDetZ1);
   Quartz1->SetCenterPositionInY(-0.5*DetFullLengthY1 + 0.5*quartzY1 + 0.5*quartzY1*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ1*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY1);
   LightGuide1->Construct(DetPhysical);
+  LightGuide1->SetCenterPositionInX(PositionDetX1);
   LightGuide1->SetCenterPositionInZ(PositionDetZ1);  
   LightGuide1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1 + 5*mm + PositionDetY1);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT1->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT1->SetCenterPositionInX(PositionDetX1);
   PMT1->SetCenterPositionInZ(PositionDetZ1+Offset1);    
   PMT1->SetCenterPositionInY(-0.5*DetFullLengthY1+quartzY1+lguideY1+PMT1->GetPMTLength()/2.0 + 5.0*mm + LightGuide1->GetCurrentMiddleBoxHeight() + PositionDetY1);
 
   //Ring 2
   //Quartz2->Construct(DetPhysical2);
   Quartz2->Construct(DetPhysical);
+  Quartz2->SetCenterPositionInX(PositionDetX2);
   Quartz2->SetCenterPositionInZ(0.5*quartzY2*(TMath::Sin(Qrot)) + PositionDetZ2);
   Quartz2->SetCenterPositionInY(-0.5*DetFullLengthY2 + 0.5*quartzY2 + 0.5*quartzY2*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ2*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY2);
   //LightGuide2->Construct(DetPhysical2);
   LightGuide2->Construct(DetPhysical);
+  LightGuide2->SetCenterPositionInX(PositionDetX2);
   LightGuide2->SetCenterPositionInZ(PositionDetZ2);
   LightGuide2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2 + 5*mm + PositionDetY2);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   //PMT2->Construct(DetPhysical2);
   PMT2->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT2->SetCenterPositionInX(PositionDetX2);
   PMT2->SetCenterPositionInZ(PositionDetZ2+Offset2);  
   PMT2->SetCenterPositionInY(-0.5*DetFullLengthY2+quartzY2+lguideY2+PMT2->GetPMTLength()/2.0 + 5.0*mm + LightGuide2->GetCurrentMiddleBoxHeight() + PositionDetY2);
 
   //Ring 3
   Quartz3->Construct(DetPhysical);
+  Quartz3->SetCenterPositionInX(PositionDetX3);
   Quartz3->SetCenterPositionInZ(0.5*quartzY3*(TMath::Sin(Qrot)) + PositionDetZ3);
   Quartz3->SetCenterPositionInY(-0.5*DetFullLengthY3 + 0.5*quartzY3 + 0.5*quartzY3*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ3*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY3);
   LightGuide3->Construct(DetPhysical);
+  LightGuide3->SetCenterPositionInX(PositionDetX3);
   LightGuide3->SetCenterPositionInZ(PositionDetZ3);  
   LightGuide3->SetCenterPositionInY(-0.5*DetFullLengthY3+quartzY3 + 5*mm + PositionDetY3);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT3->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT3->SetCenterPositionInX(PositionDetX3);
   PMT3->SetCenterPositionInZ(PositionDetZ3+Offset3);    
   PMT3->SetCenterPositionInY(-0.5*DetFullLengthY3+quartzY3+lguideY3+PMT3->GetPMTLength()/2.0 + 5.0*mm + LightGuide3->GetCurrentMiddleBoxHeight() + PositionDetY3);
 
   //Ring 4
   Quartz4->Construct(DetPhysical);
+  Quartz4->SetCenterPositionInX(PositionDetX4);
   Quartz4->SetCenterPositionInZ(0.5*quartzY4*(TMath::Sin(Qrot)) + PositionDetZ4);
   Quartz4->SetCenterPositionInY(-0.5*DetFullLengthY4 + 0.5*quartzY4 + 0.5*quartzY4*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ4*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY4);
   LightGuide4->Construct(DetPhysical);
+  LightGuide4->SetCenterPositionInX(PositionDetX4);
   LightGuide4->SetCenterPositionInZ(PositionDetZ4);  
   LightGuide4->SetCenterPositionInY(-0.5*DetFullLengthY4+quartzY4 + 5*mm + PositionDetY4);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT4->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT4->SetCenterPositionInX(PositionDetX4);
   PMT4->SetCenterPositionInZ(PositionDetZ4+Offset4);    
   PMT4->SetCenterPositionInY(-0.5*DetFullLengthY4+quartzY4+lguideY4+PMT4->GetPMTLength()/2.0 + 5.0*mm + LightGuide4->GetCurrentMiddleBoxHeight() + PositionDetY4);
 
   //Ring 5
   Quartz5->Construct(DetPhysical);
+  Quartz5->SetCenterPositionInX(PositionDetX5);
   Quartz5->SetCenterPositionInZ(0.5*quartzY5*(TMath::Sin(Qrot)) + PositionDetZ5);
   Quartz5->SetCenterPositionInY(-0.5*DetFullLengthY5 + 0.5*quartzY5 + 0.5*quartzY5*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ5*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY5);
   LightGuide5->Construct(DetPhysical);
+  LightGuide5->SetCenterPositionInX(PositionDetX5);
   LightGuide5->SetCenterPositionInZ(PositionDetZ5);  
   LightGuide5->SetCenterPositionInY(-0.5*DetFullLengthY5+quartzY5 + 5*mm + PositionDetY5);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT5->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT5->SetCenterPositionInX(PositionDetX5);
   PMT5->SetCenterPositionInZ(PositionDetZ5+Offset5);    
   PMT5->SetCenterPositionInY(-0.5*DetFullLengthY5+quartzY5+lguideY5+PMT5->GetPMTLength()/2.0 + 5.0*mm + LightGuide5->GetCurrentMiddleBoxHeight() + PositionDetY5);
 
   //Ring 6
   Quartz6->Construct(DetPhysical);
+  Quartz6->SetCenterPositionInX(PositionDetX6);
   Quartz6->SetCenterPositionInZ(0.5*quartzY6*(TMath::Sin(Qrot)) + PositionDetZ6);
   Quartz6->SetCenterPositionInY(-0.5*DetFullLengthY6 + 0.5*quartzY6 + 0.5*quartzY6*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ6*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY6);
   LightGuide6->Construct(DetPhysical);
+  LightGuide6->SetCenterPositionInX(PositionDetX6);
   LightGuide6->SetCenterPositionInZ(PositionDetZ6);  
   LightGuide6->SetCenterPositionInY(-0.5*DetFullLengthY6+quartzY6 + 5*mm + PositionDetY6);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT6->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT6->SetCenterPositionInX(PositionDetX6);
   PMT6->SetCenterPositionInZ(PositionDetZ6+Offset6);    
   PMT6->SetCenterPositionInY(-0.5*DetFullLengthY6+quartzY6+lguideY6+PMT6->GetPMTLength()/2.0 + 5.0*mm + LightGuide6->GetCurrentMiddleBoxHeight() + PositionDetY6);
 
   //Ring 7
   Quartz7->Construct(DetPhysical);
+  Quartz7->SetCenterPositionInX(PositionDetX7);
   Quartz7->SetCenterPositionInZ(0.5*quartzY7*(TMath::Sin(Qrot)) + PositionDetZ7);
   Quartz7->SetCenterPositionInY(-0.5*DetFullLengthY7 + 0.5*quartzY7 + 0.5*quartzY7*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ7*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY7);
   LightGuide7->Construct(DetPhysical);
+  LightGuide7->SetCenterPositionInX(PositionDetX7);
   LightGuide7->SetCenterPositionInZ(PositionDetZ7);  
   LightGuide7->SetCenterPositionInY(-0.5*DetFullLengthY7+quartzY7 + 5*mm + PositionDetY7);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT7->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT7->SetCenterPositionInX(PositionDetX7);
   PMT7->SetCenterPositionInZ(PositionDetZ7+Offset7);    
   PMT7->SetCenterPositionInY(-0.5*DetFullLengthY7+quartzY7+lguideY7+PMT7->GetPMTLength()/2.0 + 5.0*mm + LightGuide7->GetCurrentMiddleBoxHeight() + PositionDetY7);
 
   //Ring 8
   Quartz8->Construct(DetPhysical);
+  Quartz8->SetCenterPositionInX(PositionDetX8);
   Quartz8->SetCenterPositionInZ(0.5*quartzY8*(TMath::Sin(Qrot)) + PositionDetZ8);
   Quartz8->SetCenterPositionInY(-0.5*DetFullLengthY8 + 0.5*quartzY8 + 0.5*quartzY8*(1.0-TMath::Cos(Qrot)) + 0.5*quartzZ8*fabs(TMath::Sin(Qrot)) + 5*mm + PositionDetY8);
   LightGuide8->Construct(DetPhysical);
+  LightGuide8->SetCenterPositionInX(PositionDetX8);
   LightGuide8->SetCenterPositionInZ(PositionDetZ8);  
   LightGuide8->SetCenterPositionInY(-0.5*DetFullLengthY8+quartzY8 + 5*mm + PositionDetY8);// + 0.5*LightGuide->GetCurrentQuartzInterfaceOpeningY()*TMath::Sin(Qrot));
   PMT8->Construct(DetPhysical);
   // We have to let the PMT extend into the light guide lsig
+  PMT8->SetCenterPositionInX(PositionDetX8);
   PMT8->SetCenterPositionInZ(PositionDetZ8+Offset8);    
   PMT8->SetCenterPositionInY(-0.5*DetFullLengthY8+quartzY8+lguideY8+PMT8->GetPMTLength()/2.0 + 5.0*mm + LightGuide8->GetCurrentMiddleBoxHeight() + PositionDetY8);
 

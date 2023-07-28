@@ -42,7 +42,7 @@
 # For file-based drivers, use this to create an empty detector view:
 #/vis/viewer/flush
 /control/verbose 0
-
+/vis/ogl/set/displayListLimit 500000
 
 #  Geometry help:
 #
@@ -103,7 +103,7 @@
 /R2/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R2/SetCenterPositionInX 0 mm
 /R2/SetCenterPositionInY 0 mm
-/R2/SetCenterPositionInZ 200 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
+/R2/SetCenterPositionInZ 266 mm           #offset of PMT along Z w.r.t quartz to center light on cathode
 
 #------------------#Ring 3 commands --------------------#
 
@@ -120,7 +120,7 @@
 /R3/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R3/SetCenterPositionInX 0 mm
 /R3/SetCenterPositionInY 0 mm
-/R3/SetCenterPositionInZ 400 mm
+/R3/SetCenterPositionInZ 423 mm
 
 #------------------#Ring 4 commands --------------------#
 
@@ -137,7 +137,7 @@
 /R4/LightGuideQuartzToPMTOffset 3 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R4/SetCenterPositionInX 0 mm
 /R4/SetCenterPositionInY 0 mm
-/R4/SetCenterPositionInZ 600 mm
+/R4/SetCenterPositionInZ 580 mm
 
 #------------------#Ring 5 commands --------------------#
 
@@ -154,7 +154,7 @@
 /R5/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R5/SetCenterPositionInX 0 mm
 /R5/SetCenterPositionInY 0 mm
-/R5/SetCenterPositionInZ 800 mm
+/R5/SetCenterPositionInZ 848 mm
 
 #------------------#Ring 6 commands --------------------#
 
@@ -169,9 +169,9 @@
 /R6/QuartzSizeX 80 mm
 /R6/QuartzSizeY 157 mm                          #Without the 45 degree cut
 /R6/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R6/SetCenterPositionInX 0 mm
+/R6/SetCenterPositionInX -86.7 mm
 /R6/SetCenterPositionInY 0 mm
-/R6/SetCenterPositionInZ 1000 mm
+/R6/SetCenterPositionInZ 1116 mm
 
 #------------------#Ring 7 commands --------------------#
 
@@ -186,16 +186,16 @@
 /R7/QuartzSizeX 80 mm
 /R7/QuartzSizeY 157 mm                          #Without the 45 degree cut
 /R7/LightGuideQuartzToPMTOffset -2 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
-/R7/SetCenterPositionInX 0 mm
+/R7/SetCenterPositionInX 86.7 mm
 /R7/SetCenterPositionInY 0 mm
-/R7/SetCenterPositionInZ 1200 mm
+/R7/SetCenterPositionInZ 1116 mm
 
 #------------------#Ring 8 commands --------------------#
 
 /R8/LightGuideLowerConeBackAngle 20 deg         #Angle between positive y axis (length of quartz) and the downstram lower cone surface 
 /R8/LightGuideLowerConeFrontAngle 17 deg        #Angle between positive y axis (length of quartz) and the upstram lower cone surface
 /R8/LightGuideLowerInterface 83 mm              #Distance between quartz-LG interface and lower interface plane
-/R8/LightGuideMiddleBox 400 mm			 #Height of box between upper and lower cones	
+/R8/LightGuideMiddleBox 90 mm			 #Height of box between upper and lower cones	
 /R8/LightGuideUpperInterface 163 mm             #Distance between upper and lower interface planes
 /R8/LightGuideQuartzInterfaceOpeningX 26.7 cm   #These should be set according to the quartz size (always add 8 mm to quartz width ) (+0.8 disabled for Mainz beam test. Will return after)
 /R8/LightGuideQuartzInterfaceOpeningZ 2.7 cm    #But larger, according to the CAD model  (it's 1.7 cm for 1 cm thick quartz and 2.2 cm for 1.5 cm thick quartz) (+0.7 disabled for Mainz test. Will return after)
@@ -205,7 +205,7 @@
 /R8/LightGuideQuartzToPMTOffset 0 mm            #offset of PMT along Z w.r.t quartz to center light on cathode
 /R8/SetCenterPositionInX 0 mm
 /R8/SetCenterPositionInY 0 mm
-/R8/SetCenterPositionInZ 1400 mm
+/R8/SetCenterPositionInZ 1392 mm
 
 #------------------#General commands --------------------#
 

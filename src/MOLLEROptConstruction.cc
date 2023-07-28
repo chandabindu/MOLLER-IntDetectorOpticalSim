@@ -32,7 +32,7 @@ MOLLEROptConstruction::~MOLLEROptConstruction()
 
 G4VPhysicalVolume* MOLLEROptConstruction::Construct()
 {
-  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5aRing","5bRing","5cRing","6Ring", Materials);
+  Detector = new MOLLEROptDetector(TrackingReadout,"1Ring","2Ring", "3Ring","4Ring","5Ring","6Ring","7Ring","8Ring", Materials);
   //DetMessenger = new MOLLEROptDetectorMessenger(Detector);
   
   fWorldLengthInX =  15.0*m;
